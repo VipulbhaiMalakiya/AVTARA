@@ -41,6 +41,8 @@ export class UpdateTicketComponent {
   updatedUser?: any;
   dept?:any;
   set ticketsMaster(value: ticketMasterModel) {
+
+
     this._tickettsMaster = value;
     this.tNo = this._tickettsMaster.ticketNo;
     this.subject = this._tickettsMaster.shortNotes;
@@ -132,14 +134,8 @@ export class UpdateTicketComponent {
     this.uploadFile = data;
   }
 
-  attachmentDownload() {
-    this.masterName = `/ticket/file/52`;
-    this.apiService.getAll(this.masterName).subscribe(
-      (data) => {
-        this.cd.detectChanges();
-      },
-      (error) => {}
-    );
+  attachmentDownload(event:any) {
+    window.open(event, '_blank');
   }
 
   subCategory() {
