@@ -29,6 +29,7 @@ import { AuthGaurdGuard } from './_helpers/auth-gaurd.guard';
 import {GoogleMapsModule} from '@angular/google-maps';  // added
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { PrivacyPolicyComponent } from './modules/privacy-policy/privacy-policy.component';
+import { ContactUsComponent } from './_layouts/contact-us/contact-us.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { PrivacyPolicyComponent } from './modules/privacy-policy/privacy-policy.
     ResetPasswordComponent,
     NotFoundComponent,
     PrivacyPolicyComponent,
+    ContactUsComponent,
 
   ],
   imports: [
