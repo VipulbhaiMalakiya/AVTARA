@@ -10,6 +10,7 @@ import { ViewRoomsComponent } from 'src/app/modules/rooms/components/view-rooms/
 import { BulkUploadComponent } from 'src/app/modules/shared/components/bulk-upload/bulk-upload.component';
 import { ConfirmationDialogModalComponent } from 'src/app/modules/shared/components/confirmation-dialog-modal/confirmation-dialog-modal.component';
 import { AddUpdateComponent } from '../../components/add-update/add-update.component';
+import { ViewBookComponent } from '../../components/view-book/view-book.component';
 
 @Component({
     selector: 'app-booking-details-list',
@@ -145,14 +146,14 @@ export class BookingDetailsListComponent implements OnInit, OnDestroy {
 
     onViewDetail(dataItem: any) {
 
-        const modalRef = this.modalService.open(ViewRoomsComponent, { size: "md", centered: true, backdrop: "static" });
+        const modalRef = this.modalService.open(ViewBookComponent, { size: "md", centered: true, backdrop: "static" });
         if (modalRef) {
             this.isProceess = false;
         }
         else {
             this.isProceess = false;
         }
-        var componentInstance = modalRef.componentInstance as ViewRoomsComponent;
+        var componentInstance = modalRef.componentInstance as ViewBookComponent;
         componentInstance.categoryMaster = dataItem;
     }
 
