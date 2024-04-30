@@ -34,8 +34,8 @@
             <th class="action-cl">Action</th>
           </tr>
         </thead>
-        //| customFilter: term
-        <tbody *ngFor="let i of data  | paginate
+
+        <tbody *ngFor="let i of data | customFilter: term | paginate
         : {
             itemsPerPage: tableSize,
             currentPage: page,
@@ -52,7 +52,7 @@
             <td>
               <a class="btnClick" (click)="onViewDetail(i)"><i class="las la-eye"></i></a>
               <a class="btnClick" (click)="onEdit(i)"><i class="las la-edit"></i></a>
-              <a class="btnClick" (click)="onDelete(i)"><i class="las la-trash-alt"></i></a>
+              <!-- <a class="btnClick" (click)="onDelete(i)"><i class="las la-trash-alt"></i></a> -->
             </td>
           </tr>
         </tbody>
@@ -60,9 +60,9 @@
       <div *ngIf="data.length === 0" class="text-center">
         <Strong class="text-danger">No records found</Strong>
       </div>
-      <!-- <div class="text-center" *ngIf="(data | customFilter: term).length === 0 && data.length > 0">
+      <div class="text-center" *ngIf="(data | customFilter: term).length === 0 && data.length > 0">
         <Strong class="text-danger"> No results found.</Strong>
-      </div> -->
+      </div>
     </div>
     <div class="clearfix" *ngIf="!isProceess && data.length > 0">
       <ul class="pagination">

@@ -6,11 +6,13 @@ import { BookingDetailsListComponent } from './pages/booking-details-list/bookin
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SharedModule } from '../shared/shared.module';
+import { BookingFilterPipe } from 'src/app/_helpers/booking-info';
 
 
 @NgModule({
   declarations: [
-    BookingDetailsListComponent
+    BookingDetailsListComponent,
+    BookingFilterPipe
   ],
   imports: [
     CommonModule,
