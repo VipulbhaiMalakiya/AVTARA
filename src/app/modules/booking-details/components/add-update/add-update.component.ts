@@ -8,6 +8,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./add-update.component.css']
 })
 export class AddUpdateComponent {
+    phoneNumberPattern = /^\d{10}$/; // Regular expression for 10 digit phone number
 
     private _categoryMaster: any | undefined;
     isProceess: boolean = false;
@@ -38,7 +39,7 @@ export class AddUpdateComponent {
       this.CategoryMasterForm = this.formBuilder.group({
         firstName: ["", [ Validators.required,]],
         lastName: ["", [ Validators.required,]],
-        mobileNo: ["", [ Validators.required,]],
+        mobileNo: ['', [Validators.required, Validators.pattern(this.phoneNumberPattern)]],
         checkindate: ["", [ Validators.required,]],
       });
     }
