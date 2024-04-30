@@ -9,6 +9,7 @@ import { AddEditeRoomsComponent } from 'src/app/modules/rooms/components/add-edi
 import { ViewRoomsComponent } from 'src/app/modules/rooms/components/view-rooms/view-rooms.component';
 import { BulkUploadComponent } from 'src/app/modules/shared/components/bulk-upload/bulk-upload.component';
 import { ConfirmationDialogModalComponent } from 'src/app/modules/shared/components/confirmation-dialog-modal/confirmation-dialog-modal.component';
+import { AddUpdateComponent } from '../../components/add-update/add-update.component';
 
 @Component({
     selector: 'app-booking-details-list',
@@ -69,7 +70,7 @@ export class BookingDetailsListComponent implements OnInit, OnDestroy {
 
     onAdd() {
         this.isProceess = true;
-        const modalRef = this.modalService.open(AddEditeRoomsComponent, { size: "md" });
+        const modalRef = this.modalService.open(AddUpdateComponent, { size: "md" });
         if (modalRef) {
             this.isProceess = false;
         }
@@ -79,11 +80,12 @@ export class BookingDetailsListComponent implements OnInit, OnDestroy {
         modalRef.result.then((data: any) => {
             if (data) {
                 var model: any = {
-                    roomNumber: data.roomNumber,
-                    roomOccupied: data.roomOccupied,
-                    roomStatus: data.roomStatus
+                    firstName: data.firstName,
+                    lastName: data.lastName,
+                    mobileNo: data.mobileNo,
+                    checkindate: data.checkindate
                 }
-                this.masterName = `/rooms`;
+                this.masterName = `/booking-details`;
                 let addData: any = {
                     url: this.masterName,
                     model: model
@@ -105,24 +107,25 @@ export class BookingDetailsListComponent implements OnInit, OnDestroy {
 
     onEdit(dataItem: any) {
         this.isProceess = true;
-        const modalRef = this.modalService.open(AddEditeRoomsComponent, { size: "md" });
+        const modalRef = this.modalService.open(AddUpdateComponent, { size: "md" });
         if (modalRef) {
             this.isProceess = false;
         }
         else {
             this.isProceess = false;
         }
-        var componentInstance = modalRef.componentInstance as AddEditeRoomsComponent;
+        var componentInstance = modalRef.componentInstance as AddUpdateComponent;
         componentInstance.categoryMaster = dataItem;
         modalRef.result.then((data: any) => {
             if (data) {
                 var model: any = {
-                    roomNumber: data.roomNumber,
-                    roomOccupied: data.roomOccupied,
-                    roomStatus: data.roomStatus
+                    firstName: data.firstName,
+                    lastName: data.lastName,
+                    mobileNo: data.mobileNo,
+                    checkindate: data.checkindate
 
                 }
-                this.masterName = `/rooms/roomId/${dataItem.roomId}`;
+                this.masterName = `/booking-details/update-by-id/${dataItem.bookId}`;
                 let updateData: any = {
                     url: this.masterName,
                     model: model
@@ -169,44 +172,44 @@ export class BookingDetailsListComponent implements OnInit, OnDestroy {
         this.appService.exportAsExcelFile(exportData, "Booking Master", headers);
     }
 
-    onDelete(dataItem: any) {
-        this.isProceess = true;
-        const modalRef = this.modalService.open(ConfirmationDialogModalComponent, { size: "sm", centered: true, backdrop: "static" });
-        if (modalRef) {
-            this.isProceess = false;
-        }
-        else {
-            this.isProceess = false;
-        }
-        var componentInstance = modalRef.componentInstance as ConfirmationDialogModalComponent;
-        componentInstance.message = "Are you sure you want to delete this ?";
-        modalRef.result.then((canDelete: boolean) => {
-            if (canDelete) {
-                this.masterName = `/rooms/roomId/${dataItem?.roomId}`;
-                this.isProceess = true;
-                this.subscription = this.apiService.deleteID(this.masterName).pipe(take(1)).subscribe(data => {
-                    this.isProceess = false;
-                    this.toastr.success(data.message);
-                    this.fatchData();
-                }, error => {
-                    this.isProceess = false;
-                    this.toastr.error(error.error.message);
-                });
-            }
-        }).catch(() => { });
-    }
-    onbulkUpload() {
-        this.isProceess = true;
-        const modalRef = this.modalService.open(BulkUploadComponent, { size: "md", centered: true, backdrop: "static" });
-        if (modalRef) {
-            this.isProceess = false;
-        } else {
-            this.isProceess = false;
-        }
-        var componentInstance = modalRef.componentInstance as BulkUploadComponent;
-        componentInstance.heading = "Company"
-        componentInstance.message = "Are you sure you want to delete this ?";
-    }
+    // onDelete(dataItem: any) {
+    //     this.isProceess = true;
+    //     const modalRef = this.modalService.open(ConfirmationDialogModalComponent, { size: "sm", centered: true, backdrop: "static" });
+    //     if (modalRef) {
+    //         this.isProceess = false;
+    //     }
+    //     else {
+    //         this.isProceess = false;
+    //     }
+    //     var componentInstance = modalRef.componentInstance as ConfirmationDialogModalComponent;
+    //     componentInstance.message = "Are you sure you want to delete this ?";
+    //     modalRef.result.then((canDelete: boolean) => {
+    //         if (canDelete) {
+    //             this.masterName = `/rooms/roomId/${dataItem?.roomId}`;
+    //             this.isProceess = true;
+    //             this.subscription = this.apiService.deleteID(this.masterName).pipe(take(1)).subscribe(data => {
+    //                 this.isProceess = false;
+    //                 this.toastr.success(data.message);
+    //                 this.fatchData();
+    //             }, error => {
+    //                 this.isProceess = false;
+    //                 this.toastr.error(error.error.message);
+    //             });
+    //         }
+    //     }).catch(() => { });
+    // }
+    // onbulkUpload() {
+    //     this.isProceess = true;
+    //     const modalRef = this.modalService.open(BulkUploadComponent, { size: "md", centered: true, backdrop: "static" });
+    //     if (modalRef) {
+    //         this.isProceess = false;
+    //     } else {
+    //         this.isProceess = false;
+    //     }
+    //     var componentInstance = modalRef.componentInstance as BulkUploadComponent;
+    //     componentInstance.heading = "Company"
+    //     componentInstance.message = "Are you sure you want to delete this ?";
+    // }
 
     ngOnDestroy(): void {
         this.subscription?.unsubscribe();
