@@ -8,7 +8,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./add-update.component.css']
 })
 export class AddUpdateComponent {
-    phoneNumberPattern = /^\d{10}$/; // Regular expression for 10 digit phone number
+    phoneNumberPattern = /^\d{12}$/; // Regular expression for 12 digit phone number
 
     private _categoryMaster: any | undefined;
     isProceess: boolean = false;
