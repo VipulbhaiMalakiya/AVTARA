@@ -104,6 +104,8 @@ const routes: Routes = [
                     loadChildren: () =>
                         import('./modules/rooms/rooms.module').then((m) => m.RoomsModule),
                 },
+                { path: 'booking-details', loadChildren: () => import('./modules/booking-details/booking-details.module').then(m => m.BookingDetailsModule) },
+
 
                 {
                     path: 'department',
