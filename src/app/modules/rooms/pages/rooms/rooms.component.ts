@@ -197,6 +197,10 @@ export class RoomsComponent implements OnInit, OnDestroy {
       }
     }).catch(() => { });
   }
+
+  calculateIndex(page: number, index: number): number {
+    return (page - 1) * this.tableSize + index + 1;
+}
   onbulkUpload() {
     this.isProceess = true;
     const modalRef = this.modalService.open(BulkUploadComponent, { size: "md", centered: true, backdrop: "static" });

@@ -71,7 +71,7 @@
               currentPage: page,
               totalItems: count
             };let ind = index;trackBy: trackByFn">
-            <td>{{ind + 1}}</td>
+            <td>{{calculateIndex(page, ind)}}</td>
             <td>{{i?.user?.username || ''}}</td>
             <td>{{i.user?.firstName + ' ' + i.user?.lastName |titlecase}}</td>
             <td>{{i.assigned || ''}}</td>

@@ -33,7 +33,7 @@
               currentPage: page,
               totalItems: count
             };let ind = index;trackBy: trackByFn">
-            <td>{{ind + 1}}</td>
+            <td>{{calculateIndex(page, ind)}}</td>
             <td>{{i.customerName}}</td>
             <td>{{i.mobileNumber}}</td>
             <td>{{i.feedback}}</td>

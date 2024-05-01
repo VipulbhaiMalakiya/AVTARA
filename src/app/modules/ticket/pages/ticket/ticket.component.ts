@@ -127,6 +127,10 @@ export class TicketComponent implements OnInit, OnDestroy {
     this.page = 1;
   }
 
+  calculateIndex(page: number, index: number): number {
+    return (page - 1) * this.tableSize + index + 1;
+}
+
   onAdd() {
     const modalRef = this.modalService.open(AddEditeTicketComponent, {
       size: 'xl',

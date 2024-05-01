@@ -39,8 +39,7 @@
             totalItems: count
           };let ind = index">
           <tr>
-            <td>{{ind + 1}}</td>
-            <!-- <td>{{i.roomId}}</td> -->
+            <td>{{calculateIndex(page, ind)}}</td>            <!-- <td>{{i.roomId}}</td> -->
             <td>{{i.roomNumber}}</td>
             <td>{{i.roomOccupied}}</td>
             <td>{{i.roomStatus}} </td>

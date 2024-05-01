@@ -49,7 +49,7 @@
               currentPage: page,
               totalItems: count
             };let ind = index ;trackBy: trackByFn">
-            <td>{{ind + 1}}</td>
+            <td>{{calculateIndex(page, ind)}}</td>
             <!-- <td>{{i.ticketId}}</td> -->
             <td
               *ngIf="(userData?.role?.roleName !== 'Approver' && userData?.role?.roleName !== 'Resolver') || (userData?.role?.roleName === 'Approver' || userData?.role?.roleName === 'Resolver') && i.department.departmentName !== 'Zenoti' || i.department.departmentName == 'Admin'"

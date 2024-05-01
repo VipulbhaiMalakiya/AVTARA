@@ -64,7 +64,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let i of data  | customFilter: term ; let ind = index;trackBy: trackByFn">
-            <td>{{ind + 1}}</td>
+            <td>{{calculateIndex(page, ind)}}</td>
             <td>{{i.category}}</td>
             <td>{{i.guestnumber |titlecase}}</td>
             <td>{{i.responseTime}}</td>

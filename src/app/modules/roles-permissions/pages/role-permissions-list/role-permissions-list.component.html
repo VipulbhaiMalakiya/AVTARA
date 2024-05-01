@@ -44,7 +44,7 @@
           };let ind = index">
 
           <tr>
-            <td>{{ind + 1}}</td>
+            <td>{{calculateIndex(page, ind)}}</td>
             <td>{{i.roleId}}</td>
             <td>{{i.roleName |titlecase}}</td>
             <td>{{i.createdDate | date :'medium'}}</td>

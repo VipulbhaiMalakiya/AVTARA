@@ -144,6 +144,10 @@ export class BookingDetailsListComponent implements OnInit, OnDestroy {
         }).catch(() => { });
     }
 
+
+    calculateIndex(page: number, index: number): number {
+        return (page - 1) * this.tableSize + index + 1;
+    }
     onViewDetail(dataItem: any) {
 
         const modalRef = this.modalService.open(ViewBookComponent, { size: "md", centered: true, backdrop: "static" });

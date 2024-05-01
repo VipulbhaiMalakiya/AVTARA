@@ -38,12 +38,12 @@ export class TopTenComponent {
       private apiService: ApiService,
       private datePipe: DatePipe,
       private router: Router,
-  
+
     ) {
       this.titleService.setTitle('CDC -Chat Report');
       const d: any = localStorage.getItem('userData');
       this.userData = JSON.parse(d);
-  
+
       const oneWeekFromNow = new Date();
       this.endDate = this.datePipe.transform(
         oneWeekFromNow.toISOString().split('T')[0],
@@ -55,11 +55,15 @@ export class TopTenComponent {
         'yyyy-MM-dd'
       );
     }
-  
+
     ngOnInit(): void {
       this.fatchData();
     }
-  
+
+    calculateIndex(page: number, index: number): number {
+        return (page - 1) * this.tableSize + index + 1;
+    }
+
     fatchData() {
       this.isProceess = true;
       var model: any = {
@@ -74,7 +78,7 @@ export class TopTenComponent {
           (data) => {
             if (data) {
               console.log(data);
-  
+
               this.data = data.data;
               this.count = this.data.length;
               this.isProceess = false;
@@ -86,11 +90,11 @@ export class TopTenComponent {
           }
         );
     }
-  
+
     trackByFn(index: number, item: any): number {
       return item.categoryId;
     }
-  
+
     onTableDataChange(event: any) {
       this.page = event;
     }
@@ -111,9 +115,9 @@ export class TopTenComponent {
       ];
       this.appService.exportAsExcelFile(exportData, 'Top 10 Issues', headers);
     }
-  
 
-  
+
+
     onValueChange(event: Event) {
       const target = event.target as HTMLSelectElement;
       this.selectedValue = target.value;
@@ -142,7 +146,7 @@ export class TopTenComponent {
           'yyyy-MM-dd'
         );
       }
-  
+
       this.isProceess = true;
       var model: any = {
         startDate: this.datePipe.transform(this.startDate, 'yyyy-MM-dd'),
@@ -165,7 +169,7 @@ export class TopTenComponent {
           }
         );
     }
-  
+
     submitDateRange() {
       const start = new Date(this.startDate);
       const end = new Date(this.endDate);
@@ -179,7 +183,7 @@ export class TopTenComponent {
         };
         this.masterName = `/chatlist/top-10=${model.startDate}&endDate=${model.endDate}`;
         this.isProceess = true;
-  
+
         this.subscription = this.apiService
           .getAll(this.masterName)
           .pipe(take(1))
@@ -198,4 +202,3 @@ export class TopTenComponent {
       }
     }
   }
-  

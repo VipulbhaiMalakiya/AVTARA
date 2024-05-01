@@ -41,7 +41,7 @@
               currentPage: page,
               totalItems: count
             };let ind = index;trackBy: trackByFn">
-            <td>{{ind + 1}}</td>
+            <td>{{calculateIndex(page, ind)}}</td>
             <!-- <td>{{i.companyId}}</td> -->
             <td>{{i.companyName | titlecase}}</td>
             <td>{{i.apiKey || ''}}</td>

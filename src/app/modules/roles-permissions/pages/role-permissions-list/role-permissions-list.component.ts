@@ -45,6 +45,11 @@ export class RolePermissionsListComponent implements OnInit,OnDestroy {
     this.fatchData();
   }
 
+
+  calculateIndex(page: number, index: number): number {
+    return (page - 1) * this.tableSize + index + 1;
+}
+
   fatchData() {
     this.isProceess = true;
     this.masterName = "/role";

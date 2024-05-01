@@ -41,7 +41,7 @@
             totalItems: count
           };let ind = index">
           <tr>
-            <td>{{ind + 1}}</td>
+            <td>{{calculateIndex(page, ind)}}</td>
             <!-- <td>{{i.issueId}}</td> -->
             <td>{{i.issueName | titlecase}}</td>
             <td>{{i.calculationSLA }}</td>

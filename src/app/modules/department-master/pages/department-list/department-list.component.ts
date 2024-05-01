@@ -65,6 +65,10 @@ export class DepartmentListComponent implements OnInit, OnDestroy {
     this.page = 1;
   }
 
+  calculateIndex(page: number, index: number): number {
+    return (page - 1) * this.tableSize + index + 1;
+}
+
   onDownload() {
     const exportData = this.data.map(x => {
       let updatedBy: any = ' '

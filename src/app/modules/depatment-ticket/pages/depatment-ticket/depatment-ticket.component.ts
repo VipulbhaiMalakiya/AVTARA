@@ -50,6 +50,10 @@ export class DepatmentTicketComponent implements OnInit, OnDestroy {
     this.fatchData();
   }
 
+  calculateIndex(page: number, index: number): number {
+    return (page - 1) * this.tableSize + index + 1;
+}
+
   fatchData() {
     this.masterName = `/ticket/departmentId/${this.userData.department.departmentId}`;
     this.subscription = this.apiService.getAll(this.masterName).pipe(take(1)).subscribe(data => {

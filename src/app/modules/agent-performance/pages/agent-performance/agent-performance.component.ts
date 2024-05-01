@@ -84,6 +84,9 @@ export class AgentPerformanceComponent {
       );
   }
 
+  calculateIndex(page: number, index: number): number {
+    return (page - 1) * this.tableSize + index + 1;
+}
   trackByFn(index: number, item: any): number {
     return item.categoryId;
   }

@@ -41,7 +41,7 @@
               currentPage: page,
               totalItems: count
             };let ind = index">
-            <td>{{ind + 1}}</td>
+            <td>{{calculateIndex(page, ind)}}</td>
             <!-- <td>{{i.serviceId}}</td> -->
             <td>{{i.serviceName | titlecase}}</td>
             <td>{{i.subCategory?.category?.categoryName | titlecase}}</td>

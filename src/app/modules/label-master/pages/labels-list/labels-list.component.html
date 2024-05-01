@@ -42,7 +42,7 @@
             totalItems: count
           };let ind = index">
           <tr>
-            <td>{{ind + 1}}</td>
+            <td>{{calculateIndex(page, ind)}}</td>
             <!-- <td>{{i.labelId}}</td> -->
             <td>{{i.labelName | titlecase}}</td>
             <td>{{i.createdDate | date :'medium'}}</td>

@@ -54,6 +54,10 @@ export class ProductsComponent implements OnInit {
     this.fatchData();
   }
 
+  calculateIndex(page: number, index: number): number {
+    return (page - 1) * this.tableSize + index + 1;
+}
+
   onDownload() {
     const exportData = this.data.map(x => {
       let updatedBy: any = ' '

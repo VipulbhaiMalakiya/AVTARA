@@ -45,20 +45,24 @@ export class EscallationLevelComponent {
     }
 
     ngOnInit(): void {
-   
+
 
         this.route.params.subscribe(params => {
             this.level = params['id'];
             this.masterName = `/chatlist/chat-escalation?escallationLevel=${this.level}`;
             this.fatchData();
         });
-        
 
+
+    }
+
+    calculateIndex(page: number, index: number): number {
+        return (page - 1) * this.tableSize + index + 1;
     }
 
     fatchData() {
         this.isProceess = true;
-    
+
         this.subscription = this.apiService.getAll(this.masterName).pipe(take(1)).subscribe(data => {
             if (data) {
                 this.data = data.data;
@@ -80,7 +84,7 @@ export class EscallationLevelComponent {
     }
     onDownload() {
         const exportData = this.data.map(x => {
-    
+
 
             return {
                 "Id": x.slaId || '',
@@ -88,8 +92,8 @@ export class EscallationLevelComponent {
                 "Escalation By": x.escalatedBy?.username || '',
                 "Level": x.escationlevel || '',
                 "Time": x.time || '',
-              
-      
+
+
             }
         });
         const headers = [

@@ -62,7 +62,7 @@
               currentPage: page,
               totalItems: count
             };let ind = index">
-            <td>{{ind + 1}}</td>
+            <td>{{calculateIndex(page, ind)}}</td>
             <!-- <td>{{i.ticketId}}</td> -->
             <td *ngIf="i.department.departmentName !== 'Zenoti' && i.departmentName !== 'Admin'" (click)="onUpdateTicket(i)" class="tblLink">{{i.ticketNo}}</td>
             <td  *ngIf="i.department.departmentName == 'Zenoti' || i.departmentName == 'Admin'" (click)="onUpdateTicket1(i)" class="tblLink">{{i.ticketNo}}</td>

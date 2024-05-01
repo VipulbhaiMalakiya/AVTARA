@@ -41,7 +41,7 @@
               totalItems: count
             };let ind = index">
           <tr>
-            <td>{{ind + 1}}</td>
+            <td>{{calculateIndex(page, ind)}}</td>
             <!-- <td>{{i.productCategoryId}}</td> -->
             <td>
               <div class="d-flex justify-content-center" *ngIf="isLoading">

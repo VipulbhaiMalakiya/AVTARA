@@ -41,8 +41,7 @@
               currentPage: page,
               totalItems: count
             };let ind = index">
-            <td>{{ind + 1}}</td>
-            <!-- <td>{{i.id}}</td> -->
+            <td>{{calculateIndex(page, ind)}}</td>            <!-- <td>{{i.id}}</td> -->
             <td>{{i.priorityName | titlecase}}</td>
             <td>{{i.slaTimeInHours}}</td>
             <td>{{i.createdDate | date :'medium'}}</td>

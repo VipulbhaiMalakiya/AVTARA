@@ -77,6 +77,10 @@ export class QuickReplayComponent implements OnInit, OnDestroy {
     this.page = 1;
   }
 
+  calculateIndex(page: number, index: number): number {
+    return (page - 1) * this.tableSize + index + 1;
+}
+
   onAdd() {
     this.isProceess = true;
     const modalRef = this.modalService.open(AddEditeQuickReplayComponent, {

@@ -63,6 +63,10 @@ export class SlaReportComponent {
       this.isProceess = false;
     })
   }
+
+  calculateIndex(page: number, index: number): number {
+    return (page - 1) * this.tableSize + index + 1;
+}
   onTableDataChange(event: any) {
     this.page = event;
   }

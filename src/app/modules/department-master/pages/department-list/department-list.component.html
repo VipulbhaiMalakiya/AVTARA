@@ -42,7 +42,7 @@
             totalItems: count
           };let ind = index">
           <tr>
-            <td>{{ind + 1}}</td>
+            <td>{{calculateIndex(page, ind)}}</td>
             <!-- <td>{{i.departmentId}}</td> -->
             <td>{{i.departmentCode}}</td>
             <td>{{i.departmentName | titlecase }}</td>

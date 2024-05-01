@@ -51,6 +51,10 @@ export class OrderListComponent implements OnInit {
     this.fatchData();
   }
 
+  calculateIndex(page: number, index: number): number {
+    return (page - 1) * this.tableSize + index + 1;
+}
+
   fatchData() {
     this.isProceess = true;
     this.masterName = '/order';
