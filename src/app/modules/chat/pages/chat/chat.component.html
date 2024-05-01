@@ -701,8 +701,45 @@
                 <small> {{data.time |dateAgo}}</small>
               </div>
               <!-- Templet Start -->
+
+              <li class="msg-replayer" *ngIf="data.messagetype === 'template' && data.templateName == 'booking_confirmation'">
+                <div class="avata">
+                    <span *ngIf="data.name === null">Y</span>
+                    <span *ngIf="data.name !== null"> {{getShortName(data.name)}}</span>
+                  </div>
+                <div class="chat-info">
+                    <div class="last-msg p-3 rounded senttemp-1color">
+                      <div class="senttemp-1">
+                         <!-- <p>{{data.templatePreview}}</p> -->
+                         <p> {{replaceAndBoldPlaceholder550(data)}} </p>
+
+                        </div>
+                    </div>
+                    <div class="suserchat-info mt-2">
+                        <span class="suserchat-name" *ngIf="data.name == null">You</span>
+                        <span class="suserchat-name" *ngIf="data.name !== null">{{data.name || ''}}</span>
+                        {{data.time |dateAgo}}
+                        <ng-container *ngIf="!data.messageId">
+                          <span class="last-msg-checkic text-success" *ngIf="data.messageStatus == 'read'"><i
+                              class="las la-check-double"></i></span>
+                          <span class="last-msg-checkic" *ngIf="data.messageStatus == 'sent'"><i
+                              class="las la-check"></i></span>
+                          <span class="last-msg-checkic" *ngIf="data.messageStatus == 'delivered'"><i
+                              class="las la-check-double"></i></span>
+                        </ng-container>
+
+                        <ng-container *ngIf="data.messageId">
+                          <span class="last-msg-checkic text-success" *ngIf="messagestates == 'read'"><i
+                              class="las la-check-double"></i></span>
+                          <span class="last-msg-checkic" *ngIf="messagestates == 'sent'"><i class="las la-check"></i></span>
+                          <span class="last-msg-checkic" *ngIf="messagestates== 'delivered'"><i
+                              class="las la-check-double"></i></span>
+                        </ng-container>
+                      </div>
+                </div>
+            </li>
               <li class="msg-replayer" class="msg-replayer" *ngIf="data.messagetype === 'template' && data.templateBody == 'body'
-              && data.templateButton1 !== null  && data.templateHeader == null ">
+              && data.templateButton1 !== null  && data.templateHeader == null && data.templateName != 'booking_confirmation' ">
 
                 <div class="avata">
                   <span *ngIf="data.name === null">Y</span>
@@ -748,7 +785,7 @@
 
               </li>
               <li class="msg-replayer" class="msg-replayer" *ngIf="data.messagetype === 'template' && data.templateBody == null
-              && data.templateButton1 == null  && data.templateHeader == 'header' ">
+              && data.templateButton1 == null  && data.templateHeader == 'header' && data.templateName != 'booking_confirmation'  ">
                 <div class="avata">
                   <span *ngIf="data.name === null">Y</span>
                   <span *ngIf="data.name !== null"> {{getShortName(data.name)}}</span>
@@ -798,7 +835,7 @@
 
               </li>
               <li class="msg-replayer" class="msg-replayer" *ngIf="data.messagetype === 'template' && data.templateBody == 'body'
-              && data.templateButton1 == null  && data.templateHeader == 'header' && data.templateBodyAttributes ">
+              && data.templateButton1 == null  && data.templateHeader == 'header' && data.templateName != 'booking_confirmation' ">
                 <div class="avata">
                   <span *ngIf="data.name === null">Y</span>
                   <span *ngIf="data.name !== null"> {{getShortName(data.name)}}</span>
@@ -849,7 +886,7 @@
               </li>
               <li class="msg-replayer" *ngIf="data.messagetype === 'template' && data.templateBody == 'body'
                && data.templateButton1 == null && data.templateHeader == null
-               && data.templateHeaderfileLink == null">
+               && data.templateHeaderfileLink == null && data.templateName != 'booking_confirmation'">
                 <div class="avata">
                   <span *ngIf="data.name === null">Y</span>
                   <span *ngIf="data.name !== null"> {{getShortName(data.name)}}</span>
@@ -858,8 +895,7 @@
 
                   <div class="last-msg p-3 rounded senttemp-1color">
                     <div class="senttemp-1">
-                      <p> {{replaceAndBoldPlaceholder1(data)}}
-                      </p>
+                      <p> {{replaceAndBoldPlaceholder1(data)}} </p>
                       <a class="temppay-btn text-left mb-2" *ngIf="data.templateButton1">{{data.templateButton1}} <i
                           class="las la-sign-in-alt"></i></a>
                       <a class="temppay-btn text-left mb-2" *ngIf="data.templateButton1">{{data.templateButton2}} <i
@@ -892,7 +928,7 @@
                 </div>
               </li>
               <li class="msg-replayer" *ngIf="data.messagetype === 'template' && data.templateBody == null
-              && data.templateButton1 !== null ">
+              && data.templateButton1 !== null && data.templateName != 'booking_confirmation'">
                 <div class="avata">
                   <span *ngIf="data.name === null">Y</span>
                   <span *ngIf="data.name !== null"> {{getShortName(data.name)}}</span>
@@ -935,7 +971,7 @@
                 </div>
               </li>
               <li class="msg-replayer" *ngIf="data.messagetype === 'template' && data.templateBody == null
-              && data.templateButton1 == null  && data.templateHeader !== 'header' ">
+              && data.templateButton1 == null  && data.templateHeader !== 'header' && data.templateName != 'booking_confirmation' ">
                 <div class="avata">
                   <span *ngIf="data.name === null">Y</span>
                   <span *ngIf="data.name !== null"> {{getShortName(data.name)}}</span>

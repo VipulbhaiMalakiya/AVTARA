@@ -153,6 +153,22 @@ export class ChatComponent
     return replacedString;
   }
 
+  replaceAndBoldPlaceholder550(data?: any){
+    try {
+       
+
+        const name = data.templateBodyAttributes[0];
+        const originalString = data.templatePreview;
+
+        // Use regular expressions to replace all occurrences of {{1}}, {{2}}, and {{3}}
+        const replacedString = originalString.replace(/{{1}}/g, name);        
+        return replacedString;
+      } catch (error) {
+        // Handle the error here, e.g., log it or return a default value
+        console.error('Error in replaceAndBoldPlaceholder1:', error);
+        return 'Error: Unable to replace placeholders';
+      }
+  }
   replaceAndBoldPlaceholder1(data?: any): any {
     try {
       if (
@@ -183,6 +199,8 @@ export class ChatComponent
       return 'Error: Unable to replace placeholders';
     }
   }
+
+
   //Emoji Code End
   constructor(
     private _route: ActivatedRoute,
