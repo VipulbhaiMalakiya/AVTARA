@@ -155,13 +155,10 @@ export class ChatComponent
 
   replaceAndBoldPlaceholder550(data?: any){
     try {
-       
-
+        
         const name = data.templateBodyAttributes[0];
         const originalString = data.templatePreview;
-
-        // Use regular expressions to replace all occurrences of {{1}}, {{2}}, and {{3}}
-        const replacedString = originalString.replace(/{{1}}/g, name);        
+        const replacedString = originalString.replace('{{1}}', name);
         return replacedString;
       } catch (error) {
         // Handle the error here, e.g., log it or return a default value
