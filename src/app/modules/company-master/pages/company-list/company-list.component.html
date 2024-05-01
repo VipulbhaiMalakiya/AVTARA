@@ -25,7 +25,7 @@
       <table class="table" >
         <thead>
           <tr>
-            <th>Id</th>
+            <th>Sr.No</th>
             <th>Name</th>
             <th>Api Key</th>
             <th>Created Date</th>
@@ -41,8 +41,8 @@
               currentPage: page,
               totalItems: count
             };let ind = index;trackBy: trackByFn">
-            <!-- <td>{{ind + 1}}</td> -->
-            <td>{{i.companyId}}</td>
+            <td>{{ind + 1}}</td>
+            <!-- <td>{{i.companyId}}</td> -->
             <td>{{i.companyName | titlecase}}</td>
             <td>{{i.apiKey || ''}}</td>
             <td>{{i.createdDate | date :'medium'}}</td>

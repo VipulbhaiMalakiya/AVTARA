@@ -26,7 +26,7 @@
       <table class="table">
         <thead>
           <tr>
-            <th>Id</th>
+            <th>Sr.No</th>
             <th>User Name</th>
             <th>Email Id</th>
             <th>Contact</th>
@@ -42,8 +42,8 @@
               currentPage: page,
               totalItems: count
             };let ind = index">
-            <!-- <td>{{ind + 1}}</td> -->
-            <td>{{i.customerId}}</td>
+            <td>{{ind + 1}}</td>
+            <!-- <td>{{i.customerId}}</td> -->
             <td >{{i.firstName | titlecase}} {{i.lastName | titlecase}}</td>
             <td>{{i.email | titlecase}}</td>
             <td>{{i.contact}}<span class="ctm-icone" *ngIf="i.status && i.firstName"> <i class="lab la-whatsapp"

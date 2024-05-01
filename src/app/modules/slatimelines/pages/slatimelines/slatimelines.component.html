@@ -25,7 +25,7 @@
       <table class="table">
         <thead>
           <tr>
-            <th>Id</th>
+            <th>Sr.No</th>
             <th>Priority</th>
             <th>SLA Time in hours</th>
             <th>Created Date</th>
@@ -41,8 +41,8 @@
               currentPage: page,
               totalItems: count
             };let ind = index">
-            <!-- <td>{{ind + 1}}</td> -->
-            <td>{{i.id}}</td>
+            <td>{{ind + 1}}</td>
+            <!-- <td>{{i.id}}</td> -->
             <td>{{i.priorityName | titlecase}}</td>
             <td>{{i.slaTimeInHours}}</td>
             <td>{{i.createdDate | date :'medium'}}</td>

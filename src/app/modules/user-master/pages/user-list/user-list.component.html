@@ -26,7 +26,7 @@
       <table class="table">
         <thead>
           <tr>
-            <th>Id</th>
+            <th>Sr.No</th>
             <th>User Name</th>
             <th>Full Name</th>
             <th>Contact</th>
@@ -42,10 +42,10 @@
             itemsPerPage: tableSize,
             currentPage: page,
             totalItems: count
-          };">
+          };let ind = index">
 
           <tr *ngIf="i.userId !== this.userData?.userId">
-            <td>{{i.userId}}</td>
+            <td>{{ind + 1}}</td>
             <td>{{i.username | titlecase}}</td>
             <td>{{i.firstName | titlecase}} {{i.lastName | titlecase}}</td>
             <td>{{i.contact}}</td>

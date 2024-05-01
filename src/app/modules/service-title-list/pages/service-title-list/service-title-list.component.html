@@ -25,7 +25,7 @@
       <table class="table">
         <thead>
           <tr>
-            <th>Id</th>
+            <th>Sr.No</th>
             <th>Service Title</th>
             <th>Category</th>
             <th>Sub Category</th>
@@ -41,8 +41,8 @@
               currentPage: page,
               totalItems: count
             };let ind = index">
-            <!-- <td>{{ind + 1}}</td> -->
-            <td>{{i.serviceId}}</td>
+            <td>{{ind + 1}}</td>
+            <!-- <td>{{i.serviceId}}</td> -->
             <td>{{i.serviceName | titlecase}}</td>
             <td>{{i.subCategory?.category?.categoryName | titlecase}}</td>
             <td>{{i.subCategory?.subCategoryName | titlecase}}</td>

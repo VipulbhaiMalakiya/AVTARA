@@ -25,7 +25,7 @@
       <table class="table">
         <thead>
           <tr>
-            <th>ID</th>
+            <th>Sr.No</th>
             <th>Issue Name</th>
             <th>Calculation SLA</th>
             <th>Created Date</th>
@@ -41,8 +41,8 @@
             totalItems: count
           };let ind = index">
           <tr>
-            <!-- <td>{{ind + 1}}</td> -->
-            <td>{{i.issueId}}</td>
+            <td>{{ind + 1}}</td>
+            <!-- <td>{{i.issueId}}</td> -->
             <td>{{i.issueName | titlecase}}</td>
             <td>{{i.calculationSLA }}</td>
             <td>{{i.createdDate | date :'medium'}}</td>

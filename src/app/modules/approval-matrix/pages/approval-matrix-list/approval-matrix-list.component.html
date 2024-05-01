@@ -26,7 +26,7 @@
       <table class="table">
         <thead>
           <tr>
-            <th>ID</th>
+            <th>Sr.No</th>
             <th>Department</th>
             <th>L1 Manager</th>
             <th>L2 Manager</th>
@@ -42,8 +42,8 @@
             totalItems: count
           };let ind = index">
           <tr>
-            <!-- <td>{{ind + 1}}</td> -->
-            <td>{{i.id}}</td>
+            <td>{{ind + 1}}</td>
+            <!-- <td>{{i.id}}</td> -->
             <td>{{i.department?.departmentName | titlecase}}</td>
             <td>{{i.userL1[0]?.fullName | titlecase}}</td>
             <td><span *ngFor="let item of i.userL2">

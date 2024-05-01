@@ -18,7 +18,7 @@
       <table class="table">
         <thead>
           <tr>
-            <th>ID</th>
+            <th>Sr.No</th>
             <th>Department</th>
             <th>Escalation By</th>
             <th>Level</th>
@@ -33,7 +33,7 @@
               totalItems: count
             };let ind = index"
             [ngClass]="{'active': i.sla === 'Under', 'inactive': i.sla === 'Over', 'gray-bg':i.sla === null}">
-            <td>{{i.slaId}}</td>
+            <td>{{ind + 1}}</td>
             <td>{{i.department?.departmentName}}</td>
             <td>{{i.escalatedBy?.username}}</td>
             <td>{{i.escationlevel | titlecase}}</td>

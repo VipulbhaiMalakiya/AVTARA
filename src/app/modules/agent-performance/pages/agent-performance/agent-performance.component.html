@@ -51,6 +51,7 @@
       <table class="table">
         <thead>
           <tr>
+            <th>Sr.No</th>
             <th>User Name</th>
             <th>Full Name</th>
             <th>Assigned</th>
@@ -70,6 +71,7 @@
               currentPage: page,
               totalItems: count
             };let ind = index;trackBy: trackByFn">
+            <td>{{ind + 1}}</td>
             <td>{{i?.user?.username || ''}}</td>
             <td>{{i.user?.firstName + ' ' + i.user?.lastName |titlecase}}</td>
             <td>{{i.assigned || ''}}</td>

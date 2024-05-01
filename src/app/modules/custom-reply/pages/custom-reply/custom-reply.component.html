@@ -25,7 +25,7 @@
       <table class="table">
         <thead>
           <tr>
-            <th>ID</th>
+            <th>Sr.No</th>
             <th>Input</th>
             <th>Message</th>
             <th>Created By</th>
@@ -40,8 +40,8 @@
             totalItems: count
           };let ind = index">
           <tr>
-            <!-- <td>{{ind + 1}}</td> -->
-            <td>{{i.autoReplyId}}</td>
+            <td>{{ind + 1}}</td>
+            <!-- <td>{{i.autoReplyId}}</td> -->
             <td>{{i.input}}</td>
             <td>{{i.messageBody}}</td>
             <td>{{i.createdBy?.firstName || ''}} {{i.createdBy?.lastName || ''}} </td>

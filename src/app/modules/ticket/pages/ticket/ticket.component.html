@@ -44,7 +44,7 @@
       <table class="table">
         <thead>
           <tr>
-            <th>Id</th>
+            <th>Sr.No</th>
             <th>Ticket No</th>
             <th>Created Date</th>
             <th>Status</th>
@@ -62,8 +62,8 @@
               currentPage: page,
               totalItems: count
             };let ind = index">
-            <!-- <td>{{ind + 1}}</td> -->
-            <td>{{i.ticketId}}</td>
+            <td>{{ind + 1}}</td>
+            <!-- <td>{{i.ticketId}}</td> -->
             <td *ngIf="i.department.departmentName !== 'Zenoti' && i.departmentName !== 'Admin'" (click)="onUpdateTicket(i)" class="tblLink">{{i.ticketNo}}</td>
             <td  *ngIf="i.department.departmentName == 'Zenoti' || i.departmentName == 'Admin'" (click)="onUpdateTicket1(i)" class="tblLink">{{i.ticketNo}}</td>
             <td>{{i.createdDate | date :'medium'}}</td>

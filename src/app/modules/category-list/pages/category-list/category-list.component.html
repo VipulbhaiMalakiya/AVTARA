@@ -26,7 +26,7 @@
       <table class="table">
         <thead>
           <tr>
-            <th>ID</th>
+            <th>Sr.N</th>
             <th>Category</th>
             <th>Created Date</th>
             <th>Created By</th>
@@ -43,8 +43,8 @@
               currentPage: page,
               totalItems: count
             }; let ind = index; trackBy: trackByFn">
-            <!-- <td>{{ind + 1}}</td> -->
-            <td>{{i.categoryId}}</td>
+            <td>{{ind + 1}}</td>
+            <!-- <td>{{i.categoryId}}</td> -->
             <td>{{i.categoryName| titlecase}}</td>
             <td>{{i.createdDate | date :'medium' || ''}}</td>
             <td>{{i.createdBy?.firstName | titlecase}} {{i.createdBy?.lastName || ''}} </td>

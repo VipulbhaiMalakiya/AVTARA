@@ -47,12 +47,14 @@
       <table class="table w-50">
         <thead>
           <tr>
+            <th>Sr.No</th>
             <th>Department Name</th>
             <th>Number of Requests</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of data">
+          <tr *ngFor="let item of data;let ind = index;">
+            <td>{{ind + 1}}</td>
             <td>{{ item.deptName }}</td>
             <td>{{ item.deptValue }}</td>
           </tr>

@@ -20,7 +20,7 @@
       <table class="table">
         <thead>
           <tr>
-            <th>ID</th>
+            <th>Sr.No</th>
             <th>Party Name</th>
             <th>Cash / Debit</th>
             <th>Order Date</th>
@@ -39,7 +39,7 @@
               currentPage: page,
               totalItems: count
             };let ind = index">
-            <td>{{i.orderId}}</td>
+            <td>{{ind + 1}}</td>
             <td>{{i.customer.firstName | titlecase}} {{i.customer.lastName | titlecase}}</td>
             <td>{{i.paymentType | titlecase}}</td>
             <td>{{i.createdDate | date :'medium'}}</td>
