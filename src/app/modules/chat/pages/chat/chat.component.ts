@@ -256,7 +256,7 @@ export class ChatComponent
   }
 
   public connect(): void {
-    debugger;
+
     if (!this.socket$ || this.socket$.closed) {
       this.socket$ = webSocket(environment.SOCKET_ENDPOINT);
       this.socket$.subscribe((data: MessageData) => {
