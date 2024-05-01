@@ -142,7 +142,9 @@ export class ChatComponent
     }
 
     const name = data.templateBodyAttributes[0];
-
+    // console.log(data);
+    // debugger;
+    
     // Check if the originalString exists and contains the placeholder
     if (!data.templatePreview || !data.templatePreview.includes('{{1}}')) {
       return 'originalString is missing or does not contain {{1}} placeholder.';
