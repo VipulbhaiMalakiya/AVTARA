@@ -91,6 +91,7 @@ export class ChatComponent
   meesagestatus?: any = [];
   isempty: boolean = true;
   reloadFlag = true;
+  isstatus?:any = 'open';
   openCount: any;
   checkoutdata:any;
   tqty?: any;
@@ -144,7 +145,7 @@ export class ChatComponent
     const name = data.templateBodyAttributes[0];
     // console.log(data);
     // debugger;
-    
+
     // Check if the originalString exists and contains the placeholder
     if (!data.templatePreview || !data.templatePreview.includes('{{1}}')) {
       return 'originalString is missing or does not contain {{1}} placeholder.';
@@ -157,7 +158,7 @@ export class ChatComponent
 
   replaceAndBoldPlaceholder550(data?: any){
     try {
-        
+
         const name = data.templateBodyAttributes[0];
         const originalString = data.templatePreview;
         const replacedString = originalString.replace('{{1}}', name);
@@ -279,9 +280,10 @@ export class ChatComponent
       this.socket$.subscribe((data: MessageData) => {
         this.messagestates = data.messageStatus;
         if (data.mobileNo === this.contact) {
-            console.log(data);
 
           this.receivedData.push(data);
+          this.getContactList();
+          this.isstatus = 'open';
         } else if (data.mobileNo !== this.contact) {
           this.getContactList();
         }
@@ -633,6 +635,10 @@ export class ChatComponent
           }
         );
     }
+  }
+
+  handleClick(status:any){
+    this.isstatus = status;
   }
 
   chathistroy() {
