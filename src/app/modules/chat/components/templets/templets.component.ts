@@ -22,6 +22,7 @@ export class TempletsComponent implements OnInit {
   previewUrl: any;
   uploadFile?: any;
   username: any;
+  password:any;
   set issuesMaster(value: any) {
     this.username = value;
   }
@@ -48,7 +49,6 @@ export class TempletsComponent implements OnInit {
             this.templetsdata = data.data;
             this.templet = this.templetsdata[0];
 
-            this.username =
             this.isProceess = false;
             this.cd.detectChanges();
           }
@@ -61,6 +61,8 @@ export class TempletsComponent implements OnInit {
 
   onView(i: any) {
     this.templet = i;
+    this.username = this.templet.body.bodyattribute[0]
+
   }
   onFileChange(event: any) {
     const file = event.target.files[0];
