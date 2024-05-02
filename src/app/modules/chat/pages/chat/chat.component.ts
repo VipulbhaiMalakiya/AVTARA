@@ -214,7 +214,8 @@ export class ChatComponent
     private location: Location,
     private titleService: Title,
     private cd: ChangeDetectorRef,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private route: ActivatedRoute
   ) {
     const d: any = localStorage.getItem('userData');
     this.userData = JSON.parse(d);
@@ -230,8 +231,14 @@ export class ChatComponent
       this.ActiveLabels();
     }, 2000);
 
-    console.log(this.checkinstatus);
 
+    this.route.params.subscribe(params => {
+        if ('status' in params) {
+            this.isstatus = params['status'];
+        } else {
+            this.isstatus = 'open';
+        }
+    });
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         this.data.latitude = position.coords.latitude.toString();
@@ -271,6 +278,8 @@ export class ChatComponent
     if (event.latLng != null) {
       this.display = event.latLng.toJSON();
     }
+
+
   }
 
   public connect(): void {

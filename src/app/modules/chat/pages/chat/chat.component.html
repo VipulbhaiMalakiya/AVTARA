@@ -129,7 +129,7 @@
                 </ul>
                 <!-- open tab-pane-->
                 <div class="tab-content" id="pills-tabContent">
-                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
+                    <div class="tab-pane fade " [ngClass]="{'show': isstatus == 'open', 'active': isstatus == 'open'}" id="pills-home" role="tabpanel"
                         aria-labelledby="pills-home-tab">
                         <div class="nocon-txt" *ngIf="!open.length || (open | customFilter: term).length === 0 ">
                             <div class="nochat-vector"><img src="../assets/images/nochat-vector.png"
@@ -196,7 +196,7 @@
                         </ul>
                     </div>
                     <!-- Colsed tab-pane-->
-                    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                    <div class="tab-pane fade show"  id="pills-profile" [ngClass]="{'show': isstatus == 'close', 'active': isstatus == 'close'}" role="tabpanel" aria-labelledby="pills-profile-tab">
                         <ul class="active-chat-list pe-3">
                             <div class="nocon-txt" *ngIf="!closed.length || (closed | customFilter: term).length === 0">
                                 <div class="nochat-vector"><img src="../assets/images/nochat-vector.png"

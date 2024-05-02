@@ -248,6 +248,12 @@ const routes: Routes = [
                 import('./modules/chat/chat.module').then((m) => m.ChatModule),
         },
         {
+            path: 'inbox/:status',
+
+            loadChildren: () =>
+                import('./modules/chat/chat.module').then((m) => m.ChatModule),
+        },
+        {
             path: 'ticket',
             loadChildren: () =>
                 import('./modules/ticket/ticket.module').then((m) => m.TicketModule),
