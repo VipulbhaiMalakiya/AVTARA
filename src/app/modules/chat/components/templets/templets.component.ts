@@ -47,6 +47,8 @@ export class TempletsComponent implements OnInit {
           if (data) {
             this.templetsdata = data.data;
             this.templet = this.templetsdata[0];
+
+            this.username =
             this.isProceess = false;
             this.cd.detectChanges();
           }
