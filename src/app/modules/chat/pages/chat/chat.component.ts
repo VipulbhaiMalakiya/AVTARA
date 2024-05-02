@@ -153,7 +153,25 @@ export class ChatComponent
 
     const originalString = data.templatePreview;
     const replacedString = originalString.replace('{{1}}', name);
+
     return replacedString;
+  }
+
+
+  replaceAndBoldPlaceholder50(data?: any){
+    try {
+
+        const name = data.templateBodyAttributes[0];
+        const pwd = data.templateBodyAttributes[1];
+
+        const originalString = data.templatePreview;
+        const replacedString = originalString.replace('{{1}}', name).replace('{{2}}', pwd);
+        return replacedString;
+      } catch (error) {
+        // Handle the error here, e.g., log it or return a default value
+        console.error('Error in replaceAndBoldPlaceholder1:', error);
+        return 'Error: Unable to replace placeholders';
+      }
   }
 
   replaceAndBoldPlaceholder550(data?: any){
