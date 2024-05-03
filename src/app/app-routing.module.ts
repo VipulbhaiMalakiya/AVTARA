@@ -317,6 +317,7 @@ const routes: Routes = [
         { path: 'escalation-depaetment-wise-report', loadChildren: () => import('./modules/escalation-depaetment-wise-report/escalation-depaetment-wise-report.module').then(m => m.EscalationDepaetmentWiseReportModule) },
         { path: 'top-ten', loadChildren: () => import('./modules/top-ten/top-ten.module').then(m => m.TopTenModule) },
         { path: 'escallation-level/:id', loadChildren: () => import('./modules/escallation-level/escallation-level.module').then(m => m.EscallationLevelModule) },
+        { path: 'poor-review', loadChildren: () => import('./modules/poor-review/poor-review.module').then(m => m.PoorReviewModule) },
 
         {
             path: 'overview',
@@ -333,6 +334,8 @@ const routes: Routes = [
                     (m) => m.ReservationTableModule
                 ),
         },
+
+
 
         {
             path: 'agent-performance',
