@@ -111,7 +111,7 @@
                                                     class="form-control" placeholder="User Name" name="input1"
                                                     [(ngModel)]="username" #input1="ngModel"
                                                     [ngClass]="{ 'is-invalid': f.submitted && input1.invalid }" required
-                                                    readonly>
+                                                    >
                                                 <input *ngIf="templet?.body?.bodyattribute[1]" type="text"
                                                     class="form-control" placeholder="User Name" name="input2" ngModel
                                                     #input2="ngModel"
@@ -125,20 +125,20 @@
                                             </div>
 
                                             <div class="tempgrid3"
-                                            *ngIf="templet.templateName == 'checking_in_welcome_details_wifidetails'">
-                                            <p>Fallback/Constant Value</p>
-                                            <input  type="text"
-                                                class="form-control" placeholder="WiFi Network" name="input1"
-                                                [(ngModel)]="templet?.body?.bodyattribute[0]" #input1="ngModel"
-                                                [ngClass]="{ 'is-invalid': f.submitted && input1.invalid }" required
-                                                >
-                                            <input  type="text"
-                                                class="form-control" placeholder="Password" [(ngModel)]="templet?.body?.bodyattribute[1]" name="input2" ngModel
-                                                #input2="ngModel"
-                                                [ngClass]="{ 'is-invalid': f.submitted && input2.invalid }"
-                                                 required>
+                                                *ngIf="templet.templateName == 'checking_in_welcome_details_wifidetails'">
+                                                <p>Fallback/Constant Value</p>
+                                                <input type="text" class="form-control" placeholder="WiFi Network"
+                                                    name="input1" [(ngModel)]="templet?.body?.bodyattribute[0]"
+                                                    #input1="ngModel"
+                                                    [ngClass]="{ 'is-invalid': f.submitted && input1.invalid }"
+                                                    required>
+                                                <input type="text" class="form-control" placeholder="Password"
+                                                    [(ngModel)]="templet?.body?.bodyattribute[1]" name="input2" ngModel
+                                                    #input2="ngModel"
+                                                    [ngClass]="{ 'is-invalid': f.submitted && input2.invalid }"
+                                                    required>
 
-                                        </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

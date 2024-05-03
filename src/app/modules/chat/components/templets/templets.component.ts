@@ -23,8 +23,15 @@ export class TempletsComponent implements OnInit {
   uploadFile?: any;
   username: any;
   password:any;
+
   set issuesMaster(value: any) {
     this.username = value;
+
+    console.log(value);
+
+    console.log(  this.username);
+
+
   }
   constructor(
     private activeModal: NgbActiveModal,
@@ -61,7 +68,14 @@ export class TempletsComponent implements OnInit {
 
   onView(i: any) {
     this.templet = i;
-    this.username = this.templet.body.bodyattribute[0]
+
+
+
+    if(this.templet.templateName == "checking_in_welcome_details_wifidetails"){
+        this.username = this.templet.body.bodyattribute[0]
+    }
+
+
 
   }
   onFileChange(event: any) {
