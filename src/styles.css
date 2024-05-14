@@ -2760,8 +2760,8 @@ article.media .media-body p {
 }
 
 .main-outer-wrapper.left-colapse .rightouter70 #pills-tab .nav-item {
-  max-width: 50%;
-  flex: 0 0 50%;
+  max-width: 32%;
+  flex: 0 0 32%;
   text-align: center;
   padding-left: 10px;
   margin: 0;
