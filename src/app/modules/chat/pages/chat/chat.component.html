@@ -167,7 +167,10 @@
                                             class="las la-map-marked"></i></span>
                                 </div>
                                 <div class="chat-info py-1">
-                                    <span class="d-block" *ngIf="i.fullName !== null"> {{i.fullName}}
+                                    <span class="d-block" *ngIf="i.fullName !== null && i.count == 0"> {{i.fullName}}
+                                        <!-- <span class="user-status">•</span> -->
+                                    </span>
+                                    <span class="d-block" *ngIf="i.fullName !== null && i.count != 0"> <span style="font-weight: 600">{{i.fullName}}</span>
                                         <!-- <span class="user-status">•</span> -->
                                     </span>
                                     <span class="d-block" *ngIf="i.fullName === null "> {{i.phoneNo}}
@@ -180,7 +183,10 @@
                                                 class="las la-check"></i></span>
                                         <span class="last-msg-checkic" *ngIf="i.messageStatus == 'delivered'"><i
                                                 class="las la-check-double"></i></span>
-                                        {{i.lastMsg }}
+
+                                                <span *ngIf="i.count == 0">{{i.lastMsg }}</span>
+                                                <span style="font-weight: 600" *ngIf="i.count != 0">{{i.lastMsg }}</span>
+
                                     </div>
                                     <div class="cht-tg" *ngIf="i.customerLabel"><i class="las la-tag"></i>
                                         {{i.customerLabel}}</div>
