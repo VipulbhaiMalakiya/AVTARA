@@ -170,7 +170,8 @@
                                     <span class="d-block" *ngIf="i.fullName !== null && i.count == 0"> {{i.fullName}}
                                         <!-- <span class="user-status">•</span> -->
                                     </span>
-                                    <span class="d-block" *ngIf="i.fullName !== null && i.count != 0"> <span style="font-weight: 600">{{i.fullName}}</span>
+                                    <span class="d-block" *ngIf="i.fullName !== null && i.count != 0"> <span
+                                            style="font-weight: 600">{{i.fullName}}</span>
                                         <!-- <span class="user-status">•</span> -->
                                     </span>
                                     <span class="d-block" *ngIf="i.fullName === null "> {{i.phoneNo}}
@@ -184,8 +185,8 @@
                                         <span class="last-msg-checkic" *ngIf="i.messageStatus == 'delivered'"><i
                                                 class="las la-check-double"></i></span>
 
-                                                <span *ngIf="i.count == 0">{{i.lastMsg }}</span>
-                                                <span style="font-weight: 600" *ngIf="i.count != 0">{{i.lastMsg }}</span>
+                                        <span *ngIf="i.count == 0">{{i.lastMsg }}</span>
+                                        <span style="font-weight: 500" *ngIf="i.count != 0">{{i.lastMsg }}</span>
 
                                     </div>
                                     <div class="cht-tg" *ngIf="i.customerLabel"><i class="las la-tag"></i>
@@ -193,9 +194,8 @@
                                 </div>
                                 <div class="chat-time ms-auto text-end">
                                     <div class="mb-1">{{i.time | dateAgo}}</div>
-                                    <div class="un-read" *ngIf="i.count != 0">{{i.count}}</div>                                </div>
-
-
+                                    <div class="un-read" *ngIf="i.count != 0">{{i.count}}</div>
+                                </div>
                             </li>
                         </ul>
                     </div>
@@ -215,12 +215,22 @@
                                 [ngClass]="{ 'new-message': i.phoneNo === contact }"
                                 (click)="onViewContact(i ,getColorClass(ind))">
                                 <div class="avata">
+
+                                    <!-- <span class="chatpro-nmg" [ngClass]="getColorClass(ind)"
+                                        *ngIf="i.fullName !== null">
+                                        {{getShortName(i.fullName)}} </span>
                                     <span class="chatpro-nmg" [ngClass]="getColorClass(ind)"
+                                        *ngIf="i.fullName === null">
+                                        {{getShortName(i.phoneNo)}} </span> -->
+
+                                        <span class="chatpro-nmg" [ngClass]="getColorClass(ind)"
                                         *ngIf="i.fullName !== null">
                                         {{getShortName(i.fullName)}} </span>
                                     <span class="chatpro-nmg" [ngClass]="getColorClass(ind)"
                                         *ngIf="i.fullName === null">
                                         {{getShortName(i.phoneNo)}} </span>
+
+
                                     <span class="user-platfrm" *ngIf="i.messagetype === 'interactive'"><i
                                             class="las la-cart-arrow-down"></i></span>
 
@@ -256,13 +266,14 @@
                                                 class="las la-check"></i></span>
                                         <span class="last-msg-checkic" *ngIf="i.messageStatus == 'delivered'"><i
                                                 class="las la-check-double"></i></span>
-                                        {{i.lastMsg}}
+                                                <span *ngIf="i.count == 0">{{i.lastMsg }}</span>
+                                                <span style="font-weight: 500" *ngIf="i.count != 0">{{i.lastMsg }}</span>
                                     </div>
                                     <div class="last-msg font-small one-line">{{i.customerLabel}}</div>
                                 </div>
                                 <div class="chat-time ms-auto text-end">
-                                    <div class="mb-1"> {{i.time | dateAgo}}</div>
-                                    <!-- <div class="un-read" *ngIf="i.messageStatus !== 'read' && messageCount > 0 ">messageCount</div> -->
+                                    <div class="mb-1">{{i.time | dateAgo}}</div>
+                                    <div class="un-read" *ngIf="i.count != 0">{{i.count}}</div>
                                 </div>
                             </li>
                         </ul>
@@ -1093,7 +1104,8 @@
                                     </div>
                                 </div>
                             </li>
-                            <li class="msg-replayer" *ngIf="data.messagetype === 'template' && data.templateBody == null
+                            <li class="msg-replayer"
+                                *ngIf="data.messagetype === 'template' && data.templateBody == null
               && data.templateButton1 !== null && data.templateName != 'booking_confirmation' && data.templateName != 'checking_in_welcome_details_wifidetails'">
                                 <div class="avata">
                                     <span *ngIf="data.name === null">Y</span>
