@@ -388,14 +388,11 @@ export class ChatComponent
   }
   // Download code start
 
-  downloadFile(e: any) {
-    const link = document.createElement('a');
-    link.setAttribute('href', e.fileUrl);
-    link.setAttribute('download', e.filename);
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  }
+    downloadFile(e: any) {
+        window.open(e.fileUrl, '_blank');
+
+
+    }
 
   downloadFile1(e: any) {
     const link = document.createElement('a');
