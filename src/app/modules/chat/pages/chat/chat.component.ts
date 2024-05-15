@@ -302,12 +302,61 @@ export class ChatComponent
 
     }
 
+    // public connect(): void {
+
+
+    //     if (!this.socket$ || this.socket$.closed) {
+    //         this.socket$ = webSocket(environment.SOCKET_ENDPOINT);
+    //         this.socket$.subscribe((data: MessageData) => {
+    //             this.messagestates = data.messageStatus;
+    //             if (data.mobileNo === this.contact) {
+
+    //                 this.receivedData.push(data);
+    //                 this.getContactList();
+    //                 this.isstatus = 'open';
+    //             } else if (data.mobileNo !== this.contact) {
+    //                 this.getContactList();
+    //             }
+    //             if (
+    //                 this.messagestates == 'sent' ||
+    //                 this.messagestates == 'delivered' ||
+    //                 this.messagestates == 'read' ||
+    //                 this.messagestates == ' '
+    //             ) {
+    //             } else {
+    //                 const currentUrl = this.location.path();
+    //                 if (currentUrl === '/admin/inbox' || currentUrl === '/inbox') {
+    //                     if (data.type === 'Receiver') {
+    //                         // const message: string = `You got a message from ${data.name}`;
+    //                         const message: string = `You got a message from ${this.getOnlyName(
+    //                             data.name
+    //                         )}`;
+
+    //                         this.speakNotification(message);
+    //                     } else {
+    //                         const audio = new Audio();
+    //                         // '../../../../../assets/sound/Whatsapp Message - Sent - Sound.mp3'
+    //                         audio.play();
+    //                     }
+    //                 }
+    //             }
+    //         });
+    //     }
+    // }
+
+
+
     public connect(): void {
-
-
         if (!this.socket$ || this.socket$.closed) {
-            this.socket$ = webSocket(environment.SOCKET_ENDPOINT);
-            this.socket$.subscribe((data: MessageData) => {
+            this.establishConnection();
+        }
+    }
+
+    private establishConnection(): void {
+        this.socket$ = webSocket(environment.SOCKET_ENDPOINT);
+        this.socket$.subscribe(
+            (data: MessageData) => {
+
                 this.messagestates = data.messageStatus;
                 if (data.mobileNo === this.contact) {
 
@@ -340,8 +389,30 @@ export class ChatComponent
                         }
                     }
                 }
-            });
+            },
+            (error: any) => {
+                // Handle socket errors
+                console.error('Socket error:', error);
+                // If the socket has closed unexpectedly, attempt to reconnect
+                if (error.code === 1006) {
+                    console.log('Socket closed unexpectedly. Attempting to reconnect...');
+                    this.reconnect();
+                }
+            },
+            () => {
+                // Handle socket close event (optional)
+                console.log('Socket connection closed.');
+            }
+        );
+    }
+
+    private reconnect(): void {
+        // Close existing socket connection if it exists
+        if (this.socket$) {
+            this.socket$.unsubscribe();
         }
+        // Re-establish connection
+        this.establishConnection();
     }
 
 
