@@ -24,6 +24,8 @@ import { environment } from 'src/environments/environment';
 import { DatePipe, Location } from '@angular/common';
 import * as $ from 'jquery';
 import * as jQuery from 'jquery';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+
 
 import { Title } from '@angular/platform-browser';
 import { labelMasterModel } from 'src/app/_models/labels';
@@ -235,7 +237,8 @@ export class ChatComponent
         private titleService: Title,
         private cd: ChangeDetectorRef,
         private datePipe: DatePipe,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private sanitizer: DomSanitizer
     ) {
         const d: any = localStorage.getItem('userData');
         this.userData = JSON.parse(d);
@@ -467,8 +470,6 @@ export class ChatComponent
 
     downloadFile(e: any) {
         window.open(e.fileUrl, '_blank');
-
-
     }
 
     downloadFile1(e: any) {
@@ -1592,5 +1593,17 @@ export class ChatComponent
                 }
             })
             .catch(() => { });
+    }
+
+    sanitizeUrl(url: string): SafeResourceUrl {
+        console.log(this.sanitizer.bypassSecurityTrustResourceUrl(url));
+        
+        return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+    }
+
+    // In your component class
+    handleError() {
+        console.error("Error loading PDF file.");
+        // You can also update a variable to show/hide a specific error message
     }
 }

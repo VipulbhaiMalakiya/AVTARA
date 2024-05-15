@@ -229,7 +229,7 @@
                                         *ngIf="i.fullName === null">
                                         {{getShortName(i.phoneNo)}} </span> -->
 
-                                        <span class="chatpro-nmg" [ngClass]="getColorClass(ind)"
+                                    <span class="chatpro-nmg" [ngClass]="getColorClass(ind)"
                                         *ngIf="i.fullName !== null">
                                         {{getShortName(i.fullName)}} </span>
                                     <span class="chatpro-nmg" [ngClass]="getColorClass(ind)"
@@ -272,8 +272,8 @@
                                                 class="las la-check"></i></span>
                                         <span class="last-msg-checkic" *ngIf="i.messageStatus == 'delivered'"><i
                                                 class="las la-check-double"></i></span>
-                                                <span *ngIf="i.count == 0">{{i.lastMsg }}</span>
-                                                <span style="font-weight: 500" *ngIf="i.count != 0">{{i.lastMsg }}</span>
+                                        <span *ngIf="i.count == 0">{{i.lastMsg }}</span>
+                                        <span style="font-weight: 500" *ngIf="i.count != 0">{{i.lastMsg }}</span>
                                     </div>
                                     <div class="last-msg font-small one-line">{{i.customerLabel}}</div>
                                 </div>
@@ -464,9 +464,18 @@
                                 </div>
                                 <div class="chat-info">
                                     <div class="last-msg p-2 pb-1 rounded">
-                                        <object data="../assets/images/example.pdf" type="application/pdf" width="100%"
-                                            height="200px">
+                                        <object *ngIf="data && data.fileUrl" [attr.data]="sanitizeUrl(data.fileUrl)"
+                                            type="application/pdf" width="100%" height="200px" (error)="handleError()">
+                                            <p>PDF cannot be displayed. Please check the URL or try again later.</p>
                                         </object>
+
+
+
+
+                                        <!-- <ngx-extended-pdf-viewer [src]="data.fileUrl"></ngx-extended-pdf-viewer> -->
+
+
+
                                         <div class="pdf-nameic cursur" (click)="downloadFile(data)"><span
                                                 class="pdf-icon"><img src="../assets/images/document-icon.png"
                                                     alt="File Not Found">
@@ -508,13 +517,18 @@
                                 </div>
                                 <div class="chat-info">
                                     <div class="last-msg p-2 pb-1 mb-2 rounded">
-                                        <object data="../assets/images/example.pdf" type="application/pdf" width="100%"
+                                        <!-- <object data="../assets/images/example.pdf" type="application/pdf" width="100%"
                                             height="200px">
+                                        </object> -->
+
+                                        <object *ngIf="data && data.fileUrl" [attr.data]="sanitizeUrl(data.fileUrl)"
+                                            type="application/pdf" width="100%" height="200px">
+                                            <p>PDF cannot be displayed. Please check the URL or try again later.</p>
                                         </object>
                                         <div class="pdf-nameic cursur " (click)="downloadFile(data)"><span
                                                 class="pdf-icon"><img src="../assets/images/document-icon.png"
                                                     alt="File Not Found">
-                                                    {{data.filename | shortenFileName: 20}}</span> <span
+                                                {{data.filename | shortenFileName: 20}}</span> <span
                                                 class="pdf-downicon"><i class="las la-arrow-circle-down"></i></span>
                                         </div>
                                     </div>
@@ -646,11 +660,14 @@
                             </li>
                             <!-- image -->
                             <li class="msg-replayer" *ngIf="data.type === 'Sender' && data.messagetype === 'image' ">
+                                
                                 <div class="avata">
                                     <span *ngIf="data.name === null">Y</span>
                                     <span *ngIf="data.name !== null"> {{getShortName(data.name)}}</span>
                                 </div>
                                 <div class="chat-info">
+                                    <div class="down-btned" (click)="downloadFile(data)"><i class="las la-arrow-circle-down"></i></div>
+
                                     <div class="last-msg p-2 rounded bg-light"><img [src]=data.fileUrl
                                             alt="File Not Found"></div>
                                     <div class="suserchat-info pt-2">
@@ -678,6 +695,7 @@
                                                     class="las la-check-double"></i></span>
                                         </ng-container>
                                     </div>
+                                    
                                 </div>
                             </li>
                             <li class="msg-sender" *ngIf="data.type === 'Receiver' && data.messagetype === 'image' ">
@@ -686,6 +704,7 @@
                                     <span *ngIf="data.name !== null"> {{getShortName(data.name)}}</span>
                                 </div>
                                 <div class="chat-info">
+                                    <div class="down-btned" (click)="downloadFile(data)"><i class="las la-arrow-circle-down"></i></div>
                                     <div class="last-msg p-2 rounded bg-light"><img [src]=data.fileUrl
                                             alt="File Not Found"></div>
                                     <span class="suserchat-name" *ngIf="data.name !== null">{{contactinfo.fullName

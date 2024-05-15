@@ -23,6 +23,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { ParseFloatPipe } from 'src/app/_helpers/parseFloat.pipe';
 import { WhitespaceValidatorDirective } from 'src/app/_helpers/whitespace-validator.directive';
 import { CheckInComponent } from './components/check-in/check-in.component';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 
 @NgModule({
     declarations: [
@@ -52,7 +53,7 @@ import { CheckInComponent } from './components/check-in/check-in.component';
         FormsModule,
         PickerComponent,
         GoogleMapsModule,
-
+        NgxExtendedPdfViewerModule
 
     ]
 })

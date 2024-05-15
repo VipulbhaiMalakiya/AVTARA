@@ -4893,3 +4893,21 @@ a.canvasjs-chart-credit {
 }
 
 .inner-no5cols a.top5-dashcol-6 h1{ color: #f20a0a; }
+.down-btned {
+    position: absolute;
+    top: 20px;
+    right: 15px;
+    background: rgb(0 0 0 / 40%);
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    text-align: center;
+    line-height: 41px;
+    z-index: 1;
+    cursor: pointer;
+}
+.down-btned:hover{ background: rgb(0 0 0 / 60%); }
+
+.down-btned i{ color: #fff; font-size: 22px; }
+
+.chat-info:hover .down-btned{ background: rgb(0 0 0 / 60%); }
