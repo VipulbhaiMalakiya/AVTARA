@@ -80,6 +80,7 @@ export class ChatComponent
     open: any = [];
     contact: any;
     closed: any = [];
+    missed: any = [];
     aciveUser: UserMaster[] = [];
     dataLabel: labelMasterModel[] = [];
     term: any;
@@ -97,6 +98,7 @@ export class ChatComponent
     reloadFlag = true;
     isstatus?: any = 'open';
     openCount: any;
+    missedCount:number = 0;
     checkoutdata: any;
     tqty?: any;
     checkindata: any;
@@ -710,6 +712,8 @@ export class ChatComponent
                     (response) => {
                         this.contactList = response;
                         this.open = this.contactList[0].open;
+                        // this.missed =this.contactList[0].missed;
+                        // this.missedCount = this.contactList[0].missedCount;
                         this.openCount = this.contactList[0].openCount;
                         this.closedCount = this.contactList[0].closedCount;
                         this.closed = this.contactList[0].closed;
@@ -1597,7 +1601,7 @@ export class ChatComponent
 
     sanitizeUrl(url: string): SafeResourceUrl {
         console.log(this.sanitizer.bypassSecurityTrustResourceUrl(url));
-        
+
         return this.sanitizer.bypassSecurityTrustResourceUrl(url);
     }
 
