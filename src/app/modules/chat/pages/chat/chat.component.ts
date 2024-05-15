@@ -304,58 +304,44 @@ export class ChatComponent
 
     public connect(): void {
 
-        const reconnectInterval = 60000; // 1 minute in milliseconds
 
+        if (!this.socket$ || this.socket$.closed) {
+            this.socket$ = webSocket(environment.SOCKET_ENDPOINT);
+            this.socket$.subscribe((data: MessageData) => {
+                this.messagestates = data.messageStatus;
+                if (data.mobileNo === this.contact) {
 
-        const connectSocket = () => {
-            if (!this.socket$ || this.socket$.closed) {
-                this.socket$ = webSocket(environment.SOCKET_ENDPOINT);
-                this.socket$.subscribe((data: MessageData) => {
-                    this.messagestates = data.messageStatus;
-                    if (data.mobileNo === this.contact) {
+                    this.receivedData.push(data);
+                    this.getContactList();
+                    this.isstatus = 'open';
+                } else if (data.mobileNo !== this.contact) {
+                    this.getContactList();
+                }
+                if (
+                    this.messagestates == 'sent' ||
+                    this.messagestates == 'delivered' ||
+                    this.messagestates == 'read' ||
+                    this.messagestates == ' '
+                ) {
+                } else {
+                    const currentUrl = this.location.path();
+                    if (currentUrl === '/admin/inbox' || currentUrl === '/inbox') {
+                        if (data.type === 'Receiver') {
+                            // const message: string = `You got a message from ${data.name}`;
+                            const message: string = `You got a message from ${this.getOnlyName(
+                                data.name
+                            )}`;
 
-                        this.receivedData.push(data);
-                        this.getContactList();
-                        this.isstatus = 'open';
-                    } else if (data.mobileNo !== this.contact) {
-                        this.getContactList();
-                    }
-                    if (
-                        this.messagestates == 'sent' ||
-                        this.messagestates == 'delivered' ||
-                        this.messagestates == 'read' ||
-                        this.messagestates == ' '
-                    ) {
-                    } else {
-                        const currentUrl = this.location.path();
-                        if (currentUrl === '/admin/inbox' || currentUrl === '/inbox') {
-                            if (data.type === 'Receiver') {
-                                // const message: string = `You got a message from ${data.name}`;
-                                const message: string = `You got a message from ${this.getOnlyName(
-                                    data.name
-                                )}`;
-
-                                this.speakNotification(message);
-                            } else {
-                                const audio = new Audio();
-                                // '../../../../../assets/sound/Whatsapp Message - Sent - Sound.mp3'
-                                audio.play();
-                            }
+                            this.speakNotification(message);
+                        } else {
+                            const audio = new Audio();
+                            // '../../../../../assets/sound/Whatsapp Message - Sent - Sound.mp3'
+                            audio.play();
                         }
                     }
-                });
-            }
-        };
-
-        // Initial connection
-        connectSocket();
-
-        // Reconnect every minute
-       interval(reconnectInterval).subscribe(() => {
-            connectSocket();
-            console.log(" Reconnect every minute");
-
-        });
+                }
+            });
+        }
     }
 
 
