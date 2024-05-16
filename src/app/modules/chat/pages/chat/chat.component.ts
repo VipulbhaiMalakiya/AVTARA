@@ -368,6 +368,7 @@ export class ChatComponent
                 if (data.mobileNo === this.contact) {
 
                     this.receivedData.push(data);
+                    this.scrollToBottom();
                     this.getContactList();
                     this.isstatus = 'open';
                 } else if (data.mobileNo !== this.contact) {
@@ -415,7 +416,8 @@ export class ChatComponent
 
 
     ngAfterViewChecked() {
-       // this.scrollToBottom();
+       //this.scrollToBottom();
+
     }
 
     scrollToBottom(): void {
@@ -706,14 +708,16 @@ export class ChatComponent
                                         this.isProceess = false;
                                     }
                                 );
-                            // this.scrollToBottom();
+                            this.scrollToBottom();
+
                         }
                     },
                     error: (e) => console.error(e),
                 });
         } else {
             this.isProceess = false;
-            // this.scrollToBottom();
+            this.scrollToBottom();
+
         }
         this.isProceess = false;
     }
@@ -993,7 +997,8 @@ export class ChatComponent
                         this.isProceess = false;
                         this.showEmojiPicker = false;
                         form.reset();
-                        // this.scrollToBottom();
+                        this.scrollToBottom();
+
                         const audio = new Audio(
                             '../../../../../assets/sound/Whatsapp Message - Sent - Sound.mp3'
                         );
@@ -1058,7 +1063,8 @@ export class ChatComponent
                         this.isProceess = false;
                         this.showEmojiPicker = false;
                         form.reset();
-                        // this.scrollToBottom();
+                        this.scrollToBottom();
+
                         const audio = new Audio(
                             '../../../../../assets/sound/Whatsapp Message - Sent - Sound.mp3'
                         );
@@ -1097,7 +1103,8 @@ export class ChatComponent
                     this.isProceess = false;
                     this.showupload1 = false;
                     this.showEmojiPicker = false;
-                    // this.scrollToBottom();
+                    this.scrollToBottom();
+
                     const audio = new Audio(
                         '../../../../../assets/sound/Whatsapp Message - Sent - Sound.mp3'
                     );
@@ -1318,7 +1325,8 @@ export class ChatComponent
                                 // this.toastr.success(data.message);
                                 this.isProceess = false;
                                 this.showEmojiPicker = false;
-                                // this.scrollToBottom();
+                                this.scrollToBottom();
+
                                 const audio = new Audio(
                                     '../../../../../assets/sound/Whatsapp Message - Sent - Sound.mp3'
                                 );
@@ -1371,7 +1379,8 @@ export class ChatComponent
                                 // this.toastr.success(data.message);
                                 this.isProceess = false;
                                 this.showEmojiPicker = false;
-                                // this.scrollToBottom();
+                                this.scrollToBottom();
+
                                 const audio = new Audio(
                                     '../../../../../assets/sound/Whatsapp Message - Sent - Sound.mp3'
                                 );
@@ -1425,7 +1434,8 @@ export class ChatComponent
                                 // this.toastr.success(data.message);
                                 this.isProceess = false;
                                 this.showEmojiPicker = false;
-                                // this.scrollToBottom();
+                                this.scrollToBottom();
+
                                 const audio = new Audio(
                                     '../../../../../assets/sound/Whatsapp Message - Sent - Sound.mp3'
                                 );
@@ -1479,7 +1489,8 @@ export class ChatComponent
                                 // this.toastr.success(data.message);
                                 this.isProceess = false;
                                 this.showEmojiPicker = false;
-                                // this.scrollToBottom();
+                                this.scrollToBottom();
+
                                 const audio = new Audio(
                                     '../../../../../assets/sound/Whatsapp Message - Sent - Sound.mp3'
                                 );
@@ -1536,7 +1547,8 @@ export class ChatComponent
                                 // this.toastr.success(data.message);
                                 this.isProceess = false;
                                 this.showEmojiPicker = false;
-                                // this.scrollToBottom();
+                                this.scrollToBottom();
+
                                 const audio = new Audio(
                                     '../../../../../assets/sound/Whatsapp Message - Sent - Sound.mp3'
                                 );
@@ -1599,7 +1611,8 @@ export class ChatComponent
                                 // this.toastr.success(data.message);
                                 this.isProceess = false;
                                 this.showEmojiPicker = false;
-                                // this.scrollToBottom();
+                                this.scrollToBottom();
+
                                 const audio = new Audio(
                                     '../../../../../assets/sound/Whatsapp Message - Sent - Sound.mp3'
                                 );
