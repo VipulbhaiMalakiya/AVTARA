@@ -503,7 +503,7 @@ export class ChatComponent
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = e.name; // Set the filename here
+            a.download = e.name ?? e.filename; // Set the filename here
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
