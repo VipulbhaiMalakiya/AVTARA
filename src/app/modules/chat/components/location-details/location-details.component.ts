@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-location-details',
   templateUrl: './location-details.component.html',
@@ -23,7 +25,8 @@ export class LocationDetailsComponent implements OnInit {
 
   constructor(
     private activeModal: NgbActiveModal,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private toastr: ToastrService,
   ) {
     this.isProceess = false;
 
@@ -55,12 +58,49 @@ export class LocationDetailsComponent implements OnInit {
             lng: this.longitude,
           };
         },
-        (error) => console.log(error)
+        (error) => {
+          switch (error.code) {
+            case error.PERMISSION_DENIED:
+              this.handlePermissionDenied();
+              break;
+            case error.POSITION_UNAVAILABLE:
+              console.log("Location information is unavailable.");
+              break;
+            case error.TIMEOUT:
+              console.log("The request to get user location timed out.");
+              break;
+
+          }
+        }
       );
     } else {
-      console.log('Geolocation is not supported by this browser.');
+    //   this.toastr.warning('Geolocation is not supported by this browser.');
     }
   }
+
+  handlePermissionDenied() {
+    // Inform the user that the permission is denied
+    this.toastr.error('Geolocation access has been denied. Please enable location access in your browser settings.');
+
+    // Optionally, you can provide a detailed guide based on the browser
+    const userAgent = navigator.userAgent;
+    let instructions = '';
+
+    if (userAgent.includes('Chrome')) {
+      instructions = 'To unblock location access in Chrome, go to Settings > Privacy and security > Site settings > Location. Find your site and set the location access to "Allow".';
+    } else if (userAgent.includes('Firefox')) {
+      instructions = 'To unblock location access in Firefox, go to Settings > Privacy & Security > Permissions > Location Settings. Find your site and set the location access to "Allow".';
+    } else if (userAgent.includes('Safari')) {
+      instructions = 'To unblock location access in Safari, go to Preferences > Privacy > Website Tracking. Ensure "Prevent cross-site tracking" is unchecked, then go to Websites > Location and set the access for your site to "Allow".';
+    } else if (userAgent.includes('Edge')) {
+      instructions = 'To unblock location access in Edge, go to Settings > Cookies and site permissions > Location. Find your site and set the location access to "Allow".';
+    } else {
+      instructions = 'Please refer to your browser\'s help documentation to unblock location access.';
+    }
+
+    this.toastr.info(instructions);
+  }
+
   display: any; // Property to store latitude and longitude data from the map
 
 

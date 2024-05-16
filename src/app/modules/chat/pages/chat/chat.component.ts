@@ -1600,7 +1600,7 @@ export class ChatComponent
     }
 
     sanitizeUrl(url: string): SafeResourceUrl {
-        console.log(this.sanitizer.bypassSecurityTrustResourceUrl(url));
+        // console.log(this.sanitizer.bypassSecurityTrustResourceUrl(url));
 
         return this.sanitizer.bypassSecurityTrustResourceUrl(url);
     }
