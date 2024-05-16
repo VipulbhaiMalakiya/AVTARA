@@ -38,6 +38,7 @@ import { QuickReplyComponent } from '../../components/quick-reply/quick-reply.co
 import { TempletsComponent } from '../../components/templets/templets.component';
 import { CheckInComponent } from '../../components/check-in/check-in.component';
 import { interval } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
     selector: 'app-chat',
@@ -240,7 +241,8 @@ export class ChatComponent
         private cd: ChangeDetectorRef,
         private datePipe: DatePipe,
         private route: ActivatedRoute,
-        private sanitizer: DomSanitizer
+        private sanitizer: DomSanitizer,
+        private http: HttpClient
     ) {
         const d: any = localStorage.getItem('userData');
         this.userData = JSON.parse(d);
@@ -413,25 +415,25 @@ export class ChatComponent
 
 
     ngAfterViewChecked() {
-        // this.scrollToBottom();
+       // this.scrollToBottom();
     }
 
     scrollToBottom(): void {
-        // try {
-        //     if (this.chatContainer) {
-        //         // Check if chatContainer is defined
-        //         const container = this.chatContainer.nativeElement;
-        //         const shouldScroll =
-        //             container.scrollTop + container.clientHeight >=
-        //             container.scrollHeight;
+        try {
+            if (this.chatContainer) {
+                // Check if chatContainer is defined
+                const container = this.chatContainer.nativeElement;
+                const shouldScroll =
+                    container.scrollTop + container.clientHeight >=
+                    container.scrollHeight;
 
-        //         if (!shouldScroll) {
-        //             container.scrollTop = container.scrollHeight;
-        //         }
-        //     }
-        // } catch (err) {
-        //     console.error(err);
-        // }
+                if (!shouldScroll) {
+                    container.scrollTop = container.scrollHeight;
+                }
+            }
+        } catch (err) {
+            console.error(err);
+        }
     }
 
     private reconnect(): void {
@@ -494,7 +496,19 @@ export class ChatComponent
     // Download code start
 
     downloadFile(e: any) {
-        window.open(e.fileUrl, '_blank');
+        // window.open(e.fileUrl, '_blank');
+
+
+        this.http.get(e.fileUrl, { responseType: 'blob' }).subscribe(blob => {
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = e.name; // Set the filename here
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+          });
     }
 
     downloadFile1(e: any) {

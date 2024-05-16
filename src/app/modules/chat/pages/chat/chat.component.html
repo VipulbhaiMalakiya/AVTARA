@@ -542,8 +542,8 @@
                                 <div class="chat-info">
                                     <div class="last-msg p-2 pb-1 rounded">
                                         <object *ngIf="data && data.fileUrl" [data]=sanitizeUrl(data.fileUrl)
-                                            type="application/pdf" width="100%" height="200px" (error)="handleError()">
-                                            <img src="../assets/images/pdf-image.jpg" alt="File Not Found">
+                                            type="application/pdf" style="height:150px; display:flex; margin:auto;" (error)="handleError()">
+                                            <img src="../assets/images/pdf-image.jpg" style="max-height:100px; margin:auto;" alt="File Not Found">
                                         </object>
 
 
@@ -598,10 +598,11 @@
                                             height="200px">
                                         </object> -->
 
-                                        <object *ngIf="data && data.fileUrl" [attr.data]="sanitizeUrl(data.fileUrl)"
-                                            type="application/pdf" width="100%" height="200px">
-                                            <img src="../assets/images/pdf-image.jpg" alt="File Not Found">
-                                        </object>
+                                        <object *ngIf="data && data.fileUrl" [data]=sanitizeUrl(data.fileUrl)
+                                        type="application/pdf" style="height:150px; display:flex; margin:auto;" (error)="handleError()">
+                                        <img src="../assets/images/pdf-image.jpg" style="max-height:100px; margin:auto;" alt="File Not Found">
+                                    </object>
+
                                         <div class="pdf-nameic cursur " (click)="downloadFile(data)"><span
                                                 class="pdf-icon"><img src="../assets/images/document-icon.png"
                                                     alt="File Not Found">
