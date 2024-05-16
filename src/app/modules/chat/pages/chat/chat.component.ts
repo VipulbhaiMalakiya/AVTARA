@@ -368,7 +368,6 @@ export class ChatComponent
                 if (data.mobileNo === this.contact) {
 
                     this.receivedData.push(data);
-                    this.scrollToBottom();
                     this.getContactList();
                     this.isstatus = 'open';
                 } else if (data.mobileNo !== this.contact) {
@@ -416,7 +415,7 @@ export class ChatComponent
 
 
     ngAfterViewChecked() {
-       //this.scrollToBottom();
+       this.scrollToBottom();
 
     }
 
@@ -708,7 +707,6 @@ export class ChatComponent
                                         this.isProceess = false;
                                     }
                                 );
-                            this.scrollToBottom();
 
                         }
                     },
@@ -716,7 +714,6 @@ export class ChatComponent
                 });
         } else {
             this.isProceess = false;
-            this.scrollToBottom();
 
         }
         this.isProceess = false;
