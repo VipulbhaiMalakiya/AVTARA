@@ -4911,3 +4911,45 @@ a.canvasjs-chart-credit {
 .down-btned i{ color: #fff; font-size: 22px; }
 
 .chat-info:hover .down-btned{ background: rgb(0 0 0 / 60%); }
+
+/*----------chat catalog-------------*/
+
+.catalog-chat{ cursor: pointer; }
+.catalog-chat:hover .catalog-btn{ font-weight: 600; }
+
+.catalog-chattop {
+    display: flex;
+    background: #f5f5f5;
+    border-radius: 10px;
+    overflow: hidden;
+    align-items: center;
+}
+
+.catalog-pic img{ max-width: 80px !important; max-height: 80px !important; object-fit: cover; min-height: 80px; min-width: 80px; }
+.catalog-txt {
+    width: 100%;
+    padding-left: 15px;
+}
+.catalog-txt h4{ font-size: 14px; color: #111; font-weight: 600; margin-bottom: 5px; }
+.catalog-txt p{ margin-bottom: 0px; font-size: 12px; }
+.catalog-content{ max-width: 200px; margin:7px 0px; }
+.catalog-content p{ margin-bottom: 0px; font-size: 12px;}
+.catalog-btn{ text-align: center; font-weight: 500; font-size: 13px; margin-top:8px; padding: 5px 5px 0px; border-top: 1px solid #eee; color: #00ABC5; }
+
+.catalogmodal-inner{ padding: 15px; height: 400px; overflow-y: auto; }
+.catalogmodal-inner .catalog-chattop{ margin:10px 0px; background: #fff; position: relative; }
+.catalogmodal-inner .catalog-chattop:after {
+    content: "\f105";
+    position: absolute;
+    top: 50%;
+    right:5px;
+    font-family: 'Line Awesome Free';
+    font-weight: 900;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #888;
+}
+.catalogmodal-inner .catalog-pic img{ border-radius: 10px; }
+
+
+/*----------end chat catalog-------------*/
