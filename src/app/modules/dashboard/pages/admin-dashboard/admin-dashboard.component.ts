@@ -131,26 +131,12 @@ export class AdminDashboardComponent implements OnInit {
         this.GetResolver();
         this.Recenttickets();
         this.isAdmincustomerdata();
-
-        if (this.userData?.role?.roleName === 'Admin') {
-
-            this.ISAdminFirstAgentResponsedata();
-            this.Statuswiseticketscount();
-            this.Ticketassigntousers();
-            this.TicketOvertheSLAtousers();
-            this.isAdminconversationsdata();
-            this.isAdminescalationdata();
-        }
-        else if (this.userData?.role?.roleName === 'Resolver') {
-            this.Departmentticketsstatus();
-        }
-
-        else if (this.userData?.role?.roleName === 'User') {
-            this.TicketOvertheSLAcreatedbymedepartmentwise();
-        }
-
-
-
+        this.ISAdminFirstAgentResponsedata();
+        this.Statuswiseticketscount();
+        this.Ticketassigntousers();
+        this.TicketOvertheSLAtousers();
+        this.isAdminconversationsdata();
+        this.isAdminescalationdata();
     }
 
 
@@ -183,7 +169,7 @@ export class AdminDashboardComponent implements OnInit {
 
                         indexLabelFontColor: "#5A5757",
                         dataPoints: this.dataQW.map(([label, value], index) => ({
-                            x: index ,
+                            x: index,
                             y: value,
                             // indexLabel: label,
                             color: this.getColorForColumn(index)
