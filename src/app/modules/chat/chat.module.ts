@@ -24,6 +24,7 @@ import { ParseFloatPipe } from 'src/app/_helpers/parseFloat.pipe';
 import { WhitespaceValidatorDirective } from 'src/app/_helpers/whitespace-validator.directive';
 import { CheckInComponent } from './components/check-in/check-in.component';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+import { CatalogComponent } from './components/catalog/catalog.component';
 
 @NgModule({
     declarations: [
@@ -42,7 +43,8 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
         ShortenFileNamePipe,
         ParseFloatPipe,
         WhitespaceValidatorDirective,
-        CheckInComponent
+        CheckInComponent,
+        CatalogComponent
 
     ],
     imports: [

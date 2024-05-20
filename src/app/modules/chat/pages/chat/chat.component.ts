@@ -39,6 +39,7 @@ import { TempletsComponent } from '../../components/templets/templets.component'
 import { CheckInComponent } from '../../components/check-in/check-in.component';
 import { interval } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { CatalogComponent } from '../../components/catalog/catalog.component';
 
 @Component({
     selector: 'app-chat',
@@ -1633,7 +1634,23 @@ export class ChatComponent
 
     // In your component class
     handleError() {
-        console.error("Error loading PDF file.");
+        // console.error("Error loading PDF file.");
         // You can also update a variable to show/hide a specific error message
+    }
+
+
+
+    oncatalog(e:any) {
+        this.isProceess = true;
+        const modalRef = this.modalService.open(CatalogComponent, { size: "md" });
+
+        if (modalRef) {
+            this.isProceess = false;
+        } else {
+            this.isProceess = false;
+        }
+
+        var componentInstance = modalRef.componentInstance as CatalogComponent;
+        componentInstance.catalog = e;
     }
 }
