@@ -128,7 +128,7 @@ export class UserDashboardComponent implements OnInit{
         this.Recenttickets();
         this.isAdmincustomerdata();
 
-        if (this.userData?.role?.roleName === 'Admin') {
+        // if (this.userData?.role?.roleName === 'Admin') {
 
             this.ISAdminFirstAgentResponsedata();
             this.Statuswiseticketscount();
@@ -136,14 +136,14 @@ export class UserDashboardComponent implements OnInit{
             this.TicketOvertheSLAtousers();
             this.isAdminconversationsdata();
             this.isAdminescalationdata();
-        }
-        else if (this.userData?.role?.roleName === 'Resolver') {
-            this.Departmentticketsstatus();
-        }
+        // }
+        // else if (this.userData?.role?.roleName === 'Resolver') {
+        //     this.Departmentticketsstatus();
+        // }
 
-        else if (this.userData?.role?.roleName === 'User') {
-            this.TicketOvertheSLAcreatedbymedepartmentwise();
-        }
+        // else if (this.userData?.role?.roleName === 'User') {
+        //     this.TicketOvertheSLAcreatedbymedepartmentwise();
+        // }
 
 
 
