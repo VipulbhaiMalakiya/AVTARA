@@ -1437,8 +1437,9 @@
                                         <div class="catalog-chat" data-bs-toggle="modal"
                                             data-bs-target="#catalog-modal">
                                             <div class="catalog-chattop">
-                                                <div class="catalog-pic"><img src="images/catalog-item-1.jpg" alt="">
-                                                </div>
+                                                <div class="catalog-pic" *ngIf="data && data.catalogOrderItems && data.catalogOrderItems.length > 0">
+                                                    <img [src]="data.catalogOrderItems[0].productUrl" alt="{{ data.catalogOrderItems[0].productName }}">
+                                                  </div>
                                                 <div class="catalog-txt">
                                                     <h4>{{data.message}}</h4>
                                                     <p>

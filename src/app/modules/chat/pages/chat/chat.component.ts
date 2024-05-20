@@ -415,7 +415,7 @@ export class ChatComponent
 
 
     ngAfterViewChecked() {
-       this.scrollToBottom();
+       //this.scrollToBottom();
 
     }
 
