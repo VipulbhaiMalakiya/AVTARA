@@ -10,18 +10,18 @@
 
             <div class="catalogmodal-inner">
 
-              <div class="catalog-chattop" *ngFor="let item of data.catalogOrderItems">
-                  <div class="catalog-pic">
-
-                    <img [src]="item.productUrl" [alt]="item.productName">
-                </div>
-
-                  <div class="catalog-txt">
-                      <h4>{{item.productName}}</h4>
-                      <p>{{item.description}}</p>
-                      <p>{{item.currency}} {{item.item_price}} </p>
+                <div class="catalog-chattop" *ngFor="let item of data.catalogOrderItems">
+                    <div *ngIf="item">
+                      <div class="catalog-pic" *ngIf="item.productUrl && item.productName">
+                        <img [src]="item.productUrl" [alt]="item.productName">
+                      </div>
+                      <div class="catalog-txt">
+                        <h4 *ngIf="item.productName">{{item.productName}}</h4>
+                        <p *ngIf="item.description">{{item.description}}</p>
+                        <p *ngIf="item.currency && item.item_price">{{item.currency}} {{item.item_price}}</p>
+                      </div>
+                    </div>
                   </div>
-                </div>
 
 
 

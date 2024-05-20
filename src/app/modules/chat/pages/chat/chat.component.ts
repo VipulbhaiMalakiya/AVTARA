@@ -363,10 +363,11 @@ export class ChatComponent
     private establishConnection(): void {
         this.socket$ = webSocket(environment.SOCKET_ENDPOINT);
         this.socket$.subscribe(
-            (data: MessageData) => {
+            (data: any) => {
 
                 this.messagestates = data.messageStatus;
                 if (data.mobileNo === this.contact) {
+                    console.log(data);
 
                     this.receivedData.push(data);
                     this.getContactList();
