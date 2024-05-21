@@ -14,7 +14,7 @@
             <div class="catalog-chattop" *ngFor="let item of data.catalogOrderItems">
 
                     <div class="catalog-pic" *ngIf="item.productUrl && item.productName">
-                        <img [src]="item.productUrl" [alt]="item.productName">
+                        <img [src]="item.productUrl" [alt]="item.productName" (error)="onError($event)">
                     </div>
                     <div class="catalog-txt">
                         <h4 *ngIf="item.productName">{{item.productName}}</h4>

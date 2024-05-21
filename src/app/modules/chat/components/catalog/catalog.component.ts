@@ -23,4 +23,10 @@ export class CatalogComponent {
     onCancel() {
         this.activeModal.dismiss();
     }
+
+    
+    onError(event: Event): void {
+        const imgElement = event.target as HTMLImageElement;
+        imgElement.src = '../assets/images/default-nopic.jpg';
+      }
 }
