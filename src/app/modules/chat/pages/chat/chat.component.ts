@@ -105,7 +105,7 @@ export class ChatComponent
     tqty?: any;
     checkindata: any;
     DefoluteSelect: any;
-    @ViewChild('chatContainer', { static: false }) chatContainer!: ElementRef;
+    // @ViewChild('chatContainer', { static: false }) chatContainer!: ElementRef;
     // Emoji Code Start
     message = '';
     showEmojiPicker = false;
@@ -360,6 +360,30 @@ export class ChatComponent
         }
     }
 
+    @ViewChild('chatContainer') private chatContainer!: ElementRef;
+
+    ngAfterViewInit() {
+        this.scrollToBottom();
+      }
+
+      ngAfterViewChecked() {
+        // this.scrollToBottom();
+      }
+      private scrollToBottom(): void {
+        setTimeout(() => { // Use setTimeout to ensure the DOM is fully rendered
+          try {
+            if (this.chatContainer && this.chatContainer.nativeElement) {
+              const container = this.chatContainer.nativeElement;
+              const atBottom = container.scrollHeight - container.scrollTop <= container.clientHeight;
+              if (!atBottom) {
+                container.scrollTop = container.scrollHeight;
+              }
+            }
+          } catch (err) {
+            console.error(err);
+          }
+        }, 0);
+      }
     private establishConnection(): void {
         this.socket$ = webSocket(environment.SOCKET_ENDPOINT);
         this.socket$.subscribe(
@@ -372,6 +396,8 @@ export class ChatComponent
                     this.receivedData.push(data);
                     this.getContactList();
                     this.isstatus = 'open';
+                    this.scrollToBottom();  // Ensure scrolling after data update
+
                 } else if (data.mobileNo !== this.contact) {
                     this.getContactList();
                 }
@@ -416,27 +442,6 @@ export class ChatComponent
     }
 
 
-    ngAfterViewChecked() {
-       this.scrollToBottom();
-    }
-
-    scrollToBottom(): void {
-        try {
-            if (this.chatContainer) {
-                // Check if chatContainer is defined
-                const container = this.chatContainer.nativeElement;
-                const shouldScroll =
-                    container.scrollTop + container.clientHeight >=
-                    container.scrollHeight;
-
-                if (!shouldScroll) {
-                    container.scrollTop = container.scrollHeight;
-                }
-            }
-        } catch (err) {
-            console.error(err);
-        }
-    }
 
     private reconnect(): void {
         // Close existing socket connection if it exists
@@ -669,7 +674,7 @@ export class ChatComponent
     // Define a flag to track scrolling state
     private isScrolling = false;
 
-    ngAfterViewInit() { }
+    // ngAfterViewInit() { }
 
 
     GetUser() {
