@@ -1098,6 +1098,7 @@ export class ChatComponent
             interactiveName: e,
         };
         let formData = new FormData();
+        this.showupload1 = false;
         formData.append('messageEntry', JSON.stringify(request));
         this.isProceess = true;
         this.subscription = this.whatsappService
@@ -1108,7 +1109,6 @@ export class ChatComponent
                     let data: any = response;
                     // this.toastr.success(data.message);
                     this.isProceess = false;
-                    this.showupload1 = false;
                     this.showEmojiPicker = false;
                     this.scrollToBottom();
 
