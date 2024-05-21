@@ -452,6 +452,84 @@ export class ChatComponent
         this.establishConnection();
     }
 
+    onViewContact(e: any, c: any) {
+        this.contactinfo = e;
+        this.bgclass = c;
+        this.contactId = e.id;
+        this.showEmojiPicker = false;
+        this.showupload = false;
+        this.showupload1 = false;
+        this.contact = e.phoneNo;
+        this.slecteduser = e;
+        this.show = true;
+
+
+
+        this.checkstatus();
+
+
+        if (e.fullName) {
+            this.chatname = e.fullName;
+
+            //Ticket flag check in sidebar click event
+            this.ticketflag = e.ticketflag;
+        } else {
+            this.chatname = e.phoneNo;
+        }
+        this.label = e.customerLabel;
+        this.isProceess = true;
+
+        this.subscription = this.whatsappService
+            .chatHistory(e.phoneNo)
+            .pipe(take(1))
+            .subscribe(
+                (response) => {
+                    this.item = response;
+                    this.receivedData = this.item;
+                    this.scrollToBottom();
+                    const lstRe = this.receivedData.slice(-1)[0];
+                    this.lastItem = lstRe.time;
+                    this.lastMessageTime = this.lastItem;
+                    if (lstRe.mobileNo === e.phoneNo) {
+                        // this.checkChatStatus();
+                    }
+
+                    this.isProceess = false;
+                    this.masterName = `/chat-activity/${e.phoneNo}`;
+                    this.subscription = this.apiService
+                        .getAll(this.masterName)
+                        .pipe(take(1))
+                        .subscribe(
+                            (data) => {
+                                this.Userinfo = data;
+                                this.nrSelect = this.Userinfo?.assignedto;
+                                if (this.nrSelect === this.Userinfo?.assignedto) {
+                                    const foundItem = this.aciveUser.find(
+                                        (item) => item.userId === this.Userinfo?.assignedto
+                                    );
+                                    if (foundItem) {
+                                        this.DefoluteSelect =
+                                            foundItem.firstName + ' ' + foundItem.lastName;
+                                    } else {
+                                        this.DefoluteSelect =
+                                            this.Userinfo?.firstName + ' ' + this.Userinfo?.lastName;
+                                    }
+                                }
+
+                                this.isProceess = false;
+                                this.cd.detectChanges();
+                            },
+                            (error) => {
+                                this.isProceess = false;
+                            }
+                        );
+                },
+                (error) => {
+                    this.isProceess = false;
+                }
+            );
+    }
+
 
 
 
@@ -788,81 +866,7 @@ export class ChatComponent
             );
     }
 
-    onViewContact(e: any, c: any) {
-        this.contactinfo = e;
-        this.bgclass = c;
-        this.contactId = e.id;
-        this.showEmojiPicker = false;
-        this.showupload = false;
-        this.showupload1 = false;
-        this.contact = e.phoneNo;
-        this.slecteduser = e;
-        this.show = true;
 
-
-        this.checkstatus();
-
-
-        if (e.fullName) {
-            this.chatname = e.fullName;
-
-            //Ticket flag check in sidebar click event
-            this.ticketflag = e.ticketflag;
-        } else {
-            this.chatname = e.phoneNo;
-        }
-        this.label = e.customerLabel;
-        this.isProceess = true;
-
-        this.subscription = this.whatsappService
-            .chatHistory(e.phoneNo)
-            .pipe(take(1))
-            .subscribe(
-                (response) => {
-                    this.item = response;
-                    this.receivedData = this.item;
-                    const lstRe = this.receivedData.slice(-1)[0];
-                    this.lastItem = lstRe.time;
-                    this.lastMessageTime = this.lastItem;
-                    if (lstRe.mobileNo === e.phoneNo) {
-                        // this.checkChatStatus();
-                    }
-
-                    this.isProceess = false;
-                    this.masterName = `/chat-activity/${e.phoneNo}`;
-                    this.subscription = this.apiService
-                        .getAll(this.masterName)
-                        .pipe(take(1))
-                        .subscribe(
-                            (data) => {
-                                this.Userinfo = data;
-                                this.nrSelect = this.Userinfo?.assignedto;
-                                if (this.nrSelect === this.Userinfo?.assignedto) {
-                                    const foundItem = this.aciveUser.find(
-                                        (item) => item.userId === this.Userinfo?.assignedto
-                                    );
-                                    if (foundItem) {
-                                        this.DefoluteSelect =
-                                            foundItem.firstName + ' ' + foundItem.lastName;
-                                    } else {
-                                        this.DefoluteSelect =
-                                            this.Userinfo?.firstName + ' ' + this.Userinfo?.lastName;
-                                    }
-                                }
-
-                                this.isProceess = false;
-                                this.cd.detectChanges();
-                            },
-                            (error) => {
-                                this.isProceess = false;
-                            }
-                        );
-                },
-                (error) => {
-                    this.isProceess = false;
-                }
-            );
-    }
 
     checkstatus() {
         this.masterName = `/customer/checkin-status/${this.contact}`;
