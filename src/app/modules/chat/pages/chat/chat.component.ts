@@ -1124,6 +1124,11 @@ export class ChatComponent
             );
     }
 
+    onError(event: Event): void {
+        const imgElement = event.target as HTMLImageElement;
+        imgElement.src = '../assets/images/default-nopic.jpg';
+      }
+
     ngOnDestroy() {
         // this.socket$.complete();
         this.subscription?.unsubscribe();

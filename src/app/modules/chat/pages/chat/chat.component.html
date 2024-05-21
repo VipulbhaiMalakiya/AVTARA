@@ -1438,7 +1438,8 @@
                                             data-bs-target="#catalog-modal">
                                             <div class="catalog-chattop">
                                                 <div class="catalog-pic" *ngIf="data && data.catalogOrderItems && data.catalogOrderItems.length > 0">
-                                                    <img [src]="data.catalogOrderItems[0].productUrl" alt="{{ data.catalogOrderItems[0].productName }}">
+                                                    <img [src]="data.catalogOrderItems[0].productUrl" alt="{{ data.catalogOrderItems[0].productName }}"
+                                                    (error)="onError($event)">
                                                   </div>
                                                 <div class="catalog-txt">
                                                     <h4>{{data.message}}</h4>
@@ -1447,9 +1448,9 @@
                                                     </p>
                                                 </div>
                                             </div>
-                                            <!-- <div class="catalog-content">
-                                                <p>Hi, check out our food menu. Any questions, please just ask.</p>
-                                            </div> -->
+                                            <div class="catalog-content"  *ngIf="data && data.catalogOrderItems && data.catalogOrderItems.length > 0">
+                                                <p>{{data.catalogOrderItems[0]?.description}}</p>
+                                            </div>
                                             <div class="catalog-btn" (click)="oncatalog(data)">View Sent Cart</div>
                                         </div>
                                     </div>

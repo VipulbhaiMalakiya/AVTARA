@@ -4938,7 +4938,7 @@ a.canvasjs-chart-credit {
 
 .catalogmodal-inner{ padding: 15px; height: 400px; overflow-y: auto; }
 .catalogmodal-inner .catalog-chattop{ margin:10px 0px; background: #fff; position: relative; }
-.catalogmodal-inner .catalog-chattop:after {
+/* .catalogmodal-inner .catalog-chattop:after {
     content: "\f105";
     position: absolute;
     top: 50%;
@@ -4948,8 +4948,12 @@ a.canvasjs-chart-credit {
     transform: translateY(-50%);
     font-size: 16px;
     color: #888;
-}
+} */
 .catalogmodal-inner .catalog-pic img{ border-radius: 10px; }
 
-
+.catalog-chat {
+    cursor: pointer;
+    min-width: 220px;
+    max-width: 220px;
+}
 /*----------end chat catalog-------------*/

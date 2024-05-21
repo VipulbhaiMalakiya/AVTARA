@@ -12,7 +12,7 @@
         <div class="catalogmodal-inner">
 
             <div class="catalog-chattop" *ngFor="let item of data.catalogOrderItems">
-                <div *ngIf="item">
+
                     <div class="catalog-pic" *ngIf="item.productUrl && item.productName">
                         <img [src]="item.productUrl" [alt]="item.productName">
                     </div>
@@ -21,7 +21,7 @@
                         <p *ngIf="item.description">{{item.description}}</p>
                         <p *ngIf="item.currency && item.item_price">{{item.currency}} {{item.item_price}}</p>
                     </div>
-                </div>
+
             </div>
 
 
