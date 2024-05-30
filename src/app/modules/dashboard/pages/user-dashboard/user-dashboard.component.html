@@ -1,13 +1,58 @@
 <app-header></app-header>
 <app-loading-spin *ngIf="isProceess"></app-loading-spin>
+
+
 <div class="page-title">
-    <div class="page-title">
-        <div class="d-flex align-items-center">
-            <h1 class="mb-0 me-3"><img src="../assets/images/avataara-logo.png" alt="" style="max-height: 40px;"></h1>
+    <div class="d-flex align-items-center">
+        <h1 class="mb-0 me-3"><img src="../assets/images/avataara-logo.png" alt="" style="max-height: 40px;"></h1>
+
+        <div class="homefilterdt">
+            <div class="ficdrop1">
+                <div class="form-group">
+                    <label>Select Date</label>
+
+                    <select id="select-tags4" class="form-select" [(ngModel)]="selectedValue"
+                        (change)="onValueChange($event)">
+                        <option value="Today">Today</option>
+                        <option value="Yesterday">Yesterday</option>
+                        <option value="7">Last 7 days</option>
+                        <option value="30">Last 30 days</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="ficdrop1">
+                <div class="form-group">
+                    <label>From</label>
+                    <input class="form-control" type="date" id="startDate" name="startDate" [(ngModel)]="startDate"
+                        [max]="endDate">
+                </div>
+            </div>
+
+            <div class="ficdrop1">
+                <div class="form-group">
+                    <label>To</label>
+                    <input class="form-control" type="date" id="endDate" name="endDate" [(ngModel)]="endDate"
+                        [max]="endDate">
+                    <div *ngIf="dateRangeError" class="form-validate-err">
+                        To Date must be after From Date
+                    </div>
+                </div>
+            </div>
+
+            <div class="ficdrop1">
+                <div class="form-group">
+                    <label class="d-none d-sm-block">&nbsp;</label>
+                    <button class="btn common-btn" (click)="submitDateRange()">Submit</button>
+                </div>
+            </div>
+
         </div>
+
     </div>
 </div>
-<div class="analytics-dropcols">
+
+<!-- <div class="analytics-dropcols">
     <div class="analdrop1 analdrop2">
         <label>Select Date</label>
         <select id="select-tags4" class="form-select" [(ngModel)]="selectedValue" (change)="onValueChange($event)">
@@ -40,7 +85,7 @@
             <button class="btn common-btn" (click)="submitDateRange()">Submit</button>
         </div>
     </div>
-</div>
+</div> -->
 
 <div class="data-tabs mb-1">
 
