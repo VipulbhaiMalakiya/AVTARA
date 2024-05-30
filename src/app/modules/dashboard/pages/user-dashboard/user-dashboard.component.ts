@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
@@ -11,16 +12,18 @@ import { ticketMasterModel } from 'src/app/_models/ticket';
 import { AddEditeTicketComponent } from 'src/app/modules/assigne-ticket/components/add-edite-ticket/add-edite-ticket.component';
 import { UpdateTicketComponent } from 'src/app/modules/ticket/update-ticket/update-ticket.component';
 @Component({
-  selector: 'app-user-dashboard',
-  templateUrl: './user-dashboard.component.html'
+    selector: 'app-user-dashboard',
+    templateUrl: './user-dashboard.component.html'
 })
-export class UserDashboardComponent implements OnInit{
+export class UserDashboardComponent implements OnInit {
 
     isProceess: boolean = true;
     userData: any;
     masterName?: any;
     data?: any;
     resolverData: any;
+    dateRangeError: boolean = false;
+
     subscription?: Subscription;
     statuswiseticketscount: any = [];
     ticketassigntousers: any = [];
@@ -44,7 +47,9 @@ export class UserDashboardComponent implements OnInit{
     width_t = 850;
     height_t = 250;
     title: any;
-
+    selectedValue?: any = 7;
+    startDate?: any;
+    endDate?: any;
 
     options = {
         bars: 'vertical',
@@ -115,27 +120,42 @@ export class UserDashboardComponent implements OnInit{
         private modalService: NgbModal,
         private toastr: ToastrService,
         public masterAPI: TickitService,
-        private router: Router,) {
+        private router: Router,
+        private datePipe: DatePipe,) {
         this.titleService.setTitle("CDC - Dashboard");
         const d: any = localStorage.getItem("userData");
         this.userData = JSON.parse(d);
+
+        const oneWeekFromNow = new Date();
+        this.endDate = this.datePipe.transform(
+            oneWeekFromNow.toISOString().split('T')[0],
+            'yyyy-MM-dd'
+        );
+        oneWeekFromNow.setDate(oneWeekFromNow.getDate() - 7);
+        this.startDate = this.datePipe.transform(
+            oneWeekFromNow.toISOString().split('T')[0],
+            'yyyy-MM-dd'
+        );
     }
 
     ngOnInit() {
 
-        this.fatchData();
-        this.GetResolver();
-        this.Recenttickets();
+        // this.fatchData();
+        // this.GetResolver();
+        // this.Recenttickets();
         this.isAdmincustomerdata();
 
         // if (this.userData?.role?.roleName === 'Admin') {
-
-            this.ISAdminFirstAgentResponsedata();
-            this.Statuswiseticketscount();
-            this.Ticketassigntousers();
-            this.TicketOvertheSLAtousers();
-            this.isAdminconversationsdata();
-            this.isAdminescalationdata();
+        var model: any = {
+            startDate: this.datePipe.transform(this.startDate, 'yyyy-MM-dd'),
+            endDate: this.datePipe.transform(this.endDate, 'yyyy-MM-dd'),
+        };
+        this.ISAdminFirstAgentResponsedata(model);
+        this.Statuswiseticketscount();
+        this.Ticketassigntousers();
+        this.TicketOvertheSLAtousers();
+        this.isAdminconversationsdata(model);
+        this.isAdminescalationdata(model);
         // }
         // else if (this.userData?.role?.roleName === 'Resolver') {
         //     this.Departmentticketsstatus();
@@ -149,9 +169,71 @@ export class UserDashboardComponent implements OnInit{
 
     }
 
+    onValueChange(event: Event) {
+        const target = event.target as HTMLSelectElement;
+        this.selectedValue = target.value;
+        const oneWeekFromNow = new Date();
+        if (this.selectedValue === 'Today') {
+            this.startDate = this.datePipe.transform(
+                oneWeekFromNow.toISOString().split('T')[0],
+                'yyyy-MM-dd'
+            );
+        } else if (this.selectedValue === 'Yesterday') {
+            oneWeekFromNow.setDate(oneWeekFromNow.getDate() - 1);
+            this.startDate = this.datePipe.transform(
+                oneWeekFromNow.toISOString().split('T')[0],
+                'yyyy-MM-dd'
+            );
+        } else if (this.selectedValue === '7') {
+            oneWeekFromNow.setDate(oneWeekFromNow.getDate() - 7);
+            this.startDate = this.datePipe.transform(
+                oneWeekFromNow.toISOString().split('T')[0],
+                'yyyy-MM-dd'
+            );
+        } else if (this.selectedValue === '30') {
+            oneWeekFromNow.setDate(oneWeekFromNow.getDate() - 30);
+            this.startDate = this.datePipe.transform(
+                oneWeekFromNow.toISOString().split('T')[0],
+                'yyyy-MM-dd'
+            );
+        }
 
-    ISAdminFirstAgentResponsedata() {
-        this.masterName = `/dashboard/firstAgentResponse-data`;
+        this.isProceess = true;
+        var model: any = {
+            startDate: this.datePipe.transform(this.startDate, 'yyyy-MM-dd'),
+            endDate: this.datePipe.transform(this.endDate, 'yyyy-MM-dd'),
+        };
+
+        this.ISAdminFirstAgentResponsedata(model);
+        this.isAdminconversationsdata(model);
+        this.isAdminescalationdata(model);
+
+    }
+
+
+    submitDateRange() {
+        const start = new Date(this.startDate);
+        const end = new Date(this.endDate);
+        if (start > end) {
+            this.dateRangeError = true;
+        } else {
+            this.dateRangeError = false;
+            var model: any = {
+                startDate: this.datePipe.transform(this.startDate, 'yyyy-MM-dd'),
+                endDate: this.datePipe.transform(this.endDate, 'yyyy-MM-dd'),
+            };
+
+            this.ISAdminFirstAgentResponsedata(model);
+            this.isAdminconversationsdata(model);
+            this.isAdminescalationdata(model);
+        }
+    }
+
+
+
+    ISAdminFirstAgentResponsedata(model: any) {
+        this.masterName = `/dashboard/firstAgentResponse-data?startDate=${model.startDate}&endDate=${model.endDate}`;
+
         this.isProceess = true;
         this.subscription = this.apiService.getAll(this.masterName).pipe(take(1))
             .subscribe(data => {
@@ -179,7 +261,7 @@ export class UserDashboardComponent implements OnInit{
 
                         indexLabelFontColor: "#5A5757",
                         dataPoints: this.dataQW.map(([label, value], index) => ({
-                            x: index ,
+                            x: index,
                             y: value,
                             // indexLabel: label,
                             color: this.getColorForColumn(index)
@@ -195,7 +277,7 @@ export class UserDashboardComponent implements OnInit{
 
                 };
 
-                this.ISAdminAgentResponsedata()
+                this.ISAdminAgentResponsedata(model)
                 this.cd.detectChanges();
             }, error => {
                 this.isProceess = false;
@@ -203,8 +285,9 @@ export class UserDashboardComponent implements OnInit{
     }
 
 
-    ISAdminAgentResponsedata() {
-        this.masterName = `/dashboard/AgentResponse-data`;
+    ISAdminAgentResponsedata(model: any) {
+        this.masterName = `/dashboard/AgentResponse-data?startDate=${model.startDate}&endDate=${model.endDate}`;
+
         this.isProceess = true;
         this.subscription = this.apiService.getAll(this.masterName).pipe(take(1))
             .subscribe(data => {
@@ -244,15 +327,16 @@ export class UserDashboardComponent implements OnInit{
                     }
                 };
 
-                this.ISAdmingraphresolutiondata();
+                this.ISAdmingraphresolutiondata(model);
                 this.cd.detectChanges();
             }, error => {
                 this.isProceess = false;
             })
     }
 
-    ISAdmingraphresolutiondata() {
-        this.masterName = `/dashboard/graphresolution-data`;
+    ISAdmingraphresolutiondata(model: any) {
+        this.masterName = `/dashboard/graphresolution-data?startDate=${model.startDate}&endDate=${model.endDate}`;
+
         this.isProceess = true;
         this.subscription = this.apiService.getAll(this.masterName).pipe(take(1))
             .subscribe(data => {
@@ -319,8 +403,9 @@ export class UserDashboardComponent implements OnInit{
             })
     }
 
-    isAdminconversationsdata() {
-        this.masterName = `/dashboard/conversations-data`;
+    isAdminconversationsdata(model: any) {
+        this.masterName = `/dashboard/conversations-data?startDate=${model.startDate}&endDate=${model.endDate}`;
+
         this.isProceess = true;
         this.subscription = this.apiService.getAll(this.masterName).pipe(take(1))
             .subscribe(data => {
@@ -334,8 +419,8 @@ export class UserDashboardComponent implements OnInit{
     }
 
 
-    isAdminescalationdata() {
-        this.masterName = `/dashboard/escalation-data`;
+    isAdminescalationdata(model: any) {
+        this.masterName = `/dashboard/escalation-data?startDate=${model.startDate}&endDate=${model.endDate}`;
         this.isProceess = true;
         this.subscription = this.apiService.getAll(this.masterName).pipe(take(1))
             .subscribe(data => {
