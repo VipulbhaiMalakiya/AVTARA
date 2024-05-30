@@ -143,7 +143,7 @@ export class UserDashboardComponent implements OnInit {
         // this.fatchData();
         // this.GetResolver();
         // this.Recenttickets();
-        this.isAdmincustomerdata();
+
 
         // if (this.userData?.role?.roleName === 'Admin') {
         var model: any = {
@@ -156,6 +156,7 @@ export class UserDashboardComponent implements OnInit {
         this.TicketOvertheSLAtousers();
         this.isAdminconversationsdata(model);
         this.isAdminescalationdata(model);
+        this.isAdmincustomerdata(model);
         // }
         // else if (this.userData?.role?.roleName === 'Resolver') {
         //     this.Departmentticketsstatus();
@@ -207,6 +208,7 @@ export class UserDashboardComponent implements OnInit {
         this.ISAdminFirstAgentResponsedata(model);
         this.isAdminconversationsdata(model);
         this.isAdminescalationdata(model);
+        this.isAdmincustomerdata(model);
 
     }
 
@@ -226,6 +228,8 @@ export class UserDashboardComponent implements OnInit {
             this.ISAdminFirstAgentResponsedata(model);
             this.isAdminconversationsdata(model);
             this.isAdminescalationdata(model);
+            this.isAdmincustomerdata(model);
+
         }
     }
 
@@ -391,8 +395,9 @@ export class UserDashboardComponent implements OnInit {
         return colors[index % colors.length];
     }
 
-    isAdmincustomerdata() {
-        this.masterName = `/dashboard/customer-data`;
+    isAdmincustomerdata(model: any) {
+        this.masterName = `/dashboard/customer-data?startDate=${model.startDate}&endDate=${model.endDate}`;
+
         this.isProceess = true;
         this.subscription = this.apiService.getAll(this.masterName).pipe(take(1))
             .subscribe(data => {
@@ -730,4 +735,6 @@ export class UserDashboardComponent implements OnInit {
             })
     }
 }
+
+
 
