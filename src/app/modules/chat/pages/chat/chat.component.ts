@@ -458,6 +458,8 @@ export class ChatComponent
     }
 
     onViewContact(e: any, c: any) {
+        console.log(e);
+
         this.contactinfo = e;
         this.bgclass = c;
         this.contactId = e.id;
@@ -782,6 +784,7 @@ export class ChatComponent
                             this.chathistroy();
                             let phone = this.data.contact;
                             this.isProceess = true;
+
                             this.masterName = `/chat-activity/${phone}`;
                             this.subscription = this.apiService
                                 .getAll(this.masterName)
@@ -790,7 +793,7 @@ export class ChatComponent
                                     (data) => {
                                         this.Userinfo = data;
                                         this.contactinfo = data;
-
+                                        this.scrollToBottom();
                                         this.nrSelect = this.Userinfo?.assignedto;
                                         this.isProceess = false;
                                         this.cd.detectChanges();
@@ -989,7 +992,7 @@ export class ChatComponent
             var request = {
                 messaging_product: 'whatsapp',
                 recipient_type: 'individual',
-                to: this.contactinfo?.phoneNo,
+                to: this.contactinfo?.phoneNo ?? this.contactinfo?.mobileNo,
                 type: 'notes',
                 fromId: this.userData?.userId,
                 assignedto: this.userData?.userId,
@@ -1052,10 +1055,13 @@ export class ChatComponent
 
     submitForm(form: any) {
         if (form.valid) {
+
+
+
             var request = {
                 messaging_product: 'whatsapp',
                 recipient_type: 'individual',
-                to: this.contactinfo?.phoneNo,
+                to: this.contactinfo?.phoneNo ?? this.contactinfo?.mobileNo,
                 type: 'text',
                 fromId: this.userData?.userId,
                 assignedto: this.userData?.userId,
@@ -1098,7 +1104,7 @@ export class ChatComponent
         var request = {
             messaging_product: 'whatsapp',
             recipient_type: 'individual',
-            to: this.contactinfo?.phoneNo,
+            to: this.contactinfo?.phoneNo ?? this.contactinfo?.mobileNo,
             type: 'interactive',
             fromId: this.userData?.userId,
             assignedto: this.userData?.userId,
@@ -1326,7 +1332,7 @@ export class ChatComponent
                     var request = {
                         messaging_product: 'whatsapp',
                         recipient_type: 'individual',
-                        to: this.contactinfo?.phoneNo,
+                        to: this.contactinfo?.phoneNo ?? this.contactinfo?.mobileNo,
                         type: 'image',
                         fromId: this.userData?.userId,
                         assignedto: this.userData?.userId,
@@ -1380,7 +1386,7 @@ export class ChatComponent
                     var request = {
                         messaging_product: 'whatsapp',
                         recipient_type: 'individual',
-                        to: this.contactinfo?.phoneNo,
+                        to: this.contactinfo?.phoneNo ?? this.contactinfo?.mobileNo,
                         type: 'audio',
                         fromId: this.userData?.userId,
                         assignedto: this.userData?.userId,
@@ -1434,7 +1440,7 @@ export class ChatComponent
                     var request = {
                         messaging_product: 'whatsapp',
                         recipient_type: 'individual',
-                        to: this.contactinfo?.phoneNo,
+                        to: this.contactinfo?.phoneNo ?? this.contactinfo?.mobileNo,
                         type: 'document',
                         caption: data.caption,
                         fromId: this.userData?.userId,
@@ -1489,7 +1495,7 @@ export class ChatComponent
                     var request = {
                         messaging_product: 'whatsapp',
                         recipient_type: 'individual',
-                        to: this.contactinfo?.phoneNo,
+                        to: this.contactinfo?.phoneNo ?? this.contactinfo?.mobileNo,
                         type: 'video',
                         caption: data.caption,
                         fromId: this.userData?.userId,
@@ -1545,7 +1551,7 @@ export class ChatComponent
                     var request = {
                         messaging_product: 'whatsapp',
                         recipient_type: 'individual',
-                        to: this.contactinfo?.phoneNo,
+                        to: this.contactinfo?.phoneNo ?? this.contactinfo?.mobileNo,
                         type: 'location',
                         fromId: this.userData?.userId,
                         assignedto: this.userData?.userId,
@@ -1608,7 +1614,7 @@ export class ChatComponent
                     var request = {
                         messaging_product: 'whatsapp',
                         recipient_type: 'individual',
-                        to: this.contactinfo?.phoneNo,
+                        to: this.contactinfo?.phoneNo ?? this.contactinfo?.mobileNo,
                         type: 'template',
                         fromId: this.userData?.userId,
                         assignedto: this.userData?.userId,
