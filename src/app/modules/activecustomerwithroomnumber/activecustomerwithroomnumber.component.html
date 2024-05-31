@@ -5,11 +5,15 @@
 </div>
 <div class="page-btns-col">
     <div class="dt-buttons">
+        <button class="gray-btns" (click)="onCatlog()" type="button"><i class="las la-external-link-alt"></i>
+            send catalogue</button>
+
         <button class="gray-btns" (click)="onDownload()" type="button"><i class="las la-file-excel"></i> Excel</button>
         <div class="table-search">
             <input type="text" class="form-control" name="name" id="name" [(ngModel)]="term" autocomplete="off"
                 placeholder="Search..." required="">
         </div>
+
     </div>
 
 </div>
@@ -33,7 +37,7 @@
               currentPage: page,
               totalItems: count
             };let ind = index;trackBy: trackByFn">
-            <td>{{calculateIndex(page, ind)}}</td>
+                        <td>{{calculateIndex(page, ind)}}</td>
                         <td>{{i.guestName}}</td>
                         <td>{{i.guestNumber}}</td>
                         <td>{{i.guestCheckedInTime | date}}</td>
