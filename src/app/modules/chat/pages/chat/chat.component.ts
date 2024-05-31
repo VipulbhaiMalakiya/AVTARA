@@ -270,7 +270,6 @@ export class ChatComponent
         });
 
 
-        this.onViewContact(this._route.snapshot.paramMap.get('status'), 1)
 
 
         if (navigator.geolocation) {
