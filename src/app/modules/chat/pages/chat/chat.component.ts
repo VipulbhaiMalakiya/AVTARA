@@ -395,6 +395,7 @@ export class ChatComponent
             (data: any) => {
 
                 this.messagestates = data.messageStatus;
+
                 if (data.mobileNo === this.contact) {
                     console.log(data);
 
@@ -783,6 +784,7 @@ export class ChatComponent
                             this.lastname = data.lastName;
                             this.chathistroy();
                             let phone = this.data.contact;
+                            this.contact = this.data.contact;
                             this.isProceess = true;
 
                             this.masterName = `/chat-activity/${phone}`;
