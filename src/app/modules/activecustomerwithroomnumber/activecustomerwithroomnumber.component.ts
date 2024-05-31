@@ -90,14 +90,18 @@ export class ActivecustomerwithroomnumberComponent {
     }
 
     onCatlog() {
-
+        var model: any = {}
         this.masterName = `/campaign`;
-        this.subscription = this.apiService.add(this.masterName)
+        let addData: any = {
+            url: this.masterName,
+            model: model
+        }
+        this.subscription = this.apiService.getAll(this.masterName)
             .pipe(take(1))
             .subscribe(
                 (data) => {
                     if (data) {
-                        this.toastr.success("");
+                        this.toastr.success("messages sent successful");
                         this.isProceess = false;
                         this.cd.detectChanges();
 
