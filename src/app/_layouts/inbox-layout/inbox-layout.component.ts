@@ -27,7 +27,7 @@ export class InboxLayoutComponent {
             }
         });
 
-        if (this.router.url === '/admin/inbox') {
+        if (this.router.url === '/admin/inbox' || this.router.url.startsWith('/admin/inbox/')) {
             this.classToggled = true;
         } else if (this.router.url === '/inbox') {
             this.classToggled = true;
