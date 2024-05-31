@@ -793,7 +793,7 @@ export class ChatComponent
                                     (data) => {
                                         this.Userinfo = data;
                                         this.contactinfo = data;
-                                        this.scrollToBottom();
+                                        // this.scrollToBottom();
                                         this.nrSelect = this.Userinfo?.assignedto;
                                         this.isProceess = false;
                                         this.cd.detectChanges();
@@ -869,6 +869,7 @@ export class ChatComponent
                 (response) => {
                     this.item = response;
                     this.receivedData = this.item;
+                    this.scrollToBottom();
                     this.isProceess = false;
                 },
                 (error) => {
