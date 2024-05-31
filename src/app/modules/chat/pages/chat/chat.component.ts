@@ -415,7 +415,7 @@ export class ChatComponent
                 ) {
                 } else {
                     const currentUrl = this.location.path();
-                    if (currentUrl === '/admin/inbox' || currentUrl === '/admin/inbox/id' || currentUrl === '/admin/inbox/status' || currentUrl === '/inbox') {
+                    if (currentUrl === '/admin/inbox' || currentUrl === '/admin/inbox/id' || currentUrl === '/admin/inbox/status' || currentUrl === '/inbox' || currentUrl.startsWith('/admin/inbox/')) {
                         if (data.type === 'Receiver') {
                             // const message: string = `You got a message from ${data.name}`;
                             const message: string = `You got a message from ${this.getOnlyName(
