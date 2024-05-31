@@ -100,7 +100,7 @@ export class ChatComponent
     reloadFlag = true;
     isstatus?: any = 'open';
     openCount: any;
-    missedCount:number = 0;
+    missedCount: number = 0;
     checkoutdata: any;
     tqty?: any;
     checkindata: any;
@@ -261,12 +261,18 @@ export class ChatComponent
 
 
         this.route.params.subscribe(params => {
+
             if ('status' in params) {
                 this.isstatus = params['status'];
             } else {
                 this.isstatus = 'open';
             }
         });
+
+
+        this.onViewContact(this._route.snapshot.paramMap.get('status'), 1)
+
+
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((position) => {
                 this.data.latitude = position.coords.latitude.toString();
@@ -364,26 +370,26 @@ export class ChatComponent
 
     ngAfterViewInit() {
         this.scrollToBottom();
-      }
+    }
 
-      ngAfterViewChecked() {
+    ngAfterViewChecked() {
         // this.scrollToBottom();
-      }
-      private scrollToBottom(): void {
+    }
+    private scrollToBottom(): void {
         setTimeout(() => { // Use setTimeout to ensure the DOM is fully rendered
-          try {
-            if (this.chatContainer && this.chatContainer.nativeElement) {
-              const container = this.chatContainer.nativeElement;
-              const atBottom = container.scrollHeight - container.scrollTop <= container.clientHeight;
-              if (!atBottom) {
-                container.scrollTop = container.scrollHeight;
-              }
+            try {
+                if (this.chatContainer && this.chatContainer.nativeElement) {
+                    const container = this.chatContainer.nativeElement;
+                    const atBottom = container.scrollHeight - container.scrollTop <= container.clientHeight;
+                    if (!atBottom) {
+                        container.scrollTop = container.scrollHeight;
+                    }
+                }
+            } catch (err) {
+                console.error(err);
             }
-          } catch (err) {
-            console.error(err);
-          }
         }, 0);
-      }
+    }
     private establishConnection(): void {
         this.socket$ = webSocket(environment.SOCKET_ENDPOINT);
         this.socket$.subscribe(
@@ -593,7 +599,7 @@ export class ChatComponent
             a.click();
             document.body.removeChild(a);
             window.URL.revokeObjectURL(url);
-          });
+        });
     }
 
     downloadFile1(e: any) {
@@ -756,12 +762,15 @@ export class ChatComponent
 
 
     GetUser() {
-        if (this._route.snapshot.paramMap.get('id') != null) {
+
+
+        if (this._route.snapshot.paramMap.get('status') != null) {
             this.show = true;
             this.isProceess = true;
+            this.isstatus = 'open';
 
             this.subscription = this.CSAPI.customerDetailByID(
-                this._route.snapshot.paramMap.get('id')
+                this._route.snapshot.paramMap.get('status')
             )
                 .pipe(take(1))
                 .subscribe({
@@ -1127,7 +1136,7 @@ export class ChatComponent
     onError(event: Event): void {
         const imgElement = event.target as HTMLImageElement;
         imgElement.src = '../assets/images/default-nopic.jpg';
-      }
+    }
 
     ngOnDestroy() {
         // this.socket$.complete();
@@ -1654,7 +1663,7 @@ export class ChatComponent
 
 
 
-    oncatalog(e:any) {
+    oncatalog(e: any) {
         this.isProceess = true;
         const modalRef = this.modalService.open(CatalogComponent, { size: "md" });
 
