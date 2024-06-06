@@ -114,6 +114,11 @@ export class ActivecustomerwithroomnumberComponent {
 
     }
 
+    sendMessage(dataItem: any) {
+        this.router.navigate([`/admin/inbox/${dataItem.customerId}`]);
+        // window.location.href = `/admin/inbox/${dataItem.customerId}`
+    }
+
     onTableDataChange(event: any) {
         this.page = event;
     }

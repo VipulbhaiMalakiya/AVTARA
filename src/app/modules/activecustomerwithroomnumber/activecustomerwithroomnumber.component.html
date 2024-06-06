@@ -5,7 +5,7 @@
 </div>
 <div class="page-btns-col">
     <div class="dt-buttons">
-   <button class="gray-btns" (click)="onCatlog()" type="button"><i class="las la-external-link-alt"></i>
+        <button class="gray-btns" (click)="onCatlog()" type="button"><i class="las la-external-link-alt"></i>
             Campaign</button>
 
         <button class="gray-btns" (click)="onDownload()" type="button"><i class="las la-file-excel"></i> Excel</button>
@@ -25,7 +25,7 @@
                     <tr>
                         <th>Sr.No</th>
                         <th>Guest Name</th>
-                        <th>Guest Number</th>
+                        <th>Guest Number </th>
                         <th>Guest Checked In Time</th>
                         <th>Room Number</th>
                     </tr>
@@ -39,7 +39,8 @@
             };let ind = index;trackBy: trackByFn">
                         <td>{{calculateIndex(page, ind)}}</td>
                         <td>{{i.guestName}}</td>
-                        <td>{{i.guestNumber}}</td>
+                        <td>{{i.guestNumber}} <span class="ctm-icone"> <i class="lab la-whatsapp"
+                                    (click)="sendMessage(i)"></i></span></td>
                         <td>{{i.guestCheckedInTime | date}}</td>
                         <td>{{i.roomNumber}}</td>
 
