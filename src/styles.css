@@ -83,7 +83,7 @@ button:not(:disabled) {
 }
 
 .ctm-icone {
-    float: right;
+    /* float: right; */
     margin-top: -5px;
 
 }
