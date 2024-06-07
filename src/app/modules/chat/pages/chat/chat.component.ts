@@ -776,6 +776,9 @@ export class ChatComponent
             else if (this.isstatus == 'close') {
                 this.isstatus = 'open';
             }
+            else {
+                this.isstatus = 'open';
+            }
 
 
             this.subscription = this.CSAPI.customerDetailByID(
