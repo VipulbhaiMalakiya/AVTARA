@@ -769,7 +769,14 @@ export class ChatComponent
         if (this._route.snapshot.paramMap.get('status') != null) {
             this.show = true;
             this.isProceess = true;
-            this.isstatus = 'open';
+
+            if (this.isstatus == 'close') {
+                this.isstatus = 'close';
+            }
+            else if (this.isstatus == 'close') {
+                this.isstatus = 'open';
+            }
+
 
             this.subscription = this.CSAPI.customerDetailByID(
                 this._route.snapshot.paramMap.get('status')
