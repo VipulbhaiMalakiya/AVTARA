@@ -855,6 +855,8 @@ export class ChatComponent
                     (response) => {
                         this.contactList = response;
                         this.open = this.contactList[0].open;
+                        this.missed = this.contactList[0].missed;
+                        this.missedCount = this.contactList[0].missedCount;
                         this.openCount = this.contactList[0].openCount;
                         this.closedCount = this.contactList[0].closedCount;
                         this.closed = this.contactList[0].closed;
