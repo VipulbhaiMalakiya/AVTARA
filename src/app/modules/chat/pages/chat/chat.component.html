@@ -1427,7 +1427,8 @@
                             </li> -->
 
                             <!-- catalog chat card -->
-                            <li class="msg-replayer" *ngIf="data.type === 'Sender' && data.messagetype === 'interactive' || data.messagetype === 'Interactive'">
+                            <li class="msg-replayer"
+                                *ngIf="data.type === 'Sender' && data.messagetype === 'interactive' || data.messagetype === 'Interactive'">
                                 <div class="avata">
                                     <span *ngIf="data.name === null">Y</span>
                                     <span *ngIf="data.name !== null"> {{getShortName(data.name)}}</span>
@@ -1437,10 +1438,12 @@
                                         <div class="catalog-chat" data-bs-toggle="modal"
                                             data-bs-target="#catalog-modal">
                                             <div class="catalog-chattop">
-                                                <div class="catalog-pic" *ngIf="data && data.catalogOrderItems && data.catalogOrderItems.length > 0">
-                                                    <img [src]="data.catalogOrderItems[0].productUrl" alt="{{ data.catalogOrderItems[0].productName }}"
-                                                    (error)="onError($event)">
-                                                  </div>
+                                                <div class="catalog-pic"
+                                                    *ngIf="data && data.catalogOrderItems && data.catalogOrderItems.length > 0">
+                                                    <img [src]="data.catalogOrderItems[0].productUrl"
+                                                        alt="{{ data.catalogOrderItems[0].productName }}"
+                                                        (error)="onError($event)">
+                                                </div>
                                                 <div class="catalog-txt">
                                                     <h4>{{data.message}}</h4>
                                                     <p>
@@ -1448,7 +1451,8 @@
                                                     </p>
                                                 </div>
                                             </div>
-                                            <div class="catalog-content"  *ngIf="data && data.catalogOrderItems && data.catalogOrderItems.length > 0">
+                                            <div class="catalog-content"
+                                                *ngIf="data && data.catalogOrderItems && data.catalogOrderItems.length > 0">
                                                 <p>{{data.catalogOrderItems[0]?.description}}</p>
                                             </div>
                                             <div class="catalog-btn" (click)="oncatalog(data)">View Sent Cart</div>
@@ -1467,8 +1471,7 @@
                                                     class="las la-check-double"></i></span>
                                             <span class="last-msg-checkic" *ngIf="data.messageStatus == 'sent'"><i
                                                     class="las la-check"></i></span>
-                                            <span class="last-msg-checkic"
-                                                *ngIf="data.messageStatus == 'delivered'"><i
+                                            <span class="last-msg-checkic" *ngIf="data.messageStatus == 'delivered'"><i
                                                     class="las la-check-double"></i></span>
                                         </ng-container>
 
