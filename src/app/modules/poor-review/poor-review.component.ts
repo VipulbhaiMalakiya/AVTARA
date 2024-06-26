@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription, take } from 'rxjs';
@@ -10,9 +10,9 @@ import { ViewSlaComponent } from '../sla/components/view-sla/view-sla.component'
 import { Title } from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-poor-review',
-  templateUrl: './poor-review.component.html',
-  styleUrls: ['./poor-review.component.css']
+    selector: 'app-poor-review',
+    templateUrl: './poor-review.component.html',
+    styleUrls: ['./poor-review.component.css']
 })
 export class PoorReviewComponent {
 
@@ -27,6 +27,7 @@ export class PoorReviewComponent {
     tableSize: number = 10;
     tableSizes: any = [3, 6, 9, 12];
     level?: any;
+    customerData: any = [];
 
 
     constructor(
@@ -37,6 +38,7 @@ export class PoorReviewComponent {
         private appService: AppService,
         private apiService: ApiService,
         private route: ActivatedRoute,
+        private router: Router
     ) {
         this.titleService.setTitle("CDC -Escalation Level");
         const d: any = localStorage.getItem("userData");
@@ -50,9 +52,38 @@ export class PoorReviewComponent {
 
         this.masterName = `/chatlist/bad-review`;
         this.fatchData();
+        this.fatchCustomerData();
 
 
     }
+
+
+    fatchCustomerData() {
+
+        this.subscription = this.apiService.getAll("/customer").pipe(take(1)).subscribe(data => {
+            if (data) {
+                this.customerData = data;
+                this.cd.detectChanges();
+            }
+        }, error => {
+            this.isProceess = false;
+        })
+    }
+
+    sendMessage(dataItem: any) {
+        // Filter customers by a specific contact
+        const filteredCustomers = this.customerData.filter((customer: any) => customer.contact === dataItem.mobileNumber);
+
+        if (filteredCustomers.length > 0) {
+            // If there are filtered customers, log the first one and navigate to the inbox
+            const customerId = filteredCustomers[0].customerId;
+            this.router.navigate([`/admin/inbox/${customerId}`]);
+        } else {
+            // If no customers were found, show a message
+            this.toastr.warning('No customers found with the specified contact.');
+        }
+    }
+
 
     calculateIndex(page: number, index: number): number {
         return (page - 1) * this.tableSize + index + 1;
@@ -94,7 +125,7 @@ export class PoorReviewComponent {
             }
         });
         const headers = [
-             "Customer Name",'Mobile Number','Level','Date & Time'
+            "Customer Name", 'Mobile Number', 'Level', 'Date & Time'
         ];
         this.appService.exportAsExcelFile(exportData, "Bad Review", headers);
     }
