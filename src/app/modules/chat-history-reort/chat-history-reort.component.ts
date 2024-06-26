@@ -17,6 +17,7 @@ import { chathistoryreportModel } from 'src/app/_models/chathistoryreport';
 export class ChatHistoryReortComponent {
     isProceess: boolean = true;
     data: chathistoryreportModel[] = [];
+    customerData: any[] = [];
     subscription?: Subscription;
     userData: any;
     masterName?: any;
@@ -63,11 +64,31 @@ export class ChatHistoryReortComponent {
 
     ngOnInit(): void {
         this.fatchData();
+        this.fatchCustomerData();
 
     }
 
+    fatchCustomerData() {
+        this.masterName = "/customer";
+        this.subscription = this.apiService.getAll(this.masterName).pipe(take(1)).subscribe(data => {
+            if (data) {
+                this.customerData = data;
+                this.cd.detectChanges();
+            }
+        }, error => {
+            this.isProceess = false;
+        })
+    }
+
     sendMessage(dataItem: any) {
-        this.router.navigate([`/admin/inbox/${dataItem.guestnumber}`]);
+
+        // Filter customers by a specific contact
+        const filteredCustomers = this.customerData.filter(customer => customer.contact === dataItem.guestnumber);
+
+        // Log the filtered customers
+        const customerId = [filteredCustomers[0].customerId]
+
+        this.router.navigate([`/admin/inbox/${customerId}`]);
         // window.location.href = `/admin/inbox/${dataItem.customerId}`
     }
 
