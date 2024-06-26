@@ -780,6 +780,8 @@ export class ChatComponent
             }
 
 
+            console.log(this._route.snapshot.paramMap.get('status'))
+
             this.subscription = this.CSAPI.customerDetailByID(
                 this._route.snapshot.paramMap.get('status')
             )
