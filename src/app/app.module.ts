@@ -30,6 +30,7 @@ import {GoogleMapsModule} from '@angular/google-maps';  // added
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { PrivacyPolicyComponent } from './modules/privacy-policy/privacy-policy.component';
 import { ContactUsComponent } from './_layouts/contact-us/contact-us.component';
+import { SendCatalogueComponent } from './modules/send-catalogue/send-catalogue.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { ContactUsComponent } from './_layouts/contact-us/contact-us.component';
     NotFoundComponent,
     PrivacyPolicyComponent,
     ContactUsComponent,
+    SendCatalogueComponent,
 
   ],
   imports: [

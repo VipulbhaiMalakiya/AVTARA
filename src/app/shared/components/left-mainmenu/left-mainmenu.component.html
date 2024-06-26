@@ -40,6 +40,11 @@
                     src="../assets/images/menu-icon-14.png" alt="" /> Assigned To Me</a>
         </li>
 
+        <li *ngIf="isAdmin" routerLinkActive="active">
+            <a routerLink="/admin/send-catalog" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+                class="menu-list-title"><img src="../assets/images/menu-icon-14.png" alt="" /> Send Catalog</a>
+        </li>
+
         <li>
             <div class="accordion" id="menu-accordion">
 
