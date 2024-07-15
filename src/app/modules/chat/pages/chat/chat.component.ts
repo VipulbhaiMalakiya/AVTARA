@@ -1674,18 +1674,6 @@ export class ChatComponent
             .catch(() => { });
     }
 
-    sanitizeUrl(url: string): SafeResourceUrl {
-        // console.log(this.sanitizer.bypassSecurityTrustResourceUrl(url));
-
-        return this.sanitizer.bypassSecurityTrustResourceUrl(url);
-    }
-
-    // In your component class
-    handleError() {
-        // console.error("Error loading PDF file.");
-        // You can also update a variable to show/hide a specific error message
-    }
-
 
 
     oncatalog(e: any) {
