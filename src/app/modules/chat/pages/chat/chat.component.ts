@@ -1676,6 +1676,8 @@ export class ChatComponent
 
 
 
+
+
     oncatalog(e: any) {
         this.isProceess = true;
         const modalRef = this.modalService.open(CatalogComponent, { size: "md" });
