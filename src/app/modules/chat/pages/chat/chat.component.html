@@ -542,11 +542,14 @@
 
                                 <div class="chat-info">
                                     <div class="last-msg p-2 pb-1 rounded">
-                                        <object *ngIf="data && data.fileUrl" [data]=data.fileUrl type="application/pdf"
-                                            style="height:150px; display:flex; margin:auto;">
+                                        <!-- <object type="application/pdf" style="height:150px; display:flex; margin:auto;"
+                                            (error)="handleError()">
                                             <img src="../assets/images/pdf-image.jpg"
                                                 style="max-height:100px; margin:auto;" alt="File Not Found">
-                                        </object>
+                                        </object> -->
+
+                                        <img src="../assets/images/pdf-image.jpg" style="max-height:100px; margin:auto;"
+                                            alt="File Not Found">
 
 
 
@@ -600,11 +603,15 @@
                                             height="200px">
                                         </object> -->
 
-                                        <object *ngIf="data && data.fileUrl" [data]=data.fileUrl type="application/pdf"
-                                            style="height:150px; display:flex; margin:auto;">
+                                        <!-- <object *ngIf="data && data.fileUrl" [data]=sanitizeUrl(data.fileUrl)
+                                            type="application/pdf" style="height:150px; display:flex; margin:auto;"
+                                            (error)="handleError()">
                                             <img src="../assets/images/pdf-image.jpg"
                                                 style="max-height:100px; margin:auto;" alt="File Not Found">
-                                        </object>
+                                        </object> -->
+
+                                        <img src="../assets/images/pdf-image.jpg" style="max-height:100px; margin:auto;"
+                                            alt="File Not Found">
 
                                         <div class="pdf-nameic cursur " (click)="downloadFile(data)"><span
                                                 class="pdf-icon"><img src="../assets/images/document-icon.png"
