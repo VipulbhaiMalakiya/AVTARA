@@ -1647,6 +1647,7 @@ export class ChatComponent
                     let formData = new FormData();
                     formData.append('messageEntry', JSON.stringify(request));
                     formData.append('file', data.file);
+
                     this.isProceess = true;
                     this.subscription = this.whatsappService
                         .sendWhatsAppMessage(formData)
