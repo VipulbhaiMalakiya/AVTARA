@@ -911,8 +911,9 @@
                             </div>
                             <!-- Templet Start -->
 
+                            <!-- booking_confirmation -->
                             <li class="msg-replayer"
-                                *ngIf="data.messagetype === 'template' && data.templateName == 'booking_confirmation' && data.templateName != 'checking_in_welcome_details_wifidetails'">
+                                *ngIf="data.messagetype === 'template' && data.templateName == 'booking_confirmation' ">
                                 <div class="avata">
                                     <span *ngIf="data.name === null">Y</span>
                                     <span *ngIf="data.name !== null"> {{getShortName(data.name)}}</span>
@@ -953,8 +954,9 @@
                                 </div>
                             </li>
 
+                            <!-- checking_in_welcome_details_wifidetails -->
                             <li class="msg-replayer"
-                                *ngIf="data.messagetype === 'template' && data.templateName == 'checking_in_welcome_details_wifidetails' && data.templateName != 'booking_confirmation'">
+                                *ngIf="data.messagetype === 'template' && data.templateName == 'checking_in_welcome_details_wifidetails' ">
                                 <div class="avata">
                                     <span *ngIf="data.name === null">Y</span>
                                     <span *ngIf="data.name !== null"> {{getShortName(data.name)}}</span>
@@ -995,9 +997,8 @@
                                 </div>
                             </li>
 
-                            <li class="msg-replayer" class="msg-replayer"
-                                *ngIf="data.messagetype === 'template' && data.templateBody == 'body'
-              && data.templateButton1 !== null  && data.templateHeader == null && data.templateName != 'booking_confirmation' && data.templateName != 'checking_in_welcome_details_wifidetails'">
+                            <li class="msg-replayer" class="msg-replayer" *ngIf="data.messagetype === 'template' && data.templateBody == 'body'
+              && data.templateButton1 !== null  && data.templateHeader == null">
 
                                 <div class="avata">
                                     <span *ngIf="data.name === null">Y</span>
@@ -1049,9 +1050,61 @@
                                 </div>
 
                             </li>
+
                             <li class="msg-replayer" class="msg-replayer"
-                                *ngIf="data.messagetype === 'template' && data.templateBody == null
-              && data.templateButton1 == null  && data.templateHeader == 'header' && data.templateName != 'booking_confirmation' && data.templateName != 'checking_in_welcome_details_wifidetails' ">
+                                *ngIf="data.messagetype === 'template' &&  data.templateName == 'checking_in_welcome_details'  ">
+                                <div class="avata">
+                                    <span *ngIf="data.name === null">Y</span>
+                                    <span *ngIf="data.name !== null"> {{getShortName(data.name)}}</span>
+                                </div>
+                                <div class="chat-info">
+                                    <div class="last-msg p-3 rounded">
+                                        <div class="senttemp-2">
+                                            <div class="pdf-nameic cursur"
+                                                *ngIf="data.templateHeaderfileLink && data.templateHeaderFileType ==='document'">
+                                                <span class="pdf-icon" (click)="downloadFile1(data)"><img
+                                                        src="../assets/images/pdf-icon.png" alt="File Not Found">
+                                                    {{data.templateName}}</span>
+                                                <span class="pdf-downicon"><i
+                                                        class="las la-arrow-circle-down"></i></span>
+                                            </div>
+                                            {{data.templatePreview}}
+
+                                        </div>
+                                    </div>
+                                    <div class="suserchat-info mt-2">
+                                        <span class="suserchat-name" *ngIf="data.name == null">You</span>
+                                        <span class="suserchat-name"
+                                            *ngIf="data.name !== null">{{data.name || ''}}</span>
+                                        {{data.time |dateAgo}}
+                                        <ng-container *ngIf="!data.messageId">
+                                            <span class="last-msg-checkic text-success"
+                                                *ngIf="data.messageStatus == 'read'"><i
+                                                    class="las la-check-double"></i></span>
+                                            <span class="last-msg-checkic" *ngIf="data.messageStatus == 'sent'"><i
+                                                    class="las la-check"></i></span>
+                                            <span class="last-msg-checkic" *ngIf="data.messageStatus == 'delivered'"><i
+                                                    class="las la-check-double"></i></span>
+                                        </ng-container>
+
+                                        <ng-container *ngIf="data.messageId">
+                                            <span class="last-msg-checkic text-success"
+                                                *ngIf="messagestates == 'read'"><i
+                                                    class="las la-check-double"></i></span>
+                                            <span class="last-msg-checkic" *ngIf="messagestates == 'sent'"><i
+                                                    class="las la-check"></i></span>
+                                            <span class="last-msg-checkic" *ngIf="messagestates== 'delivered'"><i
+                                                    class="las la-check-double"></i></span>
+                                        </ng-container>
+                                    </div>
+
+                                </div>
+
+                            </li>
+                            <li class="msg-replayer" class="msg-replayer" *ngIf="data.messagetype === 'template' && data.templateBody == null
+              && data.templateButton1 == null && data.templateHeader == 'header' && data.templateName !=
+              'booking_confirmation' && data.templateName != 'checking_in_welcome_details' && data.templateName !=
+              'checking_in_welcome_details_wifidetails' ">
                                 <div class="avata">
                                     <span *ngIf="data.name === null">Y</span>
                                     <span *ngIf="data.name !== null"> {{getShortName(data.name)}}</span>
