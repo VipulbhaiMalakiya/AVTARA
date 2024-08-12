@@ -16,6 +16,16 @@ export class OrderUpdateComponent {
     data: any;
     issueForm: any;
 
+
+    statuses = [
+        { value: 'Order_Receipt', label: 'Order Receipt' },
+        { value: 'Confirmation', label: 'Confirmation' },
+        { value: 'In_transit', label: 'In Transit' },
+        { value: 'Delivered', label: 'Delivered' }
+    ];
+
+    availableStatuses: { value: string; label: string; }[] = [];
+
     get title(): string {
         return this._issueMaster ? "Update Status" : " Add Order";
     }
@@ -40,6 +50,29 @@ export class OrderUpdateComponent {
         this.issueForm = this.formBuilder.group({
             status: [true, [Validators.required]]
         });
+
+        this.setAvailableStatuses(this.issueForm.get('status').value);
+
+        // Watch for status changes to update the available options
+        this.issueForm.get('status').valueChanges.subscribe((value: string) => {
+            this.setAvailableStatuses(value);
+        });
+    }
+
+    setAvailableStatuses(currentStatus: string): void {
+        const index = this.statuses.findIndex(status => status.value === currentStatus);
+
+        if (index >= 0 && index < this.statuses.length - 1) {
+            this.availableStatuses = [
+                this.statuses[index],  // Current status
+                this.statuses[index + 1] // Next status
+            ];
+        } else if (index === this.statuses.length - 1) {
+            // If the current status is the last one, just show the current status
+            this.availableStatuses = [this.statuses[index]];
+        } else {
+            this.availableStatuses = [];
+        }
     }
 
     onCancel() {
