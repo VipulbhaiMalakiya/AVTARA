@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 interface Order {
     id: string;
@@ -27,29 +27,28 @@ interface Order {
     company: string;
 
 }
-
-
 @Component({
-    selector: 'app-order-list',
-    templateUrl: './order-list.component.html',
-    styleUrls: ['./order-list.component.css']
+    selector: 'app-order-detail',
+    templateUrl: './order-detail.component.html',
+    styleUrls: ['./order-detail.component.css']
 })
-export class OrderListComponent implements OnInit {
-
-
+export class OrderDetailComponent implements OnInit {
     isProceess: boolean = true;
-    masterName?: any;
-    subscription?: Subscription;
-    term: any;
     data: Order[] = [];
-    page: number = 1;
-    count: number = 0;
-    tableSize: number = 7;
-    tableSizes: any = [3, 6, 9, 12];
+    order: Order | undefined;
+
+    constructor(private route: ActivatedRoute) { }
 
     ngOnInit(): void {
         this.loadOrders();
+        this.route.paramMap.subscribe(params => {
+            const id = params.get('id');
+            if (id) {
+                this.order = this.data.find(order => order.id === id);
+            }
+        });
     }
+
     loadOrders(): void {
         this.data = [
             {
@@ -78,7 +77,6 @@ export class OrderListComponent implements OnInit {
                 deliveryAddress: 'No.1, Mohammadpur, Bhikaji Cama Place New Delhi – 110066, India',
                 trackStatus: 'In Transit',
                 company: 'Team Computers Pvt. Ltd.'
-
             },
             {
                 id: '#12346',
@@ -86,7 +84,7 @@ export class OrderListComponent implements OnInit {
                 contactNo: '9876543210',
                 assignedTo: 'Ravi Singh',
                 orderDate: new Date('2024-08-09'),
-                status: 'Pending',
+                status: 'Delivered',
                 orderNo: 'MET222ddddxxxxDEL',
                 subtotal: '₹4800.00',
                 cgst: '₹40.00',
@@ -114,7 +112,7 @@ export class OrderListComponent implements OnInit {
                 contactNo: '1800 102 1234',
                 assignedTo: 'Rajiv Patel',
                 orderDate: new Date('2024-08-10'),
-                status: 'Pending',
+                status: 'Delivered',
                 orderNo: 'MET333ddddxxxxDEL',
                 subtotal: '₹6000.00',
                 cgst: '₹60.00',
@@ -194,16 +192,4 @@ export class OrderListComponent implements OnInit {
             }
         ];
     }
-
-
-
-
-    calculateIndex(page: number, index: number): number {
-        return (page - 1) * this.tableSize + index + 1;
-    }
-
-    onTableDataChange(event: any) {
-        this.page = event;
-    }
-
 }

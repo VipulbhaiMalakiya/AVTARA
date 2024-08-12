@@ -53,8 +53,8 @@
                             </td>
 
                             <td>
-                                <a href="order-detail.html"><i class="las la-eye"></i></a>
-                                <a href="order-detail.html"><i class="las la-edit"></i></a>
+                                <a [routerLink]="['order-detail',i.id]"><i class="las la-eye"></i></a>
+                                <a [routerLink]="['order-edit',i.id]"><i class="las la-edit"></i></a>
                             </td>
 
                         </tr>

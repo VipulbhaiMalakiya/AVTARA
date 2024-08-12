@@ -1,0 +1,115 @@
+<app-header></app-header>
+<!-- <app-loading-spin *ngIf="isProceess"></app-loading-spin> -->
+
+<div class="page-title">
+    <h1>Order Detail</h1>
+</div>
+
+<div class="inner-middle-content">
+    <div class="orderdt-page">
+
+        <div class="toporderdt-col">
+            <div class="form-header d-flex mb-4">
+                <span class="stepIndicator"
+                    [ngClass]="{ 'finish': order?.status === 'Delivered', 'active': order?.trackStatus === 'In Transit' }">
+                    <b><i class="las la-check-circle"></i></b> Confirmation
+                </span>
+                <span class="stepIndicator" [ngClass]="{ 'finish': order?.status === 'Delivered' }">
+                    <b><i class="las la-user-tie"></i></b> Sales
+                </span>
+                <span class="stepIndicator active">
+                    <b><i class="las la-shuttle-van"></i></b> {{ order?.trackStatus || 'In Transit' }}
+                </span>
+                <span class="stepIndicator" [ngClass]="{ 'finish': order?.status === 'Delivered' }">
+                    <b><i class="las la-thumbs-up"></i></b> Delivery
+                </span>
+            </div>
+        </div>
+
+        <div class="middleorderdt-col">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="orderlist-table">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Product</th>
+                                        <th class="text-center">Order</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Currency</th>
+                                        <th>Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of order?.items">
+                                        <td>{{ item.serialNo }}</td>
+                                        <td>{{ item.productName }}</td>
+                                        <td class="text-center">
+                                            <div class="cat-pros-pic"><img [src]="item.image"
+                                                    alt="{{ item.productName }}"></div>
+                                        </td>
+                                        <td>{{ item.price }}</td>
+                                        <td>{{ item.quantity }}</td>
+                                        <td>{{ item.currency }}</td>
+                                        <td>{{ item.amount }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="orderdt-info">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="order-price-col">
+                                    <dl class="commerce-list">
+                                        <dt>Order Date</dt>
+                                        <dd class="text-right">{{ order?.orderDate | date:'dd-MM-yyyy' }}</dd>
+                                        <dt>Order No.</dt>
+                                        <dd class="text-right">{{ order?.orderNo }}</dd>
+                                        <dt>Subtotal</dt>
+                                        <dd class="text-right">{{ order?.subtotal }}</dd>
+                                        <dt>CGST</dt>
+                                        <dd class="text-right">{{ order?.cgst }}</dd>
+                                        <dt>SGST</dt>
+                                        <dd class="text-right">{{ order?.sgst }}</dd>
+                                        <dt>Total Amount</dt>
+                                        <dd class="text-right"><b>{{ order?.totalAmount }}</b></dd>
+                                    </dl>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 text-end">
+                                <div class="status-drpdwn">
+                                    <div class="form-group">
+                                        <label>Status</label>
+                                        <select class="form-select" required>
+                                            <option [selected]="order?.status === 'Pending'" value="Pending">Pending
+                                            </option>
+                                            <option [selected]="order?.status === 'Delivered'" value="Delivered">
+                                                Delivered</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="ordercustomer-info">
+                        <h3>Customer Info</h3>
+                        <p><b>Customer Name</b> {{ order?.customerName }}</p>
+                        <p><b>Contact No.</b> {{ order?.contactNo }}</p>
+                        <p><b>Company</b> {{ order?.company || 'N/A' }}</p>
+                        <p><b>Delivery Address</b> {{ order?.deliveryAddress }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--orderdt-page-->
+</div>
