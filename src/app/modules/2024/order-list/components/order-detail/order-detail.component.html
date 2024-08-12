@@ -65,13 +65,18 @@
                                         <dt>Order No.</dt>
                                         <dd class="text-right">{{ order?.orderId }}</dd>
                                         <dt>Subtotal</dt>
-                                        <dd class="text-right">0</dd>
+                                        <dd class="text-right">
+                                            {{ getSubtotal() | currency:'INR':'symbol'}}</dd>
+
                                         <dt>CGST</dt>
-                                        <dd class="text-right">0</dd>
+                                        <dd class="text-right">
+                                            {{ getSubtotal() * 0.0 | currency:'INR':'symbol' }}</dd>
                                         <dt>SGST</dt>
-                                        <dd class="text-right">0</dd>
+                                        <dd class="text-right">
+                                            {{ getSubtotal() * 0.0 | currency:'INR':'symbol' }}</dd>
                                         <dt>Total Amount</dt>
-                                        <dd class="text-right"><b>0</b></dd>
+                                        <dd class="text-right">
+                                            <b>{{ getTotalAmount() | currency:'INR':'symbol' }}</b></dd>
                                     </dl>
                                 </div>
                             </div>

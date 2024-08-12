@@ -36,11 +36,25 @@ export class OrderDetailComponent implements OnInit {
     ];
 
     calculateAmount(price: string, quantity: number): number {
-        // Extract the numeric part of the price and convert it to a number
         const numericPrice = parseFloat(price.replace(/[^\d.-]/g, ''));
         return numericPrice * quantity;
     }
 
+    // Method to calculate Subtotal
+    getSubtotal(): number {
+        return (this.order!.orderProducts as any[]).reduce((total: number, item: any) =>
+            total + this.calculateAmount(item.price, item.quantity), 0);
+    }
+
+    getTotalAmount(): number {
+        const subtotal = this.getSubtotal();
+        // Assuming CGST and SGST are calculated percentages of the subtotal
+        // const cgst = subtotal * 0.09; // Example: 9% CGST
+        // const sgst = subtotal * 0.09; // Example: 9% SGST
+        const cgst = subtotal * 0.0; // Example: 9% CGST
+        const sgst = subtotal * 0.0; // Example: 9% SGST
+        return subtotal + cgst + sgst;
+    }
 
     getStepClass(status: string): string {
         const trackStatus = this.order?.orderStatus;
