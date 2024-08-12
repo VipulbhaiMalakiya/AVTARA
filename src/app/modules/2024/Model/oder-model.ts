@@ -1,3 +1,4 @@
+// order.model.ts
 export interface Order {
     id: string;
     customerName: string;
@@ -5,22 +6,23 @@ export interface Order {
     assignedTo: string;
     orderDate: Date;
     status: string;
-    orderNo: string; // Added
-    subtotal: string; // Added
-    cgst: string; // Added
-    sgst: string; // Added
-    totalAmount: string; // Added
-    items: Array<{
-        serialNo: number;
-        productName: string;
-        image: string;
-        price: string;
-        quantity: number;
-        currency: string;
-        amount: string;
-    }>; // Added
-    deliveryAddress: string; // Added
-    trackStatus: string; // Added
+    orderNo: string;
+    subtotal: string;
+    cgst: string;
+    sgst: string;
+    totalAmount: string;
+    items: OrderItem[];
+    deliveryAddress: string;
+    trackStatus: string;
     company: string;
+}
 
+export interface OrderItem {
+    serialNo: number;
+    productName: string;
+    image: string;
+    price: string;
+    quantity: number;
+    currency: string;
+    amount: string;
 }
