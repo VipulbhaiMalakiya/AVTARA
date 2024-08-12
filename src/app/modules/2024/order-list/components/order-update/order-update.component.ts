@@ -17,7 +17,7 @@ export class OrderUpdateComponent {
     issueForm: any;
 
     get title(): string {
-        return this._issueMaster ? "Edit Order" : " Add Order";
+        return this._issueMaster ? "Update Status" : " Add Order";
     }
 
     set issuesMaster(value: any) {
