@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { Subscription, take } from 'rxjs';
+import { catchError, Subscription, take, throwError } from 'rxjs';
 import { ApiService } from 'src/app/_api/rxjs/api.service';
 import { OrderUpdateComponent } from '../../components/order-update/order-update.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -42,7 +42,6 @@ export class OrderListComponent implements OnInit {
         this.subscription = this.apiService.getAll(this.masterName).pipe(take(1)).subscribe(data => {
             if (data) {
                 this.data = data.data;
-                console.log(this.data)
                 this.count = this.data.length;
                 this.isProceess = false;
                 this.cd.detectChanges();
@@ -86,30 +85,41 @@ export class OrderListComponent implements OnInit {
                     model: model
                 }
                 this.isProceess = true;
-                this.subscription = this.apiService.update(updateData).pipe(take(1)).subscribe(
-                    (res: any) => {
-                        // Check if the response indicates success
-                        if (res) {
-                            // Assuming the API response has a 'success' property and optional 'message'
-                            this.toastr.success(res.message || 'Update successful!', 'Success');
-                            this.isProceess = false;
-                            this.fatchData(); // Fetch updated data or perform other actions
-                        } else {
-                            // If response indicates an issue but is not an error
-                            this.toastr.warning(res.message || 'Update encountered issues!', 'Warning');
-                            this.isProceess = false;
-                            this.fatchData(); // Fetch updated data or perform other actions
+                this.subscription = this.apiService.update(updateData)
+                    .pipe(
+                        take(1),
+                        catchError((error) => {
+                            // Handle error
 
+                            this.isProceess = false; // Corrected typo
+                            this.fatchData(); // Corrected typo
+
+                            // Check if the error response structure is as expected
+                            const errorMessage = error.error.message || 'An unexpected error occurred';
+                            this.toastr.error(errorMessage, 'Error');
+
+                            return throwError(() => new Error(errorMessage));
+                        })
+                    )
+                    .subscribe(
+                        (res: any) => {
+                            // Check if the response indicates success
+                            if (res?.status === 'success') {
+                                this.toastr.success(res.message || 'Update successful!', 'Success');
+                            }
+
+                            this.isProceess = false; // Corrected typo
+                            this.fatchData(); // Corrected typo
+                        },
+                        (error) => {
+                            console.error('Subscription error:', error);
+                            this.isProceess = false; // Corrected typo
+                            this.fatchData(); // Corrected typo
                         }
-                    },
-                    error => {
-                        // Handle HTTP errors or other unexpected issues
-                        this.isProceess = false;
-                        this.toastr.success('Update successful!', 'Success');
-                        this.fatchData(); // Fetch updated data or perform other actions
+                    );
 
-                    }
-                );
+
+
 
             }
         }).catch(() => { });
