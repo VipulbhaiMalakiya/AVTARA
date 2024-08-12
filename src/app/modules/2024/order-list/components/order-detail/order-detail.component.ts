@@ -28,15 +28,13 @@ export class OrderDetailComponent implements OnInit {
     loadOrders(id: any): void {
         this.order = history.state.order;
     }
-
-
-
     steps = [
         { status: 'Confirmation', icon: 'las la-check-circle' },
         { status: 'Sales', icon: 'las la-user-tie' },
         { status: 'In Transit', icon: 'las la-shuttle-van' },
         { status: 'Delivery', icon: 'las la-thumbs-up' }
     ];
+
     getStepClass(status: string): string {
         const trackStatus = this.order?.trackStatus;
         const steps = this.steps ?? [];
