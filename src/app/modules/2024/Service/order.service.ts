@@ -40,7 +40,7 @@ export class OrderService {
                     }
                 ],
                 deliveryAddress: 'No.1, Mohammadpur, Bhikaji Cama Place New Delhi – 110066, India',
-                trackStatus: 'In Transit',
+                trackStatus: 'Confirmation',
                 company: 'Team Computers Pvt. Ltd.'
 
             },

@@ -9,21 +9,15 @@
     <div class="orderdt-page">
 
         <div class="toporderdt-col">
+            <!-- order-detail.component.html -->
             <div class="form-header d-flex mb-4">
-                <span class="stepIndicator"
-                    [ngClass]="{ 'finish': order?.status === 'Delivered', 'active': order?.trackStatus === 'In Transit' }">
-                    <b><i class="las la-check-circle"></i></b> Confirmation
-                </span>
-                <span class="stepIndicator" [ngClass]="{ 'finish': order?.status === 'Delivered' }">
-                    <b><i class="las la-user-tie"></i></b> Sales
-                </span>
-                <span class="stepIndicator active">
-                    <b><i class="las la-shuttle-van"></i></b> {{ order?.trackStatus || 'In Transit' }}
-                </span>
-                <span class="stepIndicator" [ngClass]="{ 'finish': order?.status === 'Delivered' }">
-                    <b><i class="las la-thumbs-up"></i></b> Delivery
-                </span>
+                <ng-container *ngFor="let step of steps">
+                    <span [ngClass]="['stepIndicator', getStepClass(step.status)]">
+                        <b><i [class]="step.icon"></i></b> {{ step.status }}
+                    </span>
+                </ng-container>
             </div>
+
         </div>
 
         <div class="middleorderdt-col">
