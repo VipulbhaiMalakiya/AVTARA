@@ -29,10 +29,10 @@ export class OrderDetailComponent implements OnInit {
         console.log(this.order)
     }
     steps = [
-        { status: 'Order_Receipt', icon: 'las la-check-circle' },
-        { status: 'Confirmation', icon: 'las la-user-tie' },
-        { status: 'In_transit', icon: 'las la-shuttle-van' },
-        { status: 'Delivered', icon: 'las la-thumbs-up' }
+        { status: 'Order_Receipt', name: 'Order Receipt', icon: 'las la-check-circle' },
+        { status: 'Confirmation', name: 'Confirmation', icon: 'las la-user-tie' },
+        { status: 'In_transit', name: 'In Transit', icon: 'las la-shuttle-van' },
+        { status: 'Delivered', name: 'Delivered', icon: 'las la-thumbs-up' }
     ];
 
     calculateAmount(price: string, quantity: number): number {

@@ -56,7 +56,8 @@
                             <td>
                                 <a [routerLink]="['order-detail', i.orderId]" [state]="{ order: i }"><i
                                         class="las la-eye"></i></a>
-                                <a *ngIf="i.status != 'Delivered'" (click)="onEdit(i)"><i class="las la-edit"></i></a>
+                                <a *ngIf="i.orderStatus != 'Delivered'" (click)="onEdit(i)"><i
+                                        class="las la-edit"></i></a>
                             </td>
                         </tr>
                     </tbody>

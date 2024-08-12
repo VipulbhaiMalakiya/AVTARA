@@ -12,7 +12,7 @@
             <div class="form-header d-flex mb-4">
                 <ng-container *ngFor="let step of steps">
                     <span [ngClass]="['stepIndicator', getStepClass(step.status)]">
-                        <b><i [class]="step.icon"></i></b> {{ step.status }}
+                        <b><i [class]="step.icon"></i></b> {{ step.name }}
                     </span>
                 </ng-container>
             </div>
