@@ -19,9 +19,12 @@
 
                 </select> -->
                 <select class="form-select" id="status" formControlName="status">
-                    <option *ngFor="let status of availableStatuses" [value]="status.value">{{ status.label }}
+                    <option *ngFor="let status of statuses" [value]="status.value"
+                        [disabled]="!isAvailable(status.value)">
+                        {{ status.label }}
                     </option>
                 </select>
+
                 <div *ngIf="shouldShowError('status','required')" class="text-danger">This field is required
                 </div>
             </div>

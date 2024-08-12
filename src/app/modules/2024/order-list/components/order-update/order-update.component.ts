@@ -23,9 +23,9 @@ export class OrderUpdateComponent {
         { value: 'In_transit', label: 'In Transit' },
         { value: 'Delivered', label: 'Delivered' }
     ];
+    availableStatuses: { value: string, label: string }[] = [];
 
-    availableStatuses: { value: string; label: string; }[] = [];
-
+    nextStatusDisabled = false;  // This will track if the next status should be disabled
     get title(): string {
         return this._issueMaster ? "Update Status" : " Add Order";
     }
@@ -37,6 +37,8 @@ export class OrderUpdateComponent {
             this.issueForm.patchValue({
                 status: this._issueMaster.orderStatus,
             });
+
+
             // this.issueForm.controls["departmentCode"].disable();
         }
     }
@@ -53,7 +55,7 @@ export class OrderUpdateComponent {
 
         this.setAvailableStatuses(this.issueForm.get('status').value);
 
-        // Watch for status changes to update the available options
+        // // Watch for status changes to update the available options
         this.issueForm.get('status').valueChanges.subscribe((value: string) => {
             this.setAvailableStatuses(value);
         });
@@ -67,16 +69,18 @@ export class OrderUpdateComponent {
 
             // Include the next status if it exists and has not been selected
             if (index + 1 < this.statuses.length) {
-                const nextStatus = this.statuses[index + 1];
-                if (nextStatus.value !== currentStatus) {
-                    this.availableStatuses.push(nextStatus);
-                }
+                this.availableStatuses.push(this.statuses[index + 1]);
             }
         } else {
             // If the current status is not found, reset available statuses
             this.availableStatuses = [];
         }
     }
+
+    isAvailable(statusValue: string): boolean {
+        return this.availableStatuses.some(status => status.value === statusValue);
+    }
+
 
     onCancel() {
         this.activeModal.dismiss();
