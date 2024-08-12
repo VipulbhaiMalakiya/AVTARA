@@ -31,12 +31,21 @@ export class OrderService {
                 items: [
                     {
                         serialNo: 1,
-                        productName: 'Dummy Name',
-                        image: 'images/dummy-pro-1.jpg',
+                        productName: 'Bisleri',
+                        image: './assets/images/dummy-pro-1.jpg',
                         price: '₹5000.00',
                         quantity: 1000,
                         currency: 'INR',
                         amount: '₹5000.00'
+                    },
+                    {
+                        serialNo: 2,
+                        productName: 'Pepsi',
+                        image: './assets/images/dummy-pro-1.jpg',
+                        price: '₹1200.00',
+                        quantity: 200,
+                        currency: 'INR',
+                        amount: '₹1200.00'
                     }
                 ],
                 deliveryAddress: 'No.1, Mohammadpur, Bhikaji Cama Place New Delhi – 110066, India',
@@ -60,7 +69,7 @@ export class OrderService {
                     {
                         serialNo: 1,
                         productName: 'Sample Product',
-                        image: 'images/sample-product.jpg',
+                        image: './assets/images/dummy-pro-2.jpg',
                         price: '₹4800.00',
                         quantity: 1,
                         currency: 'INR',
@@ -88,7 +97,7 @@ export class OrderService {
                     {
                         serialNo: 1,
                         productName: 'Another Product',
-                        image: 'images/another-product.jpg',
+                        image: './assets/images/dummy-pro-1.jpg',
                         price: '₹6000.00',
                         quantity: 1,
                         currency: 'INR',
@@ -116,7 +125,7 @@ export class OrderService {
                     {
                         serialNo: 1,
                         productName: 'New Product',
-                        image: 'images/new-product.jpg',
+                        image: './assets/images/dummy-pro-1.jpg',
                         price: '₹5500.00',
                         quantity: 1,
                         currency: 'INR',
@@ -124,7 +133,7 @@ export class OrderService {
                     }
                 ],
                 deliveryAddress: 'No.4, New Area, City, Country',
-                trackStatus: 'In-Trasit',
+                trackStatus: 'In Transit',
                 company: 'Team Computers Pvt. Ltd.'
 
             },
@@ -144,7 +153,7 @@ export class OrderService {
                     {
                         serialNo: 1,
                         productName: 'Shipped Product',
-                        image: 'images/shipped-product.jpg',
+                        image: './assets/images/dummy-pro-1.jpg',
                         price: '₹7000.00',
                         quantity: 1,
                         currency: 'INR',

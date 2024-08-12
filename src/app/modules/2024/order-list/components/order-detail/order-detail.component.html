@@ -77,17 +77,23 @@
                             </div>
 
                             <div class="col-sm-6 text-end">
-                                <div class="status-drpdwn">
-                                    <div class="form-group">
+                                <div class="status-drpdwn d-flex">
+                                    <!-- Column for Status Label -->
+                                    <div class="form-group flex-fill">
                                         <label>Status</label>
-                                        <select class="form-select" required>
-                                            <option [selected]="order?.status === 'Pending'" value="Pending">Pending
-                                            </option>
-                                            <option [selected]="order?.status === 'Delivered'" value="Delivered">
-                                                Delivered</option>
-                                        </select>
+                                    </div>
+
+                                    <!-- Column for Status Value -->
+                                    <div class="flex-fill">
+                                        <span class="order-status" [ngClass]="{
+              'bg-warning': order?.status === 'Pending',
+              'bg-success': order?.status === 'Delivered'
+          }">
+                                            {{ order?.status }}
+                                        </span>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
