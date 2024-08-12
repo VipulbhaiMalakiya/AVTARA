@@ -12,8 +12,11 @@
             <div class="form-group">
                 <label for="status">Status</label>
                 <select class="form-select" id="status" formControlName="status">
+                    <option value="Order_Receipt">Order Receipt </option>
+                    <option value="Confirmation">Confirmation </option>
+                    <option value="In_transit">In_transit</option>
                     <option value="Delivered">Delivered</option>
-                    <option value="Pending">Pending</option>
+
                 </select>
                 <div *ngIf="shouldShowError('status','required')" class="text-danger">This field is required
                 </div>

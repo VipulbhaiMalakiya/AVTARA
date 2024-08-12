@@ -25,7 +25,7 @@ export class OrderUpdateComponent {
         this.data = value;
         if (this._issueMaster) {
             this.issueForm.patchValue({
-                status: this._issueMaster.status,
+                status: this._issueMaster.orderStatus,
             });
             // this.issueForm.controls["departmentCode"].disable();
         }
