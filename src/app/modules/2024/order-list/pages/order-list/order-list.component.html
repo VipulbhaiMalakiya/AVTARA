@@ -55,7 +55,8 @@
                             </td>
 
                             <td>
-                                <a [routerLink]="['order-detail', i.id]"><i class="las la-eye"></i></a>
+                                <a [routerLink]="['order-detail', i.id]" [state]="{ order: i }"><i
+                                        class="las la-eye"></i></a>
                                 <a *ngIf="i.status === 'Pending'" (click)="onEdit(i)"><i class="las la-edit"></i></a>
                             </td>
                         </tr>

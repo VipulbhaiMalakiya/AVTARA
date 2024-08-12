@@ -26,12 +26,10 @@ export class OrderDetailComponent implements OnInit {
     }
 
     loadOrders(id: any): void {
-        this.orderService.getOrderById(id).subscribe(order => {
-            this.order = order;
-            console.log(this.order);
-
-        });
+        this.order = history.state.order;
     }
+
+
 
     steps = [
         { status: 'Confirmation', icon: 'las la-check-circle' },

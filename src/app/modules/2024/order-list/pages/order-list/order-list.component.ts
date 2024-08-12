@@ -43,7 +43,7 @@ export class OrderListComponent implements OnInit {
 
     fatchData() {
         this.isProceess = true;
-        this.masterName = "/auto-reply";
+        this.masterName = "/orders/details";
         this.subscription = this.apiService.getAll(this.masterName).pipe(take(1)).subscribe(data => {
             if (data) {
                 this.data = data.data;
@@ -85,10 +85,10 @@ export class OrderListComponent implements OnInit {
         modalRef.result.then((data: any) => {
             if (data) {
                 var model: any = {
-                    id: '',
+                    id: dataItem.id,
                     status: data.status,
                 }
-                this.masterName = `/auto-reply`;
+                this.masterName = `/orders/updateStatus/${model.id}/Status/${model.status}`;
                 let updateData: any = {
                     url: this.masterName,
                     model: model
