@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Order } from '../../../Model/oder-model';
 import { ActivatedRoute } from '@angular/router';
 import { OrderService } from '../../../Service/order.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
     selector: 'app-order-update',
@@ -12,8 +13,16 @@ export class OrderUpdateComponent implements OnInit {
     isProceess: boolean = true;
     data: Order[] = [];
     order: Order | undefined;
+    updateForm: FormGroup;
 
-    constructor(private route: ActivatedRoute, private orderService: OrderService) { }
+
+    constructor(private route: ActivatedRoute, private orderService: OrderService, private fb: FormBuilder) {
+
+        this.updateForm = this.fb.group({
+            status: [''],
+            deliveryAddress: ['']
+        });
+    }
 
     ngOnInit(): void {
         this.route.paramMap.subscribe(params => {
@@ -27,10 +36,15 @@ export class OrderUpdateComponent implements OnInit {
     loadOrders(id: any): void {
         this.orderService.getOrderById(id).subscribe(order => {
             this.order = order;
-            console.log(this.order);
+            this.updateForm.patchValue({
+                status: order?.status,
+                deliveryAddress: order?.deliveryAddress
+            });
 
         });
     }
+
+
 
     steps = [
         { status: 'Confirmation', icon: 'las la-check-circle' },
@@ -60,5 +74,12 @@ export class OrderUpdateComponent implements OnInit {
             }
         }
         return 'inactive'; // Default for steps that don't match
+    }
+
+    onSubmitUpdateForm(): void {
+        if (this.updateForm.valid) {
+            const formData = this.updateForm.value;
+            console.log(formData)
+        }
     }
 }

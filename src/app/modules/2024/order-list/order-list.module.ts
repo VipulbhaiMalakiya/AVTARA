@@ -6,7 +6,7 @@ import { OrderListComponent } from './pages/order-list/order-list.component';
 import { SharedModule } from '../../shared/shared.module';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NewOrderFilterPipe } from 'src/app/_helpers/new-orderlist';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OrderDetailComponent } from './components/order-detail/order-detail.component';
 import { OrderUpdateComponent } from './components/order-update/order-update.component';
 
@@ -20,7 +20,8 @@ import { OrderUpdateComponent } from './components/order-update/order-update.com
         OrderListRoutingModule,
         SharedModule,
         NgxPaginationModule,
-        FormsModule
+        FormsModule,
+        ReactiveFormsModule
     ]
 })
 export class OrderListModule { }

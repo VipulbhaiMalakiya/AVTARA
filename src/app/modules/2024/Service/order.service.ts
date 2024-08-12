@@ -184,7 +184,7 @@ export class OrderService {
         this.ordersSubject.next([...currentOrders, order]);
     }
 
-    updateOrder(updatedOrder: Order): void {
+    updateOrder(updatedOrder: any): void {
         const currentOrders = this.ordersSubject.value;
         const index = currentOrders.findIndex(order => order.id === updatedOrder.id);
         if (index !== -1) {
