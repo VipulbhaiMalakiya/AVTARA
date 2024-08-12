@@ -58,19 +58,22 @@ export class OrderUpdateComponent {
             this.setAvailableStatuses(value);
         });
     }
-
     setAvailableStatuses(currentStatus: string): void {
         const index = this.statuses.findIndex(status => status.value === currentStatus);
 
-        if (index >= 0 && index < this.statuses.length - 1) {
-            this.availableStatuses = [
-                this.statuses[index],  // Current status
-                this.statuses[index + 1] // Next status
-            ];
-        } else if (index === this.statuses.length - 1) {
-            // If the current status is the last one, just show the current status
+        if (index >= 0) {
+            // Always show the current status
             this.availableStatuses = [this.statuses[index]];
+
+            // Include the next status if it exists and has not been selected
+            if (index + 1 < this.statuses.length) {
+                const nextStatus = this.statuses[index + 1];
+                if (nextStatus.value !== currentStatus) {
+                    this.availableStatuses.push(nextStatus);
+                }
+            }
         } else {
+            // If the current status is not found, reset available statuses
             this.availableStatuses = [];
         }
     }
