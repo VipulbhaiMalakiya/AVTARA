@@ -1,11 +1,10 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Subscription, take } from 'rxjs';
-import { Order } from '../../../Model/oder-model';
-import { OrderService } from '../../../Service/order.service';
 import { ApiService } from 'src/app/_api/rxjs/api.service';
 import { OrderUpdateComponent } from '../../components/order-update/order-update.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
+import { Order } from '../../../Model/oder-model';
 
 
 
@@ -28,7 +27,7 @@ export class OrderListComponent implements OnInit {
     tableSize: number = 7;
     tableSizes: any = [3, 6, 9, 12];
 
-    constructor(private orderService: OrderService, private apiService: ApiService,
+    constructor(private apiService: ApiService,
         private cd: ChangeDetectorRef,
         private modalService: NgbModal,
         private toastr: ToastrService,
@@ -36,7 +35,6 @@ export class OrderListComponent implements OnInit {
 
 
     ngOnInit(): void {
-        this.loadOrders();
         this.fatchData();
     }
 
@@ -47,6 +45,7 @@ export class OrderListComponent implements OnInit {
         this.subscription = this.apiService.getAll(this.masterName).pipe(take(1)).subscribe(data => {
             if (data) {
                 this.data = data.data;
+                console.log(this.data)
                 this.count = this.data.length;
                 this.isProceess = false;
                 this.cd.detectChanges();
@@ -57,11 +56,7 @@ export class OrderListComponent implements OnInit {
         })
     }
 
-    loadOrders(): void {
-        this.orderService.getOrders().subscribe(orders => this.data = orders);
-        this.isProceess = false;
 
-    }
 
     calculateIndex(page: number, index: number): number {
         return (page - 1) * this.tableSize + index + 1;

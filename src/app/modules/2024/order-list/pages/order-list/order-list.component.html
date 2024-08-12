@@ -38,24 +38,19 @@
                                 let ind = index
                             ">
                             <td>{{ calculateIndex(page, ind) }}</td>
-                            <td>{{ i.id }}</td>
+                            <td>{{ i.orderId }}</td>
                             <td>{{ i.customerName }}</td>
-                            <td>{{ i.contactNo }}</td>
+                            <td>{{ i.mobileNumber }}</td>
                             <td>{{ i.orderDate | date : "dd-MM-yyyy" }}</td>
 
                             <td>
-                                <span class="order-status" [ngClass]="{
-                                        'bg-warning': i.status === 'Pending',
-                                        'bg-success': i.status === 'Delivered'
-                                    }">
-                                    {{ i.status }}
-                                </span>
+                                {{i.orderStatus}}
                             </td>
 
                             <td>
-                                <a [routerLink]="['order-detail', i.id]" [state]="{ order: i }"><i
+                                <a [routerLink]="['order-detail', i.orderId]" [state]="{ order: i }"><i
                                         class="las la-eye"></i></a>
-                                <a *ngIf="i.status === 'Pending'" (click)="onEdit(i)"><i class="las la-edit"></i></a>
+                                <a *ngIf="i.status != 'Delivered'" (click)="onEdit(i)"><i class="las la-edit"></i></a>
                             </td>
                         </tr>
                     </tbody>

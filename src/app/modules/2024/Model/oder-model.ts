@@ -1,28 +1,21 @@
-// order.model.ts
 export interface Order {
-    id: string;
+    id: number;
+    orderId: string;
+    mobileNumber: string;
     customerName: string;
-    contactNo: string;
-    assignedTo: string;
-    orderDate: Date;
-    status: string;
-    orderNo: string;
-    subtotal: string;
-    cgst: string;
-    sgst: string;
-    totalAmount: string;
-    items: OrderItem[];
+    orderDate: string;
+    orderStatus: string;
     deliveryAddress: string;
-    trackStatus: string;
-    company: string;
+    orderProducts: OrderProduct[];
 }
 
-export interface OrderItem {
-    serialNo: number;
+export interface OrderProduct {
+    productId: string;
     productName: string;
-    image: string;
+    productDescription: string;
     price: string;
-    quantity: number;
     currency: string;
-    amount: string;
+    imageLink: string;
+    availability: string;
+    quantity: number;
 }

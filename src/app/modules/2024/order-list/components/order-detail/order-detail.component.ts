@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Order } from '../../../Model/oder-model';
-import { OrderService } from '../../../Service/order.service';
 
 
 @Component({
@@ -14,7 +13,7 @@ export class OrderDetailComponent implements OnInit {
     data: Order[] = [];
     order: Order | undefined;
 
-    constructor(private route: ActivatedRoute, private orderService: OrderService) { }
+    constructor(private route: ActivatedRoute) { }
 
     ngOnInit(): void {
         this.route.paramMap.subscribe(params => {
@@ -27,16 +26,24 @@ export class OrderDetailComponent implements OnInit {
 
     loadOrders(id: any): void {
         this.order = history.state.order;
+        console.log(this.order)
     }
     steps = [
-        { status: 'Confirmation', icon: 'las la-check-circle' },
-        { status: 'Sales', icon: 'las la-user-tie' },
-        { status: 'In Transit', icon: 'las la-shuttle-van' },
-        { status: 'Delivery', icon: 'las la-thumbs-up' }
+        { status: 'Order_Receipt', icon: 'las la-check-circle' },
+        { status: 'Confirmation', icon: 'las la-user-tie' },
+        { status: 'In_transit', icon: 'las la-shuttle-van' },
+        { status: 'Delivered', icon: 'las la-thumbs-up' }
     ];
 
+    calculateAmount(price: string, quantity: number): number {
+        // Extract the numeric part of the price and convert it to a number
+        const numericPrice = parseFloat(price.replace(/[^\d.-]/g, ''));
+        return numericPrice * quantity;
+    }
+
+
     getStepClass(status: string): string {
-        const trackStatus = this.order?.trackStatus;
+        const trackStatus = this.order?.orderStatus;
         const steps = this.steps ?? [];
 
         if (trackStatus === status) {
