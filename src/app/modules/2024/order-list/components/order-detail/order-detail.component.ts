@@ -61,7 +61,7 @@ export class OrderDetailComponent implements OnInit {
         const steps = this.steps ?? [];
 
         if (trackStatus === status) {
-            return 'active'; // Current step
+            return 'finish'; // Current step
         } else if (steps.length > 0) {
             const currentStepIndex = steps.findIndex(step => step.status === trackStatus);
             const targetStepIndex = steps.findIndex(step => step.status === status);
