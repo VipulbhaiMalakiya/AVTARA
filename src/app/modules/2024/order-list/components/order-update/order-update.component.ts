@@ -1,85 +1,62 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Order } from '../../../Model/oder-model';
 import { ActivatedRoute } from '@angular/router';
 import { OrderService } from '../../../Service/order.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'app-order-update',
     templateUrl: './order-update.component.html',
     styleUrls: ['./order-update.component.css']
 })
-export class OrderUpdateComponent implements OnInit {
-    isProceess: boolean = true;
-    data: Order[] = [];
-    order: Order | undefined;
-    updateForm: FormGroup;
+export class OrderUpdateComponent {
 
+    private _issueMaster: any | undefined;
+    isProceess: boolean = false;
+    data: any;
+    issueForm: any;
 
-    constructor(private route: ActivatedRoute, private orderService: OrderService, private fb: FormBuilder) {
-
-        this.updateForm = this.fb.group({
-            status: [''],
-            deliveryAddress: ['']
-        });
+    get title(): string {
+        return this._issueMaster ? "Edit Order" : " Add Order";
     }
 
-    ngOnInit(): void {
-        this.route.paramMap.subscribe(params => {
-            const id = params.get('id');
-            if (id) {
-                this.loadOrders(id);
-            }
-        });
-    }
-
-    loadOrders(id: any): void {
-        this.orderService.getOrderById(id).subscribe(order => {
-            this.order = order;
-            this.updateForm.patchValue({
-                status: order?.status,
-                deliveryAddress: order?.deliveryAddress
+    set issuesMaster(value: any) {
+        this._issueMaster = value;
+        this.data = value;
+        if (this._issueMaster) {
+            this.issueForm.patchValue({
+                status: this._issueMaster.status,
             });
+            // this.issueForm.controls["departmentCode"].disable();
+        }
+    }
 
+
+    constructor(
+        private activeModal: NgbActiveModal,
+        private formBuilder: FormBuilder,
+        private cd: ChangeDetectorRef
+    ) {
+        this.issueForm = this.formBuilder.group({
+            status: [true, [Validators.required]]
         });
     }
 
-
-
-    steps = [
-        { status: 'Confirmation', icon: 'las la-check-circle' },
-        { status: 'Sales', icon: 'las la-user-tie' },
-        { status: 'In Transit', icon: 'las la-shuttle-van' },
-        { status: 'Delivery', icon: 'las la-thumbs-up' }
-    ];
-    getStepClass(status: string): string {
-        const trackStatus = this.order?.trackStatus;
-        const steps = this.steps ?? [];
-
-        if (trackStatus === status) {
-            return 'active'; // Current step
-        } else if (steps.length > 0) {
-            const currentStepIndex = steps.findIndex(step => step.status === trackStatus);
-            const targetStepIndex = steps.findIndex(step => step.status === status);
-
-            if (currentStepIndex !== -1 && targetStepIndex !== -1) {
-                // Mark steps before the current step as 'finish'
-                if (targetStepIndex < currentStepIndex) {
-                    return 'finish';
-                }
-                // Mark steps after the current step as 'inactive'
-                else if (targetStepIndex > currentStepIndex) {
-                    return 'inactive';
-                }
-            }
-        }
-        return 'inactive'; // Default for steps that don't match
+    onCancel() {
+        this.activeModal.dismiss();
     }
 
-    onSubmitUpdateForm(): void {
-        if (this.updateForm.valid) {
-            const formData = this.updateForm.value;
-            console.log(formData)
+
+    onSubmit() {
+        if (this.issueForm.valid) {
+            this.activeModal.close(this.issueForm.value)
+        } else {
+            this.issueForm.controls['status'].markAsTouched();
         }
+    }
+
+    shouldShowError(controlName: string, errorName: string) {
+        return this.issueForm.controls[controlName].touched && this.issueForm.controls[controlName].hasError(errorName);
     }
 }
