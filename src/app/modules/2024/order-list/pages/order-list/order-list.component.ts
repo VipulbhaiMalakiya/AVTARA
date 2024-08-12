@@ -59,6 +59,8 @@ export class OrderListComponent implements OnInit {
 
     loadOrders(): void {
         this.orderService.getOrders().subscribe(orders => this.data = orders);
+        this.isProceess = false;
+
     }
 
     calculateIndex(page: number, index: number): number {
@@ -91,15 +93,19 @@ export class OrderListComponent implements OnInit {
                     url: this.masterName,
                     model: model
                 }
-                this.isProceess = true;
-                this.subscription = this.apiService.update(updateData).pipe(take(1)).subscribe(res => {
-                    this.toastr.success(res.message);
-                    this.isProceess = false;
-                    this.fatchData();
-                }, error => {
-                    this.toastr.error(error.error.message);
-                    this.isProceess = false;
-                });
+
+                console.log(updateData)
+                //  this.isProceess = true;
+
+
+                // this.subscription = this.apiService.update(updateData).pipe(take(1)).subscribe(res => {
+                //     this.toastr.success(res.message);
+                //     this.isProceess = false;
+                //     this.fatchData();
+                // }, error => {
+                //     this.toastr.error(error.error.message);
+                //     this.isProceess = false;
+                // });
             }
         }).catch(() => { });
     }
