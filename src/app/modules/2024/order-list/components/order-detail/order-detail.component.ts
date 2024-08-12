@@ -26,7 +26,7 @@ export class OrderDetailComponent implements OnInit {
 
     loadOrders(id: any): void {
         this.order = history.state.order;
-        console.log(this.order)
+        this.isProceess = false;
     }
     steps = [
         { status: 'Order_Receipt', name: 'Order Receipt', icon: 'las la-check-circle' },
