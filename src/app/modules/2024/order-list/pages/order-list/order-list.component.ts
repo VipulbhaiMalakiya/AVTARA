@@ -77,10 +77,10 @@ export class OrderListComponent implements OnInit {
         modalRef.result.then((data: any) => {
             if (data) {
                 var model: any = {
-                    id: dataItem.id,
-                    status: data.status,
+                    orderId: dataItem.orderId,
+                    Status: data.status,
                 }
-                this.masterName = `/orders/updateStatus/${model.id}/Status/${model.status}`;
+                this.masterName = `/orders/updateStatus/${model.orderId}/Status/${model.Status}`;
                 let updateData: any = {
                     url: this.masterName,
                     model: model
