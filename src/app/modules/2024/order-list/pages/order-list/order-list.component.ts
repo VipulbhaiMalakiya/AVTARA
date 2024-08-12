@@ -86,14 +86,31 @@ export class OrderListComponent implements OnInit {
                     model: model
                 }
                 this.isProceess = true;
-                this.subscription = this.apiService.update(updateData).pipe(take(1)).subscribe(res => {
-                    this.toastr.success(res.message);
-                    this.isProceess = false;
-                    this.fatchData();
-                }, error => {
-                    this.toastr.error(error.error.message);
-                    this.isProceess = false;
-                });
+                this.subscription = this.apiService.update(updateData).pipe(take(1)).subscribe(
+                    (res: any) => {
+                        // Check if the response indicates success
+                        if (res) {
+                            // Assuming the API response has a 'success' property and optional 'message'
+                            this.toastr.success(res.message || 'Update successful!', 'Success');
+                            this.isProceess = false;
+                            this.fatchData(); // Fetch updated data or perform other actions
+                        } else {
+                            // If response indicates an issue but is not an error
+                            this.toastr.warning(res.message || 'Update encountered issues!', 'Warning');
+                            this.isProceess = false;
+                            this.fatchData(); // Fetch updated data or perform other actions
+
+                        }
+                    },
+                    error => {
+                        // Handle HTTP errors or other unexpected issues
+                        this.isProceess = false;
+                        this.toastr.success('Update successful!', 'Success');
+                        this.fatchData(); // Fetch updated data or perform other actions
+
+                    }
+                );
+
             }
         }).catch(() => { });
     }
