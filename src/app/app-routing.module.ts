@@ -82,6 +82,8 @@ const routes: Routes = [
                 loadChildren: () =>
                     import('./modules/chat/chat.module').then((m) => m.ChatModule),
             },
+            { path: 'order-list', loadChildren: () => import('./modules/2024/order-list/order-list.module').then(m => m.OrderListModule) },
+
             // { path: 'products', loadChildren: () => import('./modules/product-detail/product-detail.module').then(m => m.ProductDetailModule) },
         ],
     },

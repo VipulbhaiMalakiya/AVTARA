@@ -79,6 +79,13 @@
                 class="menu-list-title"><img src="../assets/images/menu-icon-10.png" alt="" /> Orders</a>
         </li>
 
+        <li *ngIf="isUser" routerLinkActive="active">
+            <a routerLink="/order-list" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+                class="menu-list-title"><img src="../assets/images/menu-icon-10.png" alt="" /> Orders</a>
+        </li>
+
+
+
 
         <div *ngIf="isAdmin" class="card-header collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
             aria-expanded="true" aria-controls="collapseTwo" routerLink="/admin/master/category-list">
