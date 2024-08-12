@@ -85,7 +85,13 @@
 
                                     <!-- Column for Status Value -->
                                     <div class="flex-fill">
-                                        {{order?.orderStatus}}
+                                        <span [ngClass]="{
+    'order-status': true,
+    'bg-success': order?.orderStatus === 'Delivered',
+    'bg-warning': order?.orderStatus !== 'Delivered'
+  }">
+                                            {{ order?.orderStatus }}
+                                        </span>
                                     </div>
                                 </div>
 

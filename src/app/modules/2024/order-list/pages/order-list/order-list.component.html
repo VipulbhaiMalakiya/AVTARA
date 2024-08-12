@@ -44,7 +44,13 @@
                             <td>{{ i.orderDate | date : "dd-MM-yyyy" }}</td>
 
                             <td>
-                                {{i.orderStatus}}
+                                <span [ngClass]="{
+    'order-status': true,
+    'bg-success': i.orderStatus === 'Delivered',
+    'bg-warning': i.orderStatus !== 'Delivered'
+  }">
+                                    {{ i.orderStatus }}
+                                </span>
                             </td>
 
                             <td>
