@@ -6,9 +6,6 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { Order } from '../../../Model/oder-model';
 
-
-
-
 @Component({
     selector: 'app-order-list',
     templateUrl: './order-list.component.html',
@@ -88,19 +85,15 @@ export class OrderListComponent implements OnInit {
                     url: this.masterName,
                     model: model
                 }
-
-                console.log(updateData)
-                //  this.isProceess = true;
-
-
-                // this.subscription = this.apiService.update(updateData).pipe(take(1)).subscribe(res => {
-                //     this.toastr.success(res.message);
-                //     this.isProceess = false;
-                //     this.fatchData();
-                // }, error => {
-                //     this.toastr.error(error.error.message);
-                //     this.isProceess = false;
-                // });
+                this.isProceess = true;
+                this.subscription = this.apiService.update(updateData).pipe(take(1)).subscribe(res => {
+                    this.toastr.success(res.message);
+                    this.isProceess = false;
+                    this.fatchData();
+                }, error => {
+                    this.toastr.error(error.error.message);
+                    this.isProceess = false;
+                });
             }
         }).catch(() => { });
     }
