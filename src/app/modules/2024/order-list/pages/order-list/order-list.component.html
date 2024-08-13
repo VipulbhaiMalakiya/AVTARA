@@ -45,10 +45,12 @@
 
                             <td>
                                 <span [ngClass]="{
-    'order-status': true,
-    'bg-success': i.orderStatus === 'Delivered',
-    'bg-warning': i.orderStatus !== 'Delivered'
-  }">
+                                        'order-status': true,
+                                        'bg-success':
+                                            i.orderStatus === 'Delivered',
+                                        'bg-warning':
+                                            i.orderStatus !== 'Delivered'
+                                    }">
                                     {{ i.orderStatus }}
                                 </span>
                             </td>
