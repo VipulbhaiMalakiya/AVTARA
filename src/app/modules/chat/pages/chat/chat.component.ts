@@ -426,6 +426,11 @@ export class ChatComponent
                             // console.log('this.userData.userId', this.userData.userId);
                             // console.log('data.assignedto', data.assignedto)
 
+                            /* The above TypeScript code is checking if a mobile number already exists
+                            in the `open` array. It uses the `some` method to iterate over the array
+                            and check if any item's `phoneNo` property matches the `mobileNo` from
+                            the `data` object. If a match is found, it calls the `speakNotification`
+                            method with the `message` parameter. */
                             const mobileNoExists = this.open.some((item: any) => item.phoneNo === data.mobileNo);
 
                             if (mobileNoExists) {
