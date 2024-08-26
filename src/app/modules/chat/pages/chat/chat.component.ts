@@ -396,8 +396,9 @@ export class ChatComponent
 
                 this.messagestates = data.messageStatus;
 
+                console.log("data", data);
+
                 if (data.mobileNo === this.contact) {
-                    console.log(data);
 
                     this.receivedData.push(data);
                     this.getContactList();
@@ -422,7 +423,10 @@ export class ChatComponent
                                 data.name
                             )}`;
 
+
                             this.speakNotification(message);
+
+
                         } else {
                             const audio = new Audio();
                             // '../../../../../assets/sound/Whatsapp Message - Sent - Sound.mp3'
