@@ -396,7 +396,6 @@ export class ChatComponent
 
                 this.messagestates = data.messageStatus;
 
-                console.log("data", data);
 
                 if (data.mobileNo === this.contact) {
 
@@ -424,7 +423,19 @@ export class ChatComponent
                             )}`;
 
 
-                            this.speakNotification(message);
+                            // console.log('this.userData.userId', this.userData.userId);
+                            // console.log('data.assignedto', data.assignedto)
+
+                            const mobileNoExists = this.open.some((item: any) => item.phoneNo === data.mobileNo);
+
+                            if (mobileNoExists) {
+                                this.speakNotification(message);
+                            }
+                            // if (this.userData.userId == data.assignedto) {
+                            //     this.speakNotification(message);
+
+                            // }
+
 
 
                         } else {
