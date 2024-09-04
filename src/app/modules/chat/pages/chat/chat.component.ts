@@ -842,7 +842,7 @@ export class ChatComponent
     }
 
     getContactList() {
-        // this.isProceess = true;
+        this.isProceess = true;
         if (this.userData?.role?.roleName === 'Admin') {
             this.subscription = this.whatsappService
                 .getContactList()
@@ -958,7 +958,7 @@ export class ChatComponent
         let updateData: any = {
             url: this.masterName,
         };
-        // this.isProceess = true;
+        this.isProceess = true;
         this.subscription = this.apiService
             .update(updateData)
             .pipe(take(1))
@@ -1038,7 +1038,7 @@ export class ChatComponent
             };
             let formData = new FormData();
             formData.append('messageEntry', JSON.stringify(request));
-            // this.isProceess = true;
+            this.isProceess = true;
             this.subscription = this.whatsappService
                 .sendWhatsAppMessage(formData)
                 .pipe(take(1))
@@ -1107,7 +1107,7 @@ export class ChatComponent
             };
             let formData = new FormData();
             formData.append('messageEntry', JSON.stringify(request));
-            // this.isProceess = true;
+            this.isProceess = true;
             this.subscription = this.whatsappService
                 .sendWhatsAppMessage(formData)
                 .pipe(take(1))
