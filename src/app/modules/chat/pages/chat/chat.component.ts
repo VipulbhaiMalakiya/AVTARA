@@ -417,14 +417,10 @@ export class ChatComponent
                     const currentUrl = this.location.path();
                     if (currentUrl === '/admin/inbox' || currentUrl === '/admin/inbox/id' || currentUrl === '/admin/inbox/status' || currentUrl === '/inbox' || currentUrl.startsWith('/admin/inbox/')) {
 
-
                         if (data.type === 'Receiver') {
-                            // const message: string = `You got a message from ${data.name}`;
                             const message: string = `You got a message from ${this.getOnlyName(
                                 data.name
                             )}`;
-
-
                             const mobileNoExists = this.open.some((item: any) =>
                                 item.phoneNo === data.mobileNo || data.assignedto == this.userData.userId
                             );
@@ -435,8 +431,6 @@ export class ChatComponent
 
                                 this.speakNotification(message);
                             }
-
-
 
                         } else {
                             const audio = new Audio();
