@@ -1039,7 +1039,7 @@ export class ChatComponent
             };
             let formData = new FormData();
             formData.append('messageEntry', JSON.stringify(request));
-            this.isProceess = true;
+            // this.isProceess = true;
             this.subscription = this.whatsappService
                 .sendWhatsAppMessage(formData)
                 .pipe(take(1))
@@ -1067,7 +1067,7 @@ export class ChatComponent
     }
 
     quickReply() {
-        this.isProceess = true;
+        // this.isProceess = true;
         this.showupload = false;
         this.showupload1 = false;
         this.showEmojiPicker = false;
@@ -1108,7 +1108,7 @@ export class ChatComponent
             };
             let formData = new FormData();
             formData.append('messageEntry', JSON.stringify(request));
-            this.isProceess = true;
+            //this.isProceess = true;
             this.subscription = this.whatsappService
                 .sendWhatsAppMessage(formData)
                 .pipe(take(1))
@@ -1349,7 +1349,7 @@ export class ChatComponent
     }
 
     onimageAdd() {
-        this.isProceess = true;
+        // this.isProceess = true;
         this.showupload = false;
         this.showupload1 = false;
         const modalRef = this.modalService.open(ImageUplodComponent, {
@@ -1404,7 +1404,7 @@ export class ChatComponent
     }
 
     onaudioAdd() {
-        this.isProceess = true;
+        //this.isProceess = true;
         this.showupload = false;
         this.showupload1 = false;
         const modalRef = this.modalService.open(AudioComponent, {
@@ -1458,7 +1458,7 @@ export class ChatComponent
     }
 
     ondocumentAdd() {
-        this.isProceess = true;
+        // this.isProceess = true;
         this.showupload = false;
         this.showupload1 = false;
         const modalRef = this.modalService.open(DocumentComponent, {
@@ -1513,7 +1513,7 @@ export class ChatComponent
     }
 
     onvideoAdd() {
-        this.isProceess = true;
+        // this.isProceess = true;
         this.showupload = false;
         this.showupload1 = false;
         const modalRef = this.modalService.open(VideoComponent, {
@@ -1568,7 +1568,7 @@ export class ChatComponent
     }
 
     onLocationAdd() {
-        this.isProceess = true;
+        //  this.isProceess = true;
         this.showupload = false;
         this.showupload1 = false;
         const modalRef = this.modalService.open(LocationDetailsComponent, {
