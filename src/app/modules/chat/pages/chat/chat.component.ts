@@ -473,7 +473,7 @@ export class ChatComponent
     }
 
     onViewContact(e: any, c: any) {
-
+        this.isProceess = true;
         this.contactinfo = e;
         this.bgclass = c;
         this.contactId = e.id;
@@ -804,7 +804,7 @@ export class ChatComponent
                     next: (data: any) => {
                         if (data) {
                             this.data = data;
-                            this.isProceess = false;
+                            // this.isProceess = false;
                             this.firstname = data.firstName;
                             this.lastname = data.lastName;
                             this.chathistroy();
@@ -915,12 +915,12 @@ export class ChatComponent
 
     checkstatus() {
         this.masterName = `/customer/checkin-status/${this.contact}`;
-        this.isProceess = true;
+        // this.isProceess = true;
         this.subscription = this.apiService.getAll(this.masterName).pipe(take(1)).subscribe(data => {
             if (data) {
                 this.checkindata = data.data;
 
-                this.isProceess = false;
+                // this.isProceess = false;
                 this.cd.detectChanges();
 
             }
@@ -928,7 +928,7 @@ export class ChatComponent
         }, error => {
             console.log(error.error.status);
 
-            this.isProceess = false;
+            // this.isProceess = false;
         })
 
     }
