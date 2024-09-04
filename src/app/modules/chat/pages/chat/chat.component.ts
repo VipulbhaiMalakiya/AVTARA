@@ -431,7 +431,9 @@ export class ChatComponent
                             and check if any item's `phoneNo` property matches the `mobileNo` from
                             the `data` object. If a match is found, it calls the `speakNotification`
                             method with the `message` parameter. */
-                            const mobileNoExists = this.open.some((item: any) => item.phoneNo === data.mobileNo);
+
+                            console.log(data)
+                            const mobileNoExists = this.open.some((item: any) => item.phoneNo === data.mobileNo && data.type == "Receiver");
 
                             if (mobileNoExists) {
                                 this.speakNotification(message);
