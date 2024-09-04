@@ -425,11 +425,16 @@ export class ChatComponent
                                 item.phoneNo === data.mobileNo || data.assignedto == this.userData.userId
                             );
 
-                            if (this.userData.role.roleName == 'Admin' || data.assignedto == this.userData.userId || mobileNoExists) {
+                            if (this.userData.role.roleName == 'Admin') {
 
-                                console.log(data);
+                                console.log('admin', data);
 
                                 this.speakNotification(message);
+                            }
+                            else if (data.assignedto == this.userData.userId || mobileNoExists) {
+                                console.log('not admin', data);
+
+                                this.speakNotification(message)
                             }
 
                         } else {
