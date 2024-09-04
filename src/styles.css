@@ -1532,13 +1532,19 @@ button.search-ico {
     color: #e4b948 !important;
 }
 
-#notes textarea.form-control {
+/* #notes textarea.form-control {
     background: #FFF4CB;
+} */
+
+#notes textarea.form-control,
+.note-msg-replayer .last-msg {
+    background: #fffbed;
+    font-size: 12px;
 }
 
-.note-msg-replayer .last-msg {
+/* .note-msg-replayer .last-msg {
     background: #FFF4CB;
-}
+} */
 
 
 .inbox-alldp {
@@ -1751,9 +1757,7 @@ button.search-ico {
 
 .msg-history li {
     align-items: flex-start;
-    /* width: 85%; */
-    width: 50%;
-
+    width: 85%;
 }
 
 .msg-history li .avata {
@@ -3146,29 +3150,35 @@ input[type=number]::-webkit-outer-spin-button {
 
 .conassign-chatcol {
     background: #ddf0df;
-    padding: 10px;
+    padding: 2px 10px;
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     border: 1px solid #c6e2c9;
     margin: 10px auto;
-    /* width: 86%; */
-    width: 65%;
+    /* transform: translateX(50%); */
+    width: 50%;
 }
 
 .conassign-chatcol p {
     margin-bottom: 0px;
+    margin-right: ;
     color: #000;
-    font-size: 13px;
+    font-size: 11px;
     font-weight: 500;
 }
 
 .conassign-chatcol p i {
-    font-size: 24px;
+    font-size: 16px;
     color: #4caf50;
-    vertical-align: middle;
-    margin-right: 5px;
+    vertical-align: text-bottom;
+    margin-right: 0px;
+}
+
+.conassign-chatcol small {
+    font-size: 11px;
+    line-height: 1;
 }
 
 .green-dark-color {
