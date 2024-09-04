@@ -561,7 +561,7 @@
                                         <div class="pdf-nameic cursur" (click)="downloadFile(data)"><span
                                                 class="pdf-icon"><img src="../assets/images/document-icon.png"
                                                     alt="File Not Found">
-                                                {{data.filename | shortenFileName: 20}}</span> <span
+                                                {{data.filename.slice(26) | shortenFileName: 20}}</span> <span
                                                 class="pdf-downicon"><i class="las la-arrow-circle-down"></i></span>
                                         </div>
                                     </div>
@@ -616,7 +616,7 @@
                                         <div class="pdf-nameic cursur " (click)="downloadFile(data)"><span
                                                 class="pdf-icon"><img src="../assets/images/document-icon.png"
                                                     alt="File Not Found">
-                                                {{data.filename | shortenFileName: 20}}</span> <span
+                                                {{data.filename.slice(26) | shortenFileName: 20}}</span> <span
                                                 class="pdf-downicon"><i class="las la-arrow-circle-down"></i></span>
                                         </div>
                                     </div>
