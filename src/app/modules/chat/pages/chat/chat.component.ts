@@ -429,18 +429,11 @@ export class ChatComponent
                                 item.phoneNo === data.mobileNo || data.assignedto == this.userData.userId
                             );
 
+                            if (this.userData.role.roleName == 'Admin' || data.assignedto == this.userData.userId || mobileNoExists) {
 
-                            let lastSpokenMessage = '';
-                            let lastSpokenMobileNo = '';
-
-                            if (this.userData.role.roleName === 'Admin' || data.assignedto === this.userData.userId || mobileNoExists) {
-                                // Check if the current message and mobile number are the same as the last spoken ones
-                                if (data.message !== lastSpokenMessage || data.mobileNo !== lastSpokenMobileNo) {
-                                    this.speakNotification(message);
-                                    lastSpokenMessage = data.message;
-                                    lastSpokenMobileNo = data.mobileNo;
-                                }
+                                this.speakNotification(message);
                             }
+
 
 
                         } else {
