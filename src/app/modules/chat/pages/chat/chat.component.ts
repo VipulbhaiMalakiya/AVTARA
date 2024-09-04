@@ -842,7 +842,7 @@ export class ChatComponent
     }
 
     getContactList() {
-        this.isProceess = true;
+        // this.isProceess = true;
         if (this.userData?.role?.roleName === 'Admin') {
             this.subscription = this.whatsappService
                 .getContactList()
@@ -915,12 +915,12 @@ export class ChatComponent
 
     checkstatus() {
         this.masterName = `/customer/checkin-status/${this.contact}`;
-        this.isProceess = true;
+        // this.isProceess = true;
         this.subscription = this.apiService.getAll(this.masterName).pipe(take(1)).subscribe(data => {
             if (data) {
                 this.checkindata = data.data;
 
-                this.isProceess = false;
+                // this.isProceess = false;
                 this.cd.detectChanges();
 
             }
@@ -928,7 +928,7 @@ export class ChatComponent
         }, error => {
             console.log(error.error.status);
 
-            this.isProceess = false;
+            // this.isProceess = false;
         })
 
     }
