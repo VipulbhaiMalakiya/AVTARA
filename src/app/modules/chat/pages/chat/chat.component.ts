@@ -915,6 +915,7 @@ export class ChatComponent
 
     checkstatus() {
         this.masterName = `/customer/checkin-status/${this.contact}`;
+        this.isProceess = true;
         this.subscription = this.apiService.getAll(this.masterName).pipe(take(1)).subscribe(data => {
             if (data) {
                 this.checkindata = data.data;
