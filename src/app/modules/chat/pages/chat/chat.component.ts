@@ -431,6 +431,8 @@ export class ChatComponent
 
                             if (this.userData.role.roleName == 'Admin' || data.assignedto == this.userData.userId || mobileNoExists) {
 
+                                console.log(data);
+
                                 this.speakNotification(message);
                             }
 
