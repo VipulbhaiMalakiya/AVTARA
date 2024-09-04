@@ -416,6 +416,8 @@ export class ChatComponent
                 } else {
                     const currentUrl = this.location.path();
                     if (currentUrl === '/admin/inbox' || currentUrl === '/admin/inbox/id' || currentUrl === '/admin/inbox/status' || currentUrl === '/inbox' || currentUrl.startsWith('/admin/inbox/')) {
+
+
                         if (data.type === 'Receiver') {
                             // const message: string = `You got a message from ${data.name}`;
                             const message: string = `You got a message from ${this.getOnlyName(
@@ -423,26 +425,22 @@ export class ChatComponent
                             )}`;
 
 
-                            // console.log('this.userData.userId', this.userData.userId);
-                            // console.log('data.assignedto', data.assignedto)
+                            const mobileNoExists = this.open.some((item: any) =>
+                                item.phoneNo === data.mobileNo || data.assignedto == this.userData.userId
+                            );
 
-                            /* The above TypeScript code is checking if a mobile number already exists
-                            in the `open` array. It uses the `some` method to iterate over the array
-                            and check if any item's `phoneNo` property matches the `mobileNo` from
-                            the `data` object. If a match is found, it calls the `speakNotification`
-                            method with the `message` parameter. */
 
-                            console.log(data)
-                            const mobileNoExists = this.open.some((item: any) => item.phoneNo === data.mobileNo && data.type == "Receiver");
+                            let lastSpokenMessage = '';
+                            let lastSpokenMobileNo = '';
 
-                            if (mobileNoExists) {
-                                this.speakNotification(message);
+                            if (this.userData.role.roleName === 'Admin' || data.assignedto === this.userData.userId || mobileNoExists) {
+                                // Check if the current message and mobile number are the same as the last spoken ones
+                                if (data.message !== lastSpokenMessage || data.mobileNo !== lastSpokenMobileNo) {
+                                    this.speakNotification(message);
+                                    lastSpokenMessage = data.message;
+                                    lastSpokenMobileNo = data.mobileNo;
+                                }
                             }
-                            // if (this.userData.userId == data.assignedto) {
-                            //     this.speakNotification(message);
-
-                            // }
-
 
 
                         } else {
