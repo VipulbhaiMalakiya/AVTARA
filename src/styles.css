@@ -1751,7 +1751,9 @@ button.search-ico {
 
 .msg-history li {
     align-items: flex-start;
-    width: 85%;
+    /* width: 85%; */
+    width: 50%;
+
 }
 
 .msg-history li .avata {
@@ -3151,7 +3153,8 @@ input[type=number]::-webkit-outer-spin-button {
     justify-content: space-between;
     border: 1px solid #c6e2c9;
     margin: 10px auto;
-    width: 86%;
+    /* width: 86%; */
+    width: 65%;
 }
 
 .conassign-chatcol p {
