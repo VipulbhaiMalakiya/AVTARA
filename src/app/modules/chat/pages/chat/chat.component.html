@@ -454,16 +454,17 @@
                                 *ngIf="data.type === 'notification' && data.messagetype === 'escalationmatrix'">
                                 <ng-container>
                                     <div class="avata">
-                                        <span *ngIf="data.name === null">Y</span>
-                                        <span *ngIf="data.name !== null"> {{getShortName(data.name)}}</span>
+                                        <span *ngIf="data.userFullName === null">Y</span>
+                                        <span *ngIf="data.userFullName !== null">
+                                            {{getShortName(data.userFullName)}}</span>
                                     </div>
                                     <div class="chat-info">
                                         <div class="last-msg p-3 rounded bg-notifaction">{{data.message}}
                                         </div>
                                         <div class="suserchat-info">
-                                            <span class="suserchat-name" *ngIf="data.name == null">You</span>
+                                            <span class="suserchat-name" *ngIf="data.userFullName == null">You</span>
                                             <span class="suserchat-name"
-                                                *ngIf="data.name !== null">{{data.name || ''}}</span>
+                                                *ngIf="data.userFullName !== null">{{data.userFullName || ''}}</span>
                                             {{data.time |dateAgo}}
 
                                             <ng-container *ngIf="!data.messageId">
@@ -495,16 +496,17 @@
                                 *ngIf="data.type === 'Sender' && data.messagetype === 'text' || data.messagetype === 'Text'">
                                 <ng-container>
                                     <div class="avata">
-                                        <span *ngIf="data.name === null">Y</span>
-                                        <span *ngIf="data.name !== null"> {{getShortName(data.name)}}</span>
+                                        <span *ngIf="data.userFullName === null">Y</span>
+                                        <span *ngIf="data.userFullName !== null">
+                                            {{getShortName(data.userFullName)}}</span>
                                     </div>
                                     <div class="chat-info">
                                         <div class="last-msg p-3 rounded bg-cyan">{{data.message}}
                                         </div>
                                         <div class="suserchat-info">
-                                            <span class="suserchat-name" *ngIf="data.name == null">You</span>
+                                            <span class="suserchat-name" *ngIf="data.userFullName == null">You</span>
                                             <span class="suserchat-name"
-                                                *ngIf="data.name !== null">{{data.name || ''}}</span>
+                                                *ngIf="data.userFullName !== null">{{data.userFullName || ''}}</span>
                                             {{data.time |dateAgo}}
 
                                             <ng-container *ngIf="!data.messageId">
@@ -535,8 +537,8 @@
                             <!-- document -->
                             <li class="msg-replayer" *ngIf="data.type === 'Sender' && data.messagetype === 'document' ">
                                 <div class="avata">
-                                    <span *ngIf="data.name === null">Y</span>
-                                    <span *ngIf="data.name !== null"> {{getShortName(data.name)}}</span>
+                                    <span *ngIf="data.userFullName === null">Y</span>
+                                    <span *ngIf="data.userFullName !== null"> {{getShortName(data.userFullName)}}</span>
                                 </div>
 
 
@@ -566,9 +568,9 @@
                                         </div>
                                     </div>
                                     <div class="suserchat-info pt-2">
-                                        <span class="suserchat-name" *ngIf="data.name == null">You</span>
+                                        <span class="suserchat-name" *ngIf="data.userFullName == null">You</span>
                                         <span class="suserchat-name"
-                                            *ngIf="data.name !== null">{{data.name || ''}}</span>
+                                            *ngIf="data.userFullName !== null">{{data.userFullName || ''}}</span>
                                         {{data.time |dateAgo}}
                                         <ng-container *ngIf="!data.messageId">
                                             <span class="last-msg-checkic text-success"
@@ -630,8 +632,8 @@
                             <!-- audio -->
                             <li class="msg-replayer" *ngIf="data.type === 'Sender' && data.messagetype === 'audio' ">
                                 <div class="avata">
-                                    <span *ngIf="data.name === null">Y</span>
-                                    <span *ngIf="data.name !== null"> {{getShortName(data.name)}}</span>
+                                    <span *ngIf="data.userFullName === null">Y</span>
+                                    <span *ngIf="data.userFullName !== null"> {{getShortName(data.userFullName)}}</span>
                                 </div>
                                 <div class="chat-info">
                                     <div class="last-msg p-2 pb-1 rounded">
@@ -641,9 +643,9 @@
                                         </audio>
                                     </div>
                                     <div class="suserchat-info pt-2">
-                                        <span class="suserchat-name" *ngIf="data.name == null">You</span>
+                                        <span class="suserchat-name" *ngIf="data.userFullName == null">You</span>
                                         <span class="suserchat-name"
-                                            *ngIf="data.name !== null">{{data.name || ''}}</span>
+                                            *ngIf="data.userFullName !== null">{{data.userFullName || ''}}</span>
                                         {{data.time |dateAgo}}
                                         <ng-container *ngIf="!data.messageId">
                                             <span class="last-msg-checkic text-success"
@@ -690,8 +692,8 @@
                             <!-- video -->
                             <li class="msg-replayer" *ngIf="data.type === 'Sender' && data.messagetype === 'video' ">
                                 <div class="avata">
-                                    <span *ngIf="data.name === null">Y</span>
-                                    <span *ngIf="data.name !== null"> {{getShortName(data.name)}}</span>
+                                    <span *ngIf="data.userFullName === null">Y</span>
+                                    <span *ngIf="data.userFullName !== null"> {{getShortName(data.userFullName)}}</span>
                                 </div>
                                 <div class="chat-info">
                                     <div class="last-msg p-2 pb-1 rounded">
@@ -701,9 +703,9 @@
                                         </video>
                                     </div>
                                     <div class="suserchat-info pt-2">
-                                        <span class="suserchat-name" *ngIf="data.name == null">You</span>
+                                        <span class="suserchat-name" *ngIf="data.userFullName == null">You</span>
                                         <span class="suserchat-name"
-                                            *ngIf="data.name !== null">{{data.name || ''}}</span>
+                                            *ngIf="data.userFullName !== null">{{data.userFullName || ''}}</span>
                                         {{data.time |dateAgo}}
                                         <ng-container *ngIf="!data.messageId">
                                             <span class="last-msg-checkic text-success"
@@ -750,8 +752,8 @@
                             <li class="msg-replayer" *ngIf="data.type === 'Sender' && data.messagetype === 'image' ">
 
                                 <div class="avata">
-                                    <span *ngIf="data.name === null">Y</span>
-                                    <span *ngIf="data.name !== null"> {{getShortName(data.name)}}</span>
+                                    <span *ngIf="data.userFullName === null">Y</span>
+                                    <span *ngIf="data.userFullName !== null"> {{getShortName(data.userFullName)}}</span>
                                 </div>
                                 <div class="chat-info">
                                     <div class="down-btned" (click)="downloadFile(data)"><i
@@ -760,9 +762,9 @@
                                     <div class="last-msg p-2 rounded bg-light"><img [src]=data.fileUrl
                                             alt="File Not Found"></div>
                                     <div class="suserchat-info pt-2">
-                                        <span class="suserchat-name" *ngIf="data.name == null">You</span>
+                                        <span class="suserchat-name" *ngIf="data.userFullName == null">You</span>
                                         <span class="suserchat-name"
-                                            *ngIf="data.name !== null">{{data.name || ''}}</span>
+                                            *ngIf="data.userFullName !== null">{{data.userFullName || ''}}</span>
                                         {{data.time |dateAgo}}
                                         <ng-container *ngIf="!data.messageId">
                                             <span class="last-msg-checkic text-success"
@@ -809,8 +811,8 @@
                             <!-- Map -->
                             <li class="msg-replayer" *ngIf="data.type === 'Sender' && data.messagetype === 'location' ">
                                 <div class="avata">
-                                    <span *ngIf="data.name === null">Y</span>
-                                    <span *ngIf="data.name !== null"> {{getShortName(data.name)}}</span>
+                                    <span *ngIf="data.userFullName === null">Y</span>
+                                    <span *ngIf="data.userFullName !== null"> {{getShortName(data.userFullName)}}</span>
                                 </div>
                                 <div class="chat-info">
                                     <div class="last-msg p-2 pb-1 rounded">
@@ -884,17 +886,18 @@
                             <li class="msg-replayer note-msg-replayer" *ngIf="data.messagetype === 'notes'">
                                 <ng-container>
                                     <div class="avata">
-                                        <span *ngIf="data.name === null">Y</span>
-                                        <span *ngIf="data.name !== null"> {{getShortName(data.name)}}</span>
+                                        <span *ngIf="data.userFullName === null">Y</span>
+                                        <span *ngIf="data.userFullName !== null">
+                                            {{getShortName(data.userFullName)}}</span>
                                     </div>
                                     <div class="chat-info">
                                         <div class="last-msg p-3 rounded bg-cyan">
                                             {{data.message}}
                                         </div>
                                         <div class="suserchat-info pt-2">
-                                            <span class="suserchat-name" *ngIf="data.name == null">You</span>
+                                            <span class="suserchat-name" *ngIf="data.userFullName == null">You</span>
                                             <span class="suserchat-name"
-                                                *ngIf="data.name !== null">{{data.name || ''}}</span>
+                                                *ngIf="data.userFullName !== null">{{data.userFullName || ''}}</span>
                                             {{data.time |dateAgo}}
                                         </div>
                                     </div>
@@ -915,8 +918,8 @@
                             <li class="msg-replayer"
                                 *ngIf="data.messagetype === 'template' && data.templateName == 'booking_confirmation' ">
                                 <div class="avata">
-                                    <span *ngIf="data.name === null">Y</span>
-                                    <span *ngIf="data.name !== null"> {{getShortName(data.name)}}</span>
+                                    <span *ngIf="data.userFullName === null">Y</span>
+                                    <span *ngIf="data.userFullName !== null"> {{getShortName(data.userFullName)}}</span>
                                 </div>
                                 <div class="chat-info">
                                     <div class="last-msg p-3 rounded bg-cyan">
@@ -927,9 +930,9 @@
                                         </div>
                                     </div>
                                     <div class="suserchat-info mt-2">
-                                        <span class="suserchat-name" *ngIf="data.name == null">You</span>
+                                        <span class="suserchat-name" *ngIf="data.userFullName == null">You</span>
                                         <span class="suserchat-name"
-                                            *ngIf="data.name !== null">{{data.name || ''}}</span>
+                                            *ngIf="data.userFullName !== null">{{data.userFullName || ''}}</span>
                                         {{data.time |dateAgo}}
                                         <ng-container *ngIf="!data.messageId">
                                             <span class="last-msg-checkic text-success"
@@ -958,8 +961,8 @@
                             <li class="msg-replayer"
                                 *ngIf="data.messagetype === 'template' && data.templateName == 'checking_in_welcome_details_wifidetails' ">
                                 <div class="avata">
-                                    <span *ngIf="data.name === null">Y</span>
-                                    <span *ngIf="data.name !== null"> {{getShortName(data.name)}}</span>
+                                    <span *ngIf="data.userFullName === null">Y</span>
+                                    <span *ngIf="data.userFullName !== null"> {{getShortName(data.userFullName)}}</span>
                                 </div>
                                 <div class="chat-info">
                                     <div class="last-msg p-3 rounded bg-cyan">
@@ -970,9 +973,9 @@
                                         </div>
                                     </div>
                                     <div class="suserchat-info mt-2">
-                                        <span class="suserchat-name" *ngIf="data.name == null">You</span>
+                                        <span class="suserchat-name" *ngIf="data.userFullName == null">You</span>
                                         <span class="suserchat-name"
-                                            *ngIf="data.name !== null">{{data.name || ''}}</span>
+                                            *ngIf="data.userFullName !== null">{{data.userFullName || ''}}</span>
                                         {{data.time |dateAgo}}
                                         <ng-container *ngIf="!data.messageId">
                                             <span class="last-msg-checkic text-success"
@@ -1001,8 +1004,8 @@
               && data.templateButton1 !== null  && data.templateHeader == null">
 
                                 <div class="avata">
-                                    <span *ngIf="data.name === null">Y</span>
-                                    <span *ngIf="data.name !== null"> {{getShortName(data.name)}}</span>
+                                    <span *ngIf="data.userFullName === null">Y</span>
+                                    <span *ngIf="data.userFullName !== null"> {{getShortName(data.userFullName)}}</span>
                                 </div>
                                 <div class="chat-info">
                                     <div class="last-msg p-3 rounded bg-cyan">
@@ -1022,9 +1025,9 @@
                                         </div>
                                     </div>
                                     <div class="suserchat-info mt-2">
-                                        <span class="suserchat-name" *ngIf="data.name == null">You</span>
+                                        <span class="suserchat-name" *ngIf="data.userFullName == null">You</span>
                                         <span class="suserchat-name"
-                                            *ngIf="data.name !== null">{{data.name || ''}}</span>
+                                            *ngIf="data.userFullName !== null">{{data.userFullName || ''}}</span>
                                         {{data.time |dateAgo}}
                                         <ng-container *ngIf="!data.messageId">
                                             <span class="last-msg-checkic text-success"
@@ -1054,8 +1057,8 @@
                             <li class="msg-replayer" class="msg-replayer"
                                 *ngIf="data.messagetype === 'template' &&  data.templateName == 'checking_in_welcome_details'  ">
                                 <div class="avata">
-                                    <span *ngIf="data.name === null">Y</span>
-                                    <span *ngIf="data.name !== null"> {{getShortName(data.name)}}</span>
+                                    <span *ngIf="data.userFullName === null">Y</span>
+                                    <span *ngIf="data.userFullName !== null"> {{getShortName(data.userFullName)}}</span>
                                 </div>
                                 <div class="chat-info">
                                     <div class="last-msg p-3 rounded bg-cyan">
@@ -1073,9 +1076,9 @@
                                         </div>
                                     </div>
                                     <div class="suserchat-info mt-2">
-                                        <span class="suserchat-name" *ngIf="data.name == null">You</span>
+                                        <span class="suserchat-name" *ngIf="data.userFullName == null">You</span>
                                         <span class="suserchat-name"
-                                            *ngIf="data.name !== null">{{data.name || ''}}</span>
+                                            *ngIf="data.userFullName !== null">{{data.userFullName || ''}}</span>
                                         {{data.time |dateAgo}}
                                         <ng-container *ngIf="!data.messageId">
                                             <span class="last-msg-checkic text-success"
@@ -1106,8 +1109,8 @@
               'booking_confirmation' && data.templateName != 'checking_in_welcome_details' && data.templateName !=
               'checking_in_welcome_details_wifidetails' ">
                                 <div class="avata">
-                                    <span *ngIf="data.name === null">Y</span>
-                                    <span *ngIf="data.name !== null"> {{getShortName(data.name)}}</span>
+                                    <span *ngIf="data.userFullName === null">Y</span>
+                                    <span *ngIf="data.userFullName !== null"> {{getShortName(data.userFullName)}}</span>
                                 </div>
                                 <div class="chat-info">
                                     <div class="last-msg p-3 rounded bg-cyan">
@@ -1134,9 +1137,9 @@
                                         </div>
                                     </div>
                                     <div class="suserchat-info mt-2">
-                                        <span class="suserchat-name" *ngIf="data.name == null">You</span>
+                                        <span class="suserchat-name" *ngIf="data.userFullName == null">You</span>
                                         <span class="suserchat-name"
-                                            *ngIf="data.name !== null">{{data.name || ''}}</span>
+                                            *ngIf="data.userFullName !== null">{{data.userFullName || ''}}</span>
                                         {{data.time |dateAgo}}
                                         <ng-container *ngIf="!data.messageId">
                                             <span class="last-msg-checkic text-success"
@@ -1166,8 +1169,8 @@
                                 *ngIf="data.messagetype === 'template' && data.templateBody == 'body'
               && data.templateButton1 == null  && data.templateHeader == 'header' && data.templateName != 'booking_confirmation' && data.templateName != 'checking_in_welcome_details_wifidetails'">
                                 <div class="avata">
-                                    <span *ngIf="data.name === null">Y</span>
-                                    <span *ngIf="data.name !== null"> {{getShortName(data.name)}}</span>
+                                    <span *ngIf="data.userFullName === null">Y</span>
+                                    <span *ngIf="data.userFullName !== null"> {{getShortName(data.userFullName)}}</span>
                                 </div>
                                 <div class="chat-info">
                                     <div class="last-msg p-3 rounded bg-cyan">
@@ -1194,9 +1197,9 @@
                                         </div>
                                     </div>
                                     <div class="suserchat-info mt-2">
-                                        <span class="suserchat-name" *ngIf="data.name == null">You</span>
+                                        <span class="suserchat-name" *ngIf="data.userFullName == null">You</span>
                                         <span class="suserchat-name"
-                                            *ngIf="data.name !== null">{{data.name || ''}}</span>
+                                            *ngIf="data.userFullName !== null">{{data.userFullName || ''}}</span>
                                         {{data.time |dateAgo}}
                                         <ng-container *ngIf="!data.messageId">
                                             <span class="last-msg-checkic text-success"
@@ -1227,8 +1230,8 @@
                && data.templateButton1 == null && data.templateHeader == null
                && data.templateHeaderfileLink == null && data.templateName != 'booking_confirmation' && data.templateName != 'checking_in_welcome_details_wifidetails'">
                                 <div class="avata">
-                                    <span *ngIf="data.name === null">Y</span>
-                                    <span *ngIf="data.name !== null"> {{getShortName(data.name)}}</span>
+                                    <span *ngIf="data.userFullName === null">Y</span>
+                                    <span *ngIf="data.userFullName !== null"> {{getShortName(data.userFullName)}}</span>
                                 </div>
                                 <div class="chat-info">
 
@@ -1247,9 +1250,9 @@
                                         </div>
                                     </div>
                                     <div class="suserchat-info mt-2">
-                                        <span class="suserchat-name" *ngIf="data.name == null">You</span>
+                                        <span class="suserchat-name" *ngIf="data.userFullName == null">You</span>
                                         <span class="suserchat-name"
-                                            *ngIf="data.name !== null">{{data.name || ''}}</span>
+                                            *ngIf="data.userFullName !== null">{{data.userFullName || ''}}</span>
                                         {{data.time |dateAgo}}
                                         <ng-container *ngIf="!data.messageId">
                                             <span class="last-msg-checkic text-success"
@@ -1277,8 +1280,8 @@
                                 *ngIf="data.messagetype === 'template' && data.templateBody == null
               && data.templateButton1 !== null && data.templateName != 'booking_confirmation' && data.templateName != 'checking_in_welcome_details_wifidetails'">
                                 <div class="avata">
-                                    <span *ngIf="data.name === null">Y</span>
-                                    <span *ngIf="data.name !== null"> {{getShortName(data.name)}}</span>
+                                    <span *ngIf="data.userFullName === null">Y</span>
+                                    <span *ngIf="data.userFullName !== null"> {{getShortName(data.userFullName)}}</span>
                                 </div>
                                 <div class="chat-info">
 
@@ -1298,9 +1301,9 @@
                                         </div>
                                     </div>
                                     <div class="suserchat-info mt-2">
-                                        <span class="suserchat-name" *ngIf="data.name == null">You</span>
+                                        <span class="suserchat-name" *ngIf="data.userFullName == null">You</span>
                                         <span class="suserchat-name"
-                                            *ngIf="data.name !== null">{{data.name || ''}}</span>
+                                            *ngIf="data.userFullName !== null">{{data.userFullName || ''}}</span>
                                         {{data.time |dateAgo}}
                                         <ng-container *ngIf="!data.messageId">
                                             <span class="last-msg-checkic text-success"
@@ -1328,8 +1331,8 @@
                                 *ngIf="data.messagetype === 'template' && data.templateBody == null
               && data.templateButton1 == null  && data.templateHeader !== 'header' && data.templateName != 'booking_confirmation' && data.templateName != 'checking_in_welcome_details_wifidetails'">
                                 <div class="avata">
-                                    <span *ngIf="data.name === null">Y</span>
-                                    <span *ngIf="data.name !== null"> {{getShortName(data.name)}}</span>
+                                    <span *ngIf="data.userFullName === null">Y</span>
+                                    <span *ngIf="data.userFullName !== null"> {{getShortName(data.userFullName)}}</span>
                                 </div>
                                 <div class="chat-info">
 
@@ -1341,9 +1344,9 @@
                                         </div>
                                     </div>
                                     <div class="suserchat-info mt-2">
-                                        <span class="suserchat-name" *ngIf="data.name == null">You</span>
+                                        <span class="suserchat-name" *ngIf="data.userFullName == null">You</span>
                                         <span class="suserchat-name"
-                                            *ngIf="data.name !== null">{{data.name || ''}}</span>
+                                            *ngIf="data.userFullName !== null">{{data.userFullName || ''}}</span>
                                         {{data.time |dateAgo}}
                                         <ng-container *ngIf="!data.messageId">
                                             <span class="last-msg-checkic text-success"
@@ -1488,8 +1491,8 @@
                             <li class="msg-replayer"
                                 *ngIf="data.type === 'Sender' && data.messagetype === 'interactive' || data.messagetype === 'Interactive'">
                                 <div class="avata">
-                                    <span *ngIf="data.name === null">Y</span>
-                                    <span *ngIf="data.name !== null"> {{getShortName(data.name)}}</span>
+                                    <span *ngIf="data.userFullName === null">Y</span>
+                                    <span *ngIf="data.userFullName !== null"> {{getShortName(data.userFullName)}}</span>
                                 </div>
                                 <div class="chat-info">
                                     <div class="last-msg p-2 rounded senttemp-1color">
@@ -1518,9 +1521,9 @@
                                     </div>
 
                                     <div class="suserchat-info">
-                                        <span class="suserchat-name" *ngIf="data.name == null">You</span>
+                                        <span class="suserchat-name" *ngIf="data.userFullName == null">You</span>
                                         <span class="suserchat-name"
-                                            *ngIf="data.name !== null">{{data.name || ''}}</span>
+                                            *ngIf="data.userFullName !== null">{{data.userFullName || ''}}</span>
                                         {{data.time |dateAgo}}
 
                                         <ng-container *ngIf="!data.messageId">
