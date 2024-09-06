@@ -81,6 +81,7 @@ export class ChatComponent
     checkinstatus: any;
     open: any = [];
     contact: any;
+    logInUserName: any;
     closed: any = [];
     missed: any = [];
     aciveUser: UserMaster[] = [];
@@ -247,6 +248,7 @@ export class ChatComponent
     ) {
         const d: any = localStorage.getItem('userData');
         this.userData = JSON.parse(d);
+        this.logInUserName = this.userData.firstName + ' ' + this.userData.lastName;
         this.nrSelect = this.userData?.userId;
         this.titleService.setTitle('CDC -Inbox');
     }
@@ -1030,6 +1032,7 @@ export class ChatComponent
                 to: this.contactinfo?.phoneNo ?? this.contactinfo?.mobileNo,
                 type: 'notes',
                 fromId: this.userData?.userId,
+                logInUserName: this.logInUserName,
                 assignedto: this.userData?.userId,
                 names: this.contactinfo?.fullName || null,
                 text: {
@@ -1090,15 +1093,13 @@ export class ChatComponent
 
     submitForm(form: any) {
         if (form.valid) {
-
-
-
             var request = {
                 messaging_product: 'whatsapp',
                 recipient_type: 'individual',
                 to: this.contactinfo?.phoneNo ?? this.contactinfo?.mobileNo,
                 type: 'text',
                 fromId: this.userData?.userId,
+                logInUserName: this.logInUserName,
                 assignedto: this.userData?.userId,
                 names: this.contactinfo?.fullName || null,
                 text: {
@@ -1142,6 +1143,7 @@ export class ChatComponent
             to: this.contactinfo?.phoneNo ?? this.contactinfo?.mobileNo,
             type: 'interactive',
             fromId: this.userData?.userId,
+            logInUserName: this.logInUserName,
             assignedto: this.userData?.userId,
             fullname: this.contactinfo?.fullName || null,
             interactiveName: e,
@@ -1206,6 +1208,7 @@ export class ChatComponent
                         mobileNo: contactinfo.phoneNo,
                         messagetype: 'closed',
                         fromId: this.userData.userId,
+                        logInUserName: this.logInUserName,
                     };
                     this.masterName = `/chat-activity/closed`;
                     let addData: any = {
@@ -1278,6 +1281,7 @@ export class ChatComponent
             messagetype: 'assigned',
             assignedto: e,
             fromId: this.userData.userId,
+            logInUserName: this.logInUserName,
         };
         this.masterName = `/chat-activity/assigned`;
         let addData: any = {
@@ -1372,6 +1376,7 @@ export class ChatComponent
                         fromId: this.userData?.userId,
                         assignedto: this.userData?.userId,
                         names: this.contactinfo?.fullName || null,
+                        logInUserName: this.logInUserName,
                     };
                     let formData = new FormData();
                     formData.append('messageEntry', JSON.stringify(request));
@@ -1426,6 +1431,7 @@ export class ChatComponent
                         fromId: this.userData?.userId,
                         assignedto: this.userData?.userId,
                         names: this.contactinfo?.fullName || null,
+                        logInUserName: this.logInUserName,
                     };
                     let formData = new FormData();
                     formData.append('messageEntry', JSON.stringify(request));
@@ -1481,6 +1487,7 @@ export class ChatComponent
                         fromId: this.userData?.userId,
                         assignedto: this.userData?.userId,
                         names: this.contactinfo?.fullName || null,
+                        logInUserName: this.logInUserName,
                     };
                     let formData = new FormData();
                     formData.append('messageEntry', JSON.stringify(request));
@@ -1536,6 +1543,7 @@ export class ChatComponent
                         fromId: this.userData?.userId,
                         assignedto: this.userData?.userId,
                         names: this.contactinfo?.fullName || null,
+                        logInUserName: this.logInUserName,
                     };
                     let formData = new FormData();
                     formData.append('messageEntry', JSON.stringify(request));
@@ -1595,6 +1603,7 @@ export class ChatComponent
                         longitude: data.longitude,
                         locationAddress: data.address,
                         locationName: data.locationName,
+                        logInUserName: this.logInUserName,
                     };
                     let formData = new FormData();
                     formData.append('messageEntry', JSON.stringify(request));
@@ -1657,6 +1666,7 @@ export class ChatComponent
                         templateName: data.templateName,
                         templateBody: data.templateBody,
                         templateHeader: data.templateHeader,
+                        logInUserName: this.logInUserName,
                     };
 
                     let formData = new FormData();
