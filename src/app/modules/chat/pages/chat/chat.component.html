@@ -443,6 +443,7 @@
                                 <i class="las la-check"></i> </a></div>
                     </span>
 
+
                 </div>
             </div>
             <div class="chatarea-sec">
@@ -623,7 +624,7 @@
                                         </div>
                                     </div>
                                     <span class="suserchat-name" *ngIf="data.name !== null">{{contactinfo.fullName
-                    ||'Reception'}}</span>
+                                        ||'Reception'}}</span>
                                     <span class="suserchat-name" *ngIf="data.name == null">Reception</span>
                                     {{data.time |dateAgo}}
 
@@ -682,7 +683,7 @@
                                         </audio>
                                     </div>
                                     <span class="suserchat-name" *ngIf="data.name !== null">{{contactinfo.fullName
-                    ||'Reception'}}</span>
+                                        ||'Reception'}}</span>
                                     <span class="suserchat-name" *ngIf="data.name == null">Reception</span>
                                     {{data.time |dateAgo}}
 
@@ -742,7 +743,7 @@
                                         </video>
                                     </div>
                                     <span class="suserchat-name" *ngIf="data.name !== null">{{contactinfo.fullName
-                    ||'Reception'}}</span>
+                                        ||'Reception'}}</span>
                                     <span class="suserchat-name" *ngIf="data.name == null">Reception</span>
                                     {{data.time |dateAgo}}
 
@@ -801,7 +802,7 @@
                                     <div class="last-msg p-2 rounded bg-light"><img [src]=data.fileUrl
                                             alt="File Not Found"></div>
                                     <span class="suserchat-name" *ngIf="data.name !== null">{{contactinfo.fullName
-                    ||'Reception'}}</span>
+                                        ||'Reception'}}</span>
                                     <span class="suserchat-name" *ngIf="data.name == null">Reception</span>
                                     {{data.time |dateAgo}}
 
@@ -825,7 +826,7 @@
                                             height="230px" width="250px"></google-map>
                                     </div>
                                     <span class="suserchat-name" *ngIf="data.name !== null">{{contactinfo.fullName
-                    ||'Reception'}}</span>
+                                        ||'Reception'}}</span>
                                     <span class="suserchat-name" *ngIf="data.name == null">Reception</span>
                                     {{data.time |dateAgo}}
 
@@ -852,8 +853,9 @@
                             </li>
                             <li class="msg-sender" *ngIf="data.type === 'Receiver' && data.messagetype === 'location' ">
                                 <div class="avata">
-                                    <span [ngClass]="bgclass" *ngIf="data.name !== null">{{getShortName(contactinfo.fullName||
-                    'R')}}</span>
+                                    <span [ngClass]="bgclass"
+                                        *ngIf="data.name !== null">{{getShortName(contactinfo.fullName||
+                                        'R')}}</span>
                                     <span [ngClass]="bgclass" *ngIf="data.name == null ">R</span>
                                 </div>
                                 <div class="chat-info">
@@ -869,7 +871,7 @@
 
                                     </div>
                                     <span class="suserchat-name" *ngIf="data.name !== null">{{contactinfo.fullName
-                    ||'Reception'}}</span>
+                                        ||'Reception'}}</span>
                                     <span class="suserchat-name" *ngIf="data.name == null">Reception</span>
                                     {{data.time |dateAgo}}
 
@@ -1375,15 +1377,16 @@
                             <li class="msg-sender"
                                 *ngIf="data.type === 'Receiver' && data.messagetype === 'text' || data.messagetype === 'Text'">
                                 <div class="avata">
-                                    <span [ngClass]="bgclass" *ngIf="data.name !== null">{{getShortName(contactinfo.fullName||
-                    'R')}}</span>
+                                    <span [ngClass]="bgclass"
+                                        *ngIf="data.name !== null">{{getShortName(contactinfo.fullName||
+                                        'R')}}</span>
                                     <span [ngClass]="bgclass" *ngIf="data.name == null ">R</span>
                                 </div>
                                 <div class="chat-info">
                                     <div class="suserchat-info">
                                         <div class="last-msg p-3 mb-1  rounded bg-light">{{data.message}}</div>
                                         <span class="suserchat-name" *ngIf="data.name !== null">{{contactinfo.fullName
-                      ||'Reception'}}</span>
+                                            ||'Reception'}}</span>
                                         <span class="suserchat-name" *ngIf="data.name == null">Reception</span>
                                         {{data.time |dateAgo}}
                                     </div>
@@ -1393,8 +1396,9 @@
                             <li class="msg-sender"
                                 *ngIf="data.type === 'Receiver' && data.messagetype === 'order' || data.messagetype === 'Order'">
                                 <div class="avata">
-                                    <span [ngClass]="bgclass" *ngIf="data.name !== null">{{getShortName(contactinfo.fullName||
-                    'R')}}</span>
+                                    <span [ngClass]="bgclass"
+                                        *ngIf="data.name !== null">{{getShortName(contactinfo.fullName||
+                                        'R')}}</span>
                                     <span [ngClass]="bgclass" *ngIf="data.name == null ">R</span>
                                 </div>
                                 <div class="chat-info">
@@ -1402,8 +1406,10 @@
                                         <div class="tablecustomer-dt">
                                             <p><i class="las la-utensils"></i> Time <strong> :
                                                     {{data.time |dateAgo}}</strong></p>
-                                            <p><i class="las la-user-tie"></i> Customer Name: <strong>{{contactinfo.fullName
-                          ||'Reception'}}</strong></p>
+                                            <p><i class="las la-user-tie"></i> Customer Name:
+                                                <strong>{{contactinfo.fullName
+                                                    ||'Reception'}}</strong>
+                                            </p>
                                         </div>
                                         <div class="order-protbl">
                                             <div class="dasboard-table">
@@ -1588,7 +1594,6 @@
                                                     .cls-1 {
                                                         fill: none;
                                                     }
-
                                                 </style>
                                             </defs>
                                             <title>template</title>
@@ -1615,7 +1620,8 @@
                                             <div class="atthico cursur" (click)="sendingCatalog('bev_ird')">
                                                 <a><img src="../assets/images/atticon-7.png" alt="File Not Found">
                                                     <p>Beverages And IRD(Food Menu)</p>
-                                                </a></div>
+                                                </a>
+                                            </div>
                                         </div>
 
                                         <!-- <div class="col-sm-6">
