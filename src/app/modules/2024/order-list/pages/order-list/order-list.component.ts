@@ -61,141 +61,40 @@ export class OrderListComponent implements OnInit
         })
     }
 
-    // onDownload()
-    // {
-    //     let recordNumber = 1;
-
-    //     const exportData = this.data.map((x) =>
-    //     {
-    //         return x.orderProducts.map(product =>
-    //         {
-    //             const price = parseFloat(product.price) || 0;
-    //             const quantity = product.quantity;
-
-    //             return {
-    //                 'R.No': (recordNumber++).toString(),
-    //                 Id: x.id || '',
-    //                 'Order ID': x.orderId || '',
-    //                 'Customer Name': x.customerName || '',
-    //                 'Mobile Number': x.mobileNumber || '',
-    //                 'Delivery Address': x.deliveryAddress || '',
-    //                 'Order Status': x.orderStatus || '',
-    //                 'Order Date': x.orderDate ? new Date(x.orderDate).toLocaleDateString() : '',
-    //                 'Product ID': product.productId || '',
-    //                 'Product Name': product.productName || '',
-    //                 'Product Description': product.productDescription || '',
-    //                 'Price': price.toString(),
-    //                 'Currency': product.currency || '',
-    //                 'Availability': product.availability || '',
-    //                 'Quantity': quantity.toString(),
-    //                 'Total Amount': (quantity * price).toString()
-    //             };
-    //         });
-    //     }).flat();
-
-    //     const headers = [
-    //         'R.No',
-    //         'Id',
-    //         'Order ID',
-    //         'Customer Name',
-    //         'Mobile Number',
-    //         'Delivery Address',
-    //         'Order Status',
-    //         'Order Date',
-    //         'Product ID',
-    //         'Product Name',
-    //         'Product Description',
-    //         'Price',
-    //         'Currency',
-    //         'Availability',
-    //         'Quantity',
-    //         'Total Amount'
-    //     ];
-
-    //     this.appService.exportAsExcelFile(exportData, 'Order-Details', headers);
-    // }
-
-
     onDownload()
     {
-        const exportData: any = [];
+        let recordNumber = 1;
 
-        // Iterate through each order
-        this.data.forEach(order =>
+        const exportData = this.data.map((x) =>
         {
-            // Calculate total order amount
-            const totalOrderAmount = order.orderProducts.reduce((sum, product) =>
+            return x.orderProducts.map(product =>
             {
                 const price = parseFloat(product.price) || 0;
-                const quantity = product.quantity || 0;
-                return sum + (price * quantity);
-            }, 0);
+                const quantity = product.quantity;
 
-            // Get the order details
-            const orderDetails = {
-                'R.No': '', // To be filled later
-                Id: order.id || '',
-                'Order ID': order.orderId || '',
-                'Customer Name': order.customerName || '',
-                'Mobile Number': order.mobileNumber || '',
-                'Delivery Address': order.deliveryAddress || '',
-                'Order Status': order.orderStatus || '',
-                'Order Date': order.orderDate ? new Date(order.orderDate).toLocaleDateString() : '',
-                'Total Order Amount': totalOrderAmount.toString() // Total order amount added
-            };
-
-            // Iterate through the products of the order
-            order.orderProducts.forEach((product, index) =>
-            {
-                const price = parseFloat(product.price) || 0;
-                const quantity = product.quantity || 0;
-                const totalAmount = (quantity * price).toString();
-
-                // For the first product, add the order details
-                if (index === 0)
-                {
-                    // Assign record number
-                    orderDetails[ 'R.No' ] = (exportData.length + 1).toString();
-                    // Add the combined order details with the first product
-                    exportData.push({
-                        ...orderDetails,
-                        'Product ID': product.productId || '',
-                        'Product Name': product.productName || '',
-                        'Product Description': product.productDescription || '',
-                        'Price': price.toString(),
-                        'Currency': product.currency || '',
-                        'Availability': product.availability || '',
-                        'Quantity': quantity.toString(),
-                        'Total Amount': totalAmount
-                    });
-                } else
-                {
-                    // For subsequent products, add a new row without repeating order details
-                    exportData.push({
-                        'R.No': '',
-                        Id: '',
-                        'Order ID': '',
-                        'Customer Name': '',
-                        'Mobile Number': '',
-                        'Delivery Address': '',
-                        'Order Status': '',
-                        'Order Date': '',
-                        'Total Order Amount': '', // Ensure the order total amount is not repeated
-                        'Product ID': product.productId || '',
-                        'Product Name': product.productName || '',
-                        'Product Description': product.productDescription || '',
-                        'Price': price.toString(),
-                        'Currency': product.currency || '',
-                        'Availability': product.availability || '',
-                        'Quantity': quantity.toString(),
-                        'Total Amount': totalAmount
-                    });
-                }
+                return {
+                    'SR.No': (recordNumber++).toString(),
+                    Id: x.id || '',
+                    'Order ID': x.orderId || '',
+                    'Customer Name': x.customerName || '',
+                    'Mobile Number': x.mobileNumber || '',
+                    'Delivery Address': x.deliveryAddress || '',
+                    'Order Status': x.orderStatus || '',
+                    'Order Date': x.orderDate ? new Date(x.orderDate).toLocaleDateString() : '',
+                    'Product ID': product.productId || '',
+                    'Product Name': product.productName || '',
+                    'Product Description': product.productDescription || '',
+                    'Price': price.toString(),
+                    'Currency': product.currency || '',
+                    'Availability': product.availability || '',
+                    'Quantity': quantity.toString(),
+                    'Total Amount': (quantity * price).toString()
+                };
             });
-        });
+        }).flat();
 
         const headers = [
-            'R.No',
+            'SR.No',
             'Id',
             'Order ID',
             'Customer Name',
@@ -203,7 +102,6 @@ export class OrderListComponent implements OnInit
             'Delivery Address',
             'Order Status',
             'Order Date',
-            'Total Order Amount', // Added to headers
             'Product ID',
             'Product Name',
             'Product Description',
@@ -216,6 +114,108 @@ export class OrderListComponent implements OnInit
 
         this.appService.exportAsExcelFile(exportData, 'Order-Details', headers);
     }
+
+
+    // onDownload()
+    // {
+    //     const exportData: any = [];
+
+    //     // Iterate through each order
+    //     this.data.forEach(order =>
+    //     {
+    //         // Calculate total order amount
+    //         const totalOrderAmount = order.orderProducts.reduce((sum, product) =>
+    //         {
+    //             const price = parseFloat(product.price) || 0;
+    //             const quantity = product.quantity || 0;
+    //             return sum + (price * quantity);
+    //         }, 0);
+
+    //         // Get the order details
+    //         const orderDetails = {
+    //             'R.No': '', // To be filled later
+    //             Id: order.id || '',
+    //             'Order ID': order.orderId || '',
+    //             'Customer Name': order.customerName || '',
+    //             'Mobile Number': order.mobileNumber || '',
+    //             'Delivery Address': order.deliveryAddress || '',
+    //             'Order Status': order.orderStatus || '',
+    //             'Order Date': order.orderDate ? new Date(order.orderDate).toLocaleDateString() : '',
+    //             'Total Order Amount': totalOrderAmount.toString() // Total order amount added
+    //         };
+
+    //         // Iterate through the products of the order
+    //         order.orderProducts.forEach((product, index) =>
+    //         {
+    //             const price = parseFloat(product.price) || 0;
+    //             const quantity = product.quantity || 0;
+    //             const totalAmount = (quantity * price).toString();
+
+    //             // For the first product, add the order details
+    //             if (index === 0)
+    //             {
+    //                 // Assign record number
+    //                 orderDetails[ 'R.No' ] = (exportData.length + 1).toString();
+    //                 // Add the combined order details with the first product
+    //                 exportData.push({
+    //                     ...orderDetails,
+    //                     'Product ID': product.productId || '',
+    //                     'Product Name': product.productName || '',
+    //                     'Product Description': product.productDescription || '',
+    //                     'Price': price.toString(),
+    //                     'Currency': product.currency || '',
+    //                     'Availability': product.availability || '',
+    //                     'Quantity': quantity.toString(),
+    //                     'Total Amount': totalAmount
+    //                 });
+    //             } else
+    //             {
+    //                 // For subsequent products, add a new row without repeating order details
+    //                 exportData.push({
+    //                     'R.No': '',
+    //                     Id: '',
+    //                     'Order ID': '',
+    //                     'Customer Name': '',
+    //                     'Mobile Number': '',
+    //                     'Delivery Address': '',
+    //                     'Order Status': '',
+    //                     'Order Date': '',
+    //                     'Total Order Amount': '', // Ensure the order total amount is not repeated
+    //                     'Product ID': product.productId || '',
+    //                     'Product Name': product.productName || '',
+    //                     'Product Description': product.productDescription || '',
+    //                     'Price': price.toString(),
+    //                     'Currency': product.currency || '',
+    //                     'Availability': product.availability || '',
+    //                     'Quantity': quantity.toString(),
+    //                     'Total Amount': totalAmount
+    //                 });
+    //             }
+    //         });
+    //     });
+
+    //     const headers = [
+    //         'R.No',
+    //         'Id',
+    //         'Order ID',
+    //         'Customer Name',
+    //         'Mobile Number',
+    //         'Delivery Address',
+    //         'Order Status',
+    //         'Order Date',
+    //         'Total Order Amount', // Added to headers
+    //         'Product ID',
+    //         'Product Name',
+    //         'Product Description',
+    //         'Price',
+    //         'Currency',
+    //         'Availability',
+    //         'Quantity',
+    //         'Total Amount'
+    //     ];
+
+    //     this.appService.exportAsExcelFile(exportData, 'Order-Details', headers);
+    // }
 
 
 
