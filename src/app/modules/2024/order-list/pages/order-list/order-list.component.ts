@@ -69,11 +69,11 @@ export class OrderListComponent implements OnInit
         {
             return x.orderProducts.map(product =>
             {
-                const price = parseFloat(product.price) || 0; // Convert price to number, default to 0 if NaN
+                const price = parseFloat(product.price) || 0;
                 const quantity = product.quantity;
 
                 return {
-                    'R.No': (recordNumber++).toString(), // Convert to string
+                    'R.No': (recordNumber++).toString(),
                     Id: x.id || '',
                     'Order ID': x.orderId || '',
                     'Customer Name': x.customerName || '',
@@ -84,11 +84,11 @@ export class OrderListComponent implements OnInit
                     'Product ID': product.productId || '',
                     'Product Name': product.productName || '',
                     'Product Description': product.productDescription || '',
-                    'Price': price.toString(), // Convert to string
+                    'Price': price.toString(),
                     'Currency': product.currency || '',
                     'Availability': product.availability || '',
-                    'Quantity': quantity.toString(), // Convert to string
-                    'Total Amount': (quantity * price).toString() // Calculate and convert to string
+                    'Quantity': quantity.toString(),
+                    'Total Amount': (quantity * price).toString()
                 };
             });
         }).flat();
@@ -109,10 +109,9 @@ export class OrderListComponent implements OnInit
             'Currency',
             'Availability',
             'Quantity',
-            'Total Amount' // Add header for total amount
+            'Total Amount'
         ];
 
-        // Ensure all values passed to the function are strings
         this.appService.exportAsExcelFile(exportData, 'Order-Details', headers);
     }
 
