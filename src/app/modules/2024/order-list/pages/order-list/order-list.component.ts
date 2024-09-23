@@ -5,13 +5,15 @@ import { OrderUpdateComponent } from '../../components/order-update/order-update
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { Order } from '../../../Model/oder-model';
+import { AppService } from 'src/app/_services/app.service';
 
 @Component({
     selector: 'app-order-list',
     templateUrl: './order-list.component.html',
-    styleUrls: ['./order-list.component.css']
+    styleUrls: [ './order-list.component.css' ]
 })
-export class OrderListComponent implements OnInit {
+export class OrderListComponent implements OnInit
+{
 
 
     isProceess: boolean = true;
@@ -22,64 +24,111 @@ export class OrderListComponent implements OnInit {
     page: number = 1;
     count: number = 0;
     tableSize: number = 7;
-    tableSizes: any = [3, 6, 9, 12];
+    tableSizes: any = [ 3, 6, 9, 12 ];
 
     constructor(private apiService: ApiService,
         private cd: ChangeDetectorRef,
         private modalService: NgbModal,
         private toastr: ToastrService,
+        private appService: AppService,
+
     ) { }
 
 
-    ngOnInit(): void {
+    ngOnInit(): void
+    {
         this.fatchData();
     }
 
 
-    fatchData() {
+    fatchData()
+    {
         this.isProceess = true;
         this.masterName = "/orders/details";
-        this.subscription = this.apiService.getAll(this.masterName).pipe(take(1)).subscribe(data => {
-            if (data) {
+        this.subscription = this.apiService.getAll(this.masterName).pipe(take(1)).subscribe(data =>
+        {
+            if (data)
+            {
                 this.data = data.data;
                 this.count = this.data.length;
                 this.isProceess = false;
                 this.cd.detectChanges();
             }
 
-        }, error => {
+        }, error =>
+        {
             this.isProceess = false;
         })
     }
 
+    onDownload()
+    {
+        const exportData = this.data.map((x) =>
+        {
+            return {
+                Id: x.id || '',
+                'Order ID': x.orderId || '',
+                'Customer Name': x.customerName || '',
+                'Mobile Number': x.mobileNumber || '',
+                'Delivery Address': x.deliveryAddress || '',
+                'Order Status': x.orderStatus || '',
+                'Order Date': x.orderDate ? new Date(x.orderDate).toLocaleDateString() : '',
+                'Products': x.orderProducts.map(product =>
+                {
+                    return `${ product.productName } (${ product.quantity }x) - ${ product.price }`;
+                }).join(', ') || '',
+            };
+        });
+
+        const headers = [
+            'Id',
+            'Order ID',
+            'Customer Name',
+            'Mobile Number',
+            'Delivery Address',
+            'Order Status',
+            'Order Date',
+            'Products',
+        ];
+
+        this.appService.exportAsExcelFile(exportData, 'Order-Details', headers);
+    }
 
 
-    calculateIndex(page: number, index: number): number {
+
+    calculateIndex(page: number, index: number): number
+    {
         return (page - 1) * this.tableSize + index + 1;
     }
 
-    onTableDataChange(event: any) {
+    onTableDataChange(event: any)
+    {
         this.page = event;
     }
 
-    onEdit(dataItem: any) {
+    onEdit(dataItem: any)
+    {
         this.isProceess = true;
         const modalRef = this.modalService.open(OrderUpdateComponent, { size: "sm" });
-        if (modalRef) {
+        if (modalRef)
+        {
             this.isProceess = false;
         }
-        else {
+        else
+        {
             this.isProceess = false;
         }
         var componentInstance = modalRef.componentInstance as OrderUpdateComponent;
         componentInstance.issuesMaster = dataItem;
-        modalRef.result.then((data: any) => {
-            if (data) {
+        modalRef.result.then((data: any) =>
+        {
+            if (data)
+            {
                 var model: any = {
                     orderId: dataItem.orderId,
                     Status: data.status,
                 }
-                this.masterName = `/orders/updateStatus/${model.orderId}/Status/${model.Status}`;
+                this.masterName = `/orders/updateStatus/${ model.orderId }/Status/${ model.Status }`;
                 let updateData: any = {
                     url: this.masterName,
                     model: model
@@ -88,7 +137,8 @@ export class OrderListComponent implements OnInit {
                 this.subscription = this.apiService.update(updateData)
                     .pipe(
                         take(1),
-                        catchError((error) => {
+                        catchError((error) =>
+                        {
                             // Handle error
 
                             this.isProceess = false; // Corrected typo
@@ -102,16 +152,19 @@ export class OrderListComponent implements OnInit {
                         })
                     )
                     .subscribe(
-                        (res: any) => {
+                        (res: any) =>
+                        {
                             // Check if the response indicates success
-                            if (res?.status === 'success') {
+                            if (res?.status === 'success')
+                            {
                                 this.toastr.success(res.message || 'Update successful!', 'Success');
                             }
 
                             this.isProceess = false; // Corrected typo
                             this.fatchData(); // Corrected typo
                         },
-                        (error) => {
+                        (error) =>
+                        {
                             console.error('Subscription error:', error);
                             this.isProceess = false; // Corrected typo
                             this.fatchData(); // Corrected typo

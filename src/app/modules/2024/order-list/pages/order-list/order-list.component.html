@@ -4,12 +4,19 @@
     <h1>Order List</h1>
 </div>
 
+
+<div class="page-btns-col">
+    <div class="dt-buttons">
+        <button class="gray-btns" (click)="onDownload()" type="button"><i class="las la-file-excel"></i> Excel</button>
+        <div class="table-search">
+            <input type="text" class="form-control" name="name" id="name" [(ngModel)]="term" autocomplete="off"
+                placeholder="Search..." required="">
+        </div>
+    </div>
+
+</div>
 <div class="inner-middle-content">
     <div class="dashboard-wrapper-sec">
-        <div class="table-search">
-            <input type="text" class="form-control ms-auto mb-3" name="name" id="name" placeholder="Search here"
-                required="" [(ngModel)]="term" />
-        </div>
 
         <div class="dasboard-table">
             <div class="table-responsive">
