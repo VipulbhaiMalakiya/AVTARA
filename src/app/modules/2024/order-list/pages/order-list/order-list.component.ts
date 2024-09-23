@@ -63,12 +63,17 @@ export class OrderListComponent implements OnInit
 
     onDownload()
     {
+        let recordNumber = 1;
+
         const exportData = this.data.map((x) =>
         {
-            // Flatten each product into a separate row for the same order
-            const products = x.orderProducts.map(product =>
+            return x.orderProducts.map(product =>
             {
+                const price = parseFloat(product.price) || 0; // Convert price to number, default to 0 if NaN
+                const quantity = product.quantity;
+
                 return {
+                    'R.No': (recordNumber++).toString(), // Convert to string
                     Id: x.id || '',
                     'Order ID': x.orderId || '',
                     'Customer Name': x.customerName || '',
@@ -79,16 +84,17 @@ export class OrderListComponent implements OnInit
                     'Product ID': product.productId || '',
                     'Product Name': product.productName || '',
                     'Product Description': product.productDescription || '',
-                    'Price': product.price || '',
+                    'Price': price.toString(), // Convert to string
                     'Currency': product.currency || '',
                     'Availability': product.availability || '',
-                    'Quantity': product.quantity || '',
+                    'Quantity': quantity.toString(), // Convert to string
+                    'Total Amount': (quantity * price).toString() // Calculate and convert to string
                 };
             });
-            return products;
-        }).flat(); // Flatten the array of arrays
+        }).flat();
 
         const headers = [
+            'R.No',
             'Id',
             'Order ID',
             'Customer Name',
@@ -102,11 +108,14 @@ export class OrderListComponent implements OnInit
             'Price',
             'Currency',
             'Availability',
-            'Quantity'
+            'Quantity',
+            'Total Amount' // Add header for total amount
         ];
 
+        // Ensure all values passed to the function are strings
         this.appService.exportAsExcelFile(exportData, 'Order-Details', headers);
     }
+
 
 
 
