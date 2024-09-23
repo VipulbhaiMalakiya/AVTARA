@@ -65,20 +65,28 @@ export class OrderListComponent implements OnInit
     {
         const exportData = this.data.map((x) =>
         {
-            return {
-                Id: x.id || '',
-                'Order ID': x.orderId || '',
-                'Customer Name': x.customerName || '',
-                'Mobile Number': x.mobileNumber || '',
-                'Delivery Address': x.deliveryAddress || '',
-                'Order Status': x.orderStatus || '',
-                'Order Date': x.orderDate ? new Date(x.orderDate).toLocaleDateString() : '',
-                'Products': x.orderProducts.map(product =>
-                {
-                    return `${ product.productName } (${ product.quantity }x) - ${ product.price }`;
-                }).join(', ') || '',
-            };
-        });
+            // Flatten each product into a separate row for the same order
+            const products = x.orderProducts.map(product =>
+            {
+                return {
+                    Id: x.id || '',
+                    'Order ID': x.orderId || '',
+                    'Customer Name': x.customerName || '',
+                    'Mobile Number': x.mobileNumber || '',
+                    'Delivery Address': x.deliveryAddress || '',
+                    'Order Status': x.orderStatus || '',
+                    'Order Date': x.orderDate ? new Date(x.orderDate).toLocaleDateString() : '',
+                    'Product ID': product.productId || '',
+                    'Product Name': product.productName || '',
+                    'Product Description': product.productDescription || '',
+                    'Price': product.price || '',
+                    'Currency': product.currency || '',
+                    'Availability': product.availability || '',
+                    'Quantity': product.quantity || '',
+                };
+            });
+            return products;
+        }).flat(); // Flatten the array of arrays
 
         const headers = [
             'Id',
@@ -88,11 +96,18 @@ export class OrderListComponent implements OnInit
             'Delivery Address',
             'Order Status',
             'Order Date',
-            'Products',
+            'Product ID',
+            'Product Name',
+            'Product Description',
+            'Price',
+            'Currency',
+            'Availability',
+            'Quantity'
         ];
 
         this.appService.exportAsExcelFile(exportData, 'Order-Details', headers);
     }
+
 
 
 
