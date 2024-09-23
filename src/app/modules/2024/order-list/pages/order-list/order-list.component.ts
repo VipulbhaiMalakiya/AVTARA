@@ -123,6 +123,14 @@ export class OrderListComponent implements OnInit
         // Iterate through each order
         this.data.forEach(order =>
         {
+            // Calculate total order amount
+            const totalOrderAmount = order.orderProducts.reduce((sum, product) =>
+            {
+                const price = parseFloat(product.price) || 0;
+                const quantity = product.quantity || 0;
+                return sum + (price * quantity);
+            }, 0);
+
             // Get the order details
             const orderDetails = {
                 'R.No': '', // To be filled later
@@ -132,14 +140,15 @@ export class OrderListComponent implements OnInit
                 'Mobile Number': order.mobileNumber || '',
                 'Delivery Address': order.deliveryAddress || '',
                 'Order Status': order.orderStatus || '',
-                'Order Date': order.orderDate ? new Date(order.orderDate).toLocaleDateString() : ''
+                'Order Date': order.orderDate ? new Date(order.orderDate).toLocaleDateString() : '',
+                'Total Order Amount': totalOrderAmount.toString() // Total order amount added
             };
 
             // Iterate through the products of the order
             order.orderProducts.forEach((product, index) =>
             {
                 const price = parseFloat(product.price) || 0;
-                const quantity = product.quantity;
+                const quantity = product.quantity || 0;
                 const totalAmount = (quantity * price).toString();
 
                 // For the first product, add the order details
@@ -171,6 +180,7 @@ export class OrderListComponent implements OnInit
                         'Delivery Address': '',
                         'Order Status': '',
                         'Order Date': '',
+                        'Total Order Amount': '', // Ensure the order total amount is not repeated
                         'Product ID': product.productId || '',
                         'Product Name': product.productName || '',
                         'Product Description': product.productDescription || '',
@@ -193,6 +203,7 @@ export class OrderListComponent implements OnInit
             'Delivery Address',
             'Order Status',
             'Order Date',
+            'Total Order Amount', // Added to headers
             'Product ID',
             'Product Name',
             'Product Description',
@@ -205,6 +216,7 @@ export class OrderListComponent implements OnInit
 
         this.appService.exportAsExcelFile(exportData, 'Order-Details', headers);
     }
+
 
 
 
